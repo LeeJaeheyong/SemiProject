@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+    <link rel="stylesheet" href="../css/mypageDelete.css">
+</head>
+<body>
+<div class="header-Div">
+    <header>
+        <h1><a class="header-a" href="../html/home.html">THE RANK</a></h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../html/mypagePro.html">내프로필</a></li>
+            <li><a href="../html/mypageInfo.html">내정보변경</a></li>
+            <li><a href="../html/mypageInquiry.html">내문의사항</a></li>
+        </ul>
+        <div class="auth-links">
+            <a href="#">로그아웃</a>
+        </div>
+    </nav>
+</div>
+    <main>
+        <h2>회원탈퇴</h2>
+        <form>
+            <div class="form_list">
+                <div class="form_group">
+                    <div class="form_item">
+                        <input type="text" id="username" name="username" placeholder="현재아이디 변경불가" maxlength="20" readonly>
+                    </div>
+                    <div class="form_item">
+                        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="16">
+                </div>
+                <div class="error_box">
+                    <div class="error_text"></div>
+                </div>
+            <div class="button_div">
+                <button class="button_re" type="submit" id='submitButton' onclick="submitButton()">회원탈퇴</button>
+            </div>
+        </form>
+    </main>
+    <footer style="color: #707070;">
+        <em>
+            상호 : 그린컴퓨터 &nbsp; | &nbsp; 대표자 : 이재형, 한봉오, 전주영 &nbsp;
+            <br>
+            <br>
+            주소 : 경기도 안양시 만안구 안양로 303
+            <br>
+            <br>
+            고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
+        </em>
+    </footer>
+    <script src="../javaScript/mypageInfo.js"></script>
+</body>
+</html>
