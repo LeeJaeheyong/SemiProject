@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>THE RANK</title>
+        <link rel="stylesheet" th:href="@{/css/header.css}">
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        .border_bottom{
+            border-bottom: 1px solid #ddd;
+        }
+        </style>
+        </head>
+    <body>
+    <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+        <div class="categories">
+            <table>
+                <tr class="border_bottom">
+                    <th>플랫폼</th>
+                    <td>온라인</td>
+                    <td>PC</td>
+                    <td>비디오</td>
+                    <td>웹게임</td>
+                    <td>모바일</td>
+                    <td>VR</td>
+                </tr>
+                <tr>
+                    <th>장르</th>
+                    <td>MMORPG</td>
+                    <td>MORPG</td>
+                    <td>액션 RPG</td>
+                    <td>SRPG</td>
+                    <td>롤플레잉</td>
+                    <td>전략시뮬</td>
+                    <td>RTS</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>시뮬레이션</td>
+                    <td>비행액션</td>
+                    <td>비행시뮬</td>
+                    <td>육성시뮬</td>
+                    <td>연애시뮬</td>
+                    <td>경영시뮬</td>
+                    <td>FPS</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>액션</td>
+                    <td>대전액션</td>
+                    <td>리듬액션</td>
+                    <td>스포츠</td>
+                    <td>레이싱</td>
+                    <td>TCG</td>
+                    <td>TPS</td>
+                </tr>
+                <tr class="border_bottom">
+                    <th></th>
+                    <td>어드벤처</td>
+                    <td>비주얼노벨</td>
+                    <td>기능성게임</td>
+                    <td>AOS</td>
+                    <td>슈팅</td>
+                    <td>소셜게임</td>
+                    <td>기타</td>
+                </tr>
+                </tr>
+                <tr>
+                    <th>상태</th>
+                    <td>개발중</td>
+                    <td>클로즈베타</td>
+                    <td>오픈베타</td>
+                    <td>부분유료화</td>
+                    <td>정액제</td>
+                    <td>무료</td>
+                    <td>서비스종료</td>
+                </tr>
+            </table>
+        </div>
+        <div class="gallery">
+            <div class="card">
+                <img src="./HTML/노트북.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>애프터러브 EP</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/스마트폰.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>베고픈 밈</h3>
+                    <p>플랫폼: PC, 비디오</p>
+                    <p>장르: 시뮬레이션</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/태블릿.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>아키텍트 라이프</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/노트북.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>애프터러브 EP</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/스마트폰.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>베고픈 밈</h3>
+                    <p>플랫폼: PC, 비디오</p>
+                    <p>장르: 시뮬레이션</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/태블릿.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>아키텍트 라이프</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/노트북.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>애프터러브 EP</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/스마트폰.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>베고픈 밈</h3>
+                    <p>플랫폼: PC, 비디오</p>
+                    <p>장르: 시뮬레이션</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./HTML/태블릿.jpg" alt="Game Image">
+                <div class="card-content">
+                    <h3>아키텍트 라이프</h3>
+                    <p>플랫폼: -</p>
+                    <p>장르: -</p>
+                    <p>서비스 상태: -</p>
+                </div>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+    </main>
+ <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
