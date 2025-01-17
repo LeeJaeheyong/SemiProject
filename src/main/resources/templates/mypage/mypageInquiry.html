@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내문의사항</title>
+    <link rel="stylesheet" href="../css/mypageInquiry.css">
+</head>
+<body>
+<div class="header-Div">
+    <header>
+        <h1><a class="header-a" href="../html/home.html">THE RANK</a></h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../html/mypagePro.html">내프로필</a></li>
+            <li><a href="../html/mypageInfo.html">내정보변경</a></li>
+            <li><a href="../html/mypageInquiry.html">내문의사항</a></li>
+        </ul>
+        <div class="auth-links">
+            <a href="#">로그아웃</a>
+        </div>
+    </nav>
+</div>
+    <main>
+        <h2>내 문의 내역</h2>
+        <div class="table-container">
+			<table>
+				<tr>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                    <th></th>
+                </tr>
+				<tr>
+                    <td>1</td>
+                    <td>문의사항 제목 1</td>
+                    <td>2025-01-17</td>
+                    <td><button class="show-table-btn" id="btn-status-1" onclick="toggleDetails(1)">▼</button></td>
+                </tr>
+                <tr id="detailed-row-1" style="display:none;">
+                    <td colspan="4">
+                        <div id="detailed-section-1" class="detailed-section">
+                            <h3>상세 내용 (문의사항 1)</h3>
+                            <table>
+                                <tr>
+                                    <th>제목</th>
+                                    <td>문의사항 제목 1 상세 내용</td>
+                                </tr>
+                                <tr>
+                                    <th>내용</th>
+                                    <td>이곳에 문의사항의 상세 내용이 표시됩니다.</td>
+                                </tr>
+                                <tr>
+                                    <th>답변</th>
+                                    <td>답변 내용이 여기 표시됩니다.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>문의사항 제목 2</td>
+                    <td>2025-01-16</td>
+                    <td><button class="show-table-btn" id="btn-status-2" onclick="toggleDetails(2)">▼</button></td>
+                </tr>
+                <tr id="detailed-row-2" style="display:none;">
+                    <td colspan="4">
+                        <div id="detailed-section-2" class="detailed-section">
+                            <h3>상세 내용 (문의사항 2)</h3>
+                            <table>
+                                <tr>
+                                    <th>상세 제목</th>
+                                    <td>문의사항 제목 2 상세 내용</td>
+                                </tr>
+                                <tr>
+                                    <th>내용</th>
+                                    <td>이곳에 문의사항의 상세 내용이 표시됩니다.</td>
+                                </tr>
+                                <tr>
+                                    <th>답변</th>
+                                    <td>답변 내용이 여기 표시됩니다.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+			</table>
+        </div>    
+    </main>
+    <footer style="color: #707070;">
+        <em>
+            상호 : 그린컴퓨터 &nbsp; | &nbsp; 대표자 : 이재형, 한봉오, 전주영 &nbsp;
+            <br>
+            <br>
+            주소 : 경기도 안양시 만안구 안양로 303
+            <br>
+            <br>
+            고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
+        </em>
+    </footer>
+    <script src="../javaScript/mypageInquiry.js"></script>
+</body>
+</html>
