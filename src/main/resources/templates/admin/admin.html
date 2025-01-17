@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>THE RANK</title>
+        <link rel="stylesheet" th:href="@{/css/header.css}">
+        <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+        <style>
+        .border_bottom{
+            border-bottom: 1px solid #ddd;
+        }
+        </style>
+    </head>
+    <body>
+    <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <div class="tab" onclick="showTab('user-info')">유저 정보 확인</div>
+    <div class="tab" onclick="showTab('inquiry')">1:1 문의 확인</div>
+    <div class="tab" onclick="showTab('game-db')">게임 DB 확인</div>
+    <div class="tab" onclick="showTab('notice')">공지사항 확인</div>
+
+    <div id="user-info" class="tab-content">
+        <h2>유저 정보 확인</h2>
+        <p>유저 정보를 여기에 표시합니다.</p>
+    </div>
+    <div id="inquiry" class="tab-content">
+        <h2>1:1 문의 확인</h2>
+        <p>1:1 문의 내용을 여기에 표시합니다.</p>
+    </div>
+    <div id="game-db" class="tab-content">
+        <h2>게임 DB 확인</h2>
+        <p>게임 DB 내용을 여기에 표시합니다.</p>
+        <div class="button-group">
+            <button onclick="location.href='#'">추가</button>
+            <button onclick="location.href='#'">수정</button>
+            <button onclick="location.href='#'">삭제</button>
+        </div>
+    </div>
+    <div id="notice" class="tab-content">
+        <h2>공지사항 확인</h2>
+        <p>공지사항 내용을 여기에 표시합니다.</p>
+        <div class="button-group">
+            <button onclick="location.href='#'">추가</button>
+        </div>
+    </div>
+    </main>
+    <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
+    <!-- FOOTEER -->
+    <script>
+        function showTab(tabId) {
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active-content');
+            }
+            document.getElementById(tabId).classList.add('active-content');
+
+            var tabButtons = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
