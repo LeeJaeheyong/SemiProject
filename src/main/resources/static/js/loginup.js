@@ -1,3 +1,5 @@
+// 
+
 document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, #birthdate, #phone').forEach(function(inputElement) {
     inputElement.addEventListener('input', function() {
         const fieldId = this.id;
@@ -11,17 +13,46 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             if (value.trim() === '') {
                 errorBox.textContent = '아이디: 필수 정보입니다.';
                 errorBox.style.display = 'block';
+				errorBox.style.color = 'red';
             } else if (!pattern.test(value)) {
                 errorBox.textContent = '아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.';
                 errorBox.style.display = 'block';
                 inputElement.style.border = '1px solid red';
+				errorBox.style.color = 'red';
             } else {
                 errorBox.style.display = 'none';
                 inputElement.style.border = '';
+				$.ajax({
+					type: "POST",
+					url: "/game/userIdCheck",
+					data: {
+						// key  :  value
+						"username": value
+					},
+					success: function(res) {
+						console.log("요청성공", res);
+						console.log(res);
+						if(res == "ok") {
+							console.log(errorBox);
+							errorBox.textContent = '사용가능한 아이디입니다.';
+							errorBox.style.display = 'block';
+							errorBox.style.color = 'green';
+						} else {
+							console.log("이미 사용중인 아이디");
+							errorBox.textContent = '중복된 아이디입니다.';
+							errorBox.style.display = 'block';
+							errorBox.style.color = 'red';
+							
+						}
+					},
+					error: function(err) {
+						console.log("에러발생");
+					}
+				});
             }
         }
 
-        if (fieldId === 'password') {
+        else if (fieldId === 'password') {
             const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(2)');
             pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}[\]|:;"'<>,.?])[A-Za-z0-9!@#$%^&*()_+{}[\]|:;"'<>,.?]{8,}$/;
 
@@ -38,7 +69,7 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             }
         }
 
-        if (fieldId === 'passwordcheck') {
+        else if (fieldId === 'passwordcheck') {
             const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(3)');
             const passwordValue = document.querySelector('#password').value;
 
@@ -55,7 +86,7 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             }
         }
 
-        if (fieldId === 'email') {
+        else if (fieldId === 'email') {
             const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(4)');
             pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -72,7 +103,7 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             }
         }
 
-        if (fieldId === 'name') {
+        else if (fieldId === 'name') {
             const errorBox = document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(1)');
             pattern = /^[가-힣a-zA-Z]+$/;
 
@@ -89,7 +120,7 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             }
         }
 
-        if (fieldId === 'birthdate') {
+        else if (fieldId === 'birthdate') {
             const errorBox = document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(2)');
             pattern = /^\d{8}$/;
 
@@ -106,7 +137,7 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
             }
         }
 
-        if (fieldId === 'phone') {
+        else if (fieldId === 'phone') {
             const errorBox = document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(3)');
             pattern = /^(01[0-9])-(\d{3,4})-(\d{4})$/;
 
@@ -143,14 +174,43 @@ document.getElementById('submitButton').addEventListener('click', function(event
             if (value.trim() === '') {
                 showError(errorBox, '아이디: 필수 정보입니다.');
                 inputElement.style.border = '1px solid red';
+				errorBox.style.color = 'red';
                 allValid = false;
             } else if (!pattern.test(value)) {
                 showError(errorBox, '아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.');
                 inputElement.style.border = '1px solid red';
+				errorBox.style.color = 'red';
                 allValid = false;
             } else {
                 hideError(errorBox);
                 inputElement.style.border = '';
+				$.ajax({
+						type: "POST",
+						url: "/game/userIdCheck",
+						data: {
+							// key  :  value
+							"username": value
+						},
+						success: function(res) {
+							console.log("요청성공", res);
+							console.log(res);
+							if(res == "ok") {
+								console.log(errorBox);
+								errorBox.textContent = '사용가능한 아이디입니다.';
+								errorBox.style.display = 'block';
+								errorBox.style.color = 'green';
+							} else {
+								console.log("이미 사용중인 아이디");
+								errorBox.textContent = '중복된 아이디입니다.';
+								errorBox.style.display = 'block';
+								errorBox.style.color = 'red';
+											
+							}
+						},
+						error: function(err) {
+							console.log("에러발생");
+						}
+					});
             }
         }
 
@@ -258,9 +318,10 @@ document.getElementById('submitButton').addEventListener('click', function(event
     });
 
     if (allValid) {
-        alert("인증번호를 발송했습니다. 이메일을 확인해주세요.");
+        //alert("인증번호를 발송했습니다. 이메일을 확인해주세요.");
         // 폼을 제출하려면 아래 코드를 활성화
-        // document.querySelector('form').submit();
+		console.log("회원가입성공!!")
+        document.querySelector('form').submit();
     }
 });
 
@@ -285,3 +346,40 @@ function getErrorBox(fieldId) {
     if (fieldId === 'birthdate') return document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(2)');
     if (fieldId === 'phone') return document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(3)');
 }
+
+/*const userIdCheck = () => {
+	const userId = document.getElementById("username").value;
+	const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(1)'); 
+	console.log(userId)
+	console.log(errorBox)
+	
+	$.ajax({
+		type: "POST",
+		url: "/game/userIdCheck",
+		data: {
+			"username": userId
+		},
+		success: function(res) {
+			console.log("요청성공", res);
+			console.log(res);
+			if(res == "ok") {
+				console.log(errorBox);
+				errorBox.textContent = '사용가능한 아이디입니다.';
+				errorBox.style.display = 'block';
+				errorBox.style.color = 'green';
+			} else {
+				console.log("이미 사용중인 아이디");
+				errorBox.textContent = '중복된 아이디입니다.';
+				errorBox.style.display = 'block';
+				errorBox.style.color = 'red';
+				
+			}
+		},
+		error: function(err) {
+			console.log("에러발생");
+		}
+	});
+
+}*/
+
+

@@ -19,32 +19,32 @@
             <li><a href="#">공지사항</a></li>
         </ul>
         <div class="auth-links">
-            <a href="../html/loginin.html">로그인</a>
-            <a href="../html/loginup.html">회원가입</a>
+            <a th:href="@{/game/logininForm}">로그인</a>
+            <a th:href="@{/game/loginupForm}">회원가입</a>
         </div>
     </nav>
 </div>
     <main>
         <h2>로그인</h2>
-        <form>
+        <form action="/game/loginin" method="POST">
             <div class="form_list">
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="username" name="username" placeholder="아이디" maxlength="20">
+                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
                     </div>
                     <div class="form_item">
-                        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="16">
+                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
                     </div>
                 </div>
                 <div class="button_div">
-                    <button type="submit" id='submitButton' onclick="submitButton()">로그인</button>
+                    <button type="submit" id='submitButton'>로그인</button>
                 </div>
                 <div class="form_footer">
                     <a href="#" class="form_a">비밀번호 찾기</a>
                     <span>|</span>
                     <a href="#" class="form_a">아이디 찾기</a>
                     <span>|</span>
-                    <a href="../html/loginup.html" class="form_a">회원가입</a>
+                    <a th:href="@{/game/loginupForm}">회원가입</a>
                 </div>
             </div>
         </form>

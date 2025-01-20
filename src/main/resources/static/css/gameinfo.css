@@ -1,0 +1,20 @@
+
+
+.categories {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+.categories table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.categories td {
+    padding: 10px;
+}
+.categories th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
