@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="/css/loginup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="header-Div">
@@ -19,44 +20,44 @@
             <li><a href="#">공지사항</a></li>
         </ul>
         <div class="auth-links">
-            <a href="../html/loginin.html">로그인</a>
-            <a href="../html/loginup.html">회원가입</a>
+            <a th:href="@{/game/logininForm}">로그인</a>
+            <a th:href="@{/game/loginupForm}">회원가입</a>
         </div>
     </nav>
 </div>
     <main>
         <h2>회원가입</h2>
-        <form>
+        <form action="/game/loginup" method="POST">
             <div class="form_list">
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="username" name="username" placeholder="아이디" maxlength="20">
+                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
                     </div>
                     <div class="form_item">
-                        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="16">
+                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
                     </div>
                     <div class="form_item">
                         <input type="password" id="passwordcheck" name="passwordcheck" placeholder="비밀번호 확인" maxlength="16">
                     </div>
                     <div class="form_item">
-                        <input type="email" id="email" name="email" placeholder="이메일주소">
+                        <input type="email" id="email" name="userEmail" placeholder="이메일주소">
                     </div>
                 </div>
                 <div class="error_box">
-                    <div class="error_text"></div>
+                    <div class="error_text" id="error_text"></div>
                     <div class="error_text"></div>
                     <div class="error_text"></div>
                     <div class="error_text"></div>
                 </div>
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="name" name="name" placeholder="이름">
+                        <input type="text" id="name" name="userName" placeholder="이름">
                     </div>
                     <div class="form_item">
-                        <input type="text" id="birthdate" name="birthdate" placeholder="생년월일 (8자리)" pattern="\d{8}">
+                        <input type="text" id="birthdate" name="userBirthdate" placeholder="생년월일 (8자리)" pattern="\d{8}">
                     </div>
                     <div class="form_item">
-                        <input type="tel" id="phone" name="phone" placeholder="휴대전화번호 (-포함)">
+                        <input type="tel" id="phone" name="userPhoneNumber" placeholder="휴대전화번호 (-포함)">
                     </div>
                 </div>
                 <div class="error_box">
@@ -65,10 +66,15 @@
                     <div class="error_text"></div>
                 </div>
             </div>
-            <div class="button_div">
-                <button type="submit" id='submitButton' onclick="submitButton()">이메일 인증요청</button>
+         <div class="button_div">
+                <button type="submit" id='submitButton' onclick="submitButton()">회원가입</button>
             </div>
         </form>
+        <!-- <div>
+            <button type="submit" class='emailcheckButton' onclick="emailcheckButton()">인증번호 발송</button>
+            <input type="text" class="emailcheck" name="emailcheck" placeholder="인증번호">
+            <span class="emailcheck_text">인증되었습니다.</span>
+        </div> -->
     </main>
     <footer style="color: #707070;">
         <em>

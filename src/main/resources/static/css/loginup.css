@@ -151,3 +151,31 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.emailcheck {
+    top: 380px;
+    position: fixed;
+    height: 50px;
+    width: 200px;
+    left: 540px;
+}
+
+.emailcheck_text{
+    top: 440px;
+    position: fixed;
+    height: 62px;
+    width: 232px;
+    left: 500px;
+    display: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: green;
+}
+
+.emailcheckButton {
+    position: fixed;
+    top: 380px;
+    width: 140px;
+    height: 40px;
+    right: 600px;
+}
