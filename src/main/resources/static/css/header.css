@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f0f8ff;
     color: #333;
+  min-height: 100vh;
 }
 
 .header-Div {
@@ -65,7 +66,6 @@ main {
     padding: 20px;
     text-align: center;
 }
-
 footer {
     background-color: #eaf5ff;
     padding: 15px;
@@ -73,6 +73,7 @@ footer {
     padding-bottom: 20px;
     text-align: left;
     width: 80%;
-    bottom: 0px;
     font-size: 13px;
+    position : relative;
+    height: 100px;
 }
