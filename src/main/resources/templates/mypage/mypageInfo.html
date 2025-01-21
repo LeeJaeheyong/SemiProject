@@ -13,9 +13,9 @@
     </header>
     <nav>
         <ul>
-            <li><a href="../html/mypagePro.html">내프로필</a></li>
-            <li><a href="../html/mypageInfo.html">내정보변경</a></li>
-            <li><a href="../html/mypageInquiry.html">내문의사항</a></li>
+            <li><a th:href="@{/game/mypageForm}">내프로필</a></li>
+            <li><a th:href="@{/game/mypageUpdateForm}">내정보변경</a></li>
+            <li><a th:href="@{/game/mypageQuery}">내문의사항</a></li>
         </ul>
         <div class="auth-links">
             <a href="#">로그아웃</a>
@@ -24,20 +24,20 @@
 </div>
     <main>
         <h2>내 정보 변경</h2>
-        <form>
+        <form action="/game/mypageUpdate" method="POST">
             <div class="form_list">
-                <div class="form_group">
-                    <div class="form_item">
-                        <input type="text" id="username" name="username" placeholder="현재아이디 변경불가" maxlength="20" readonly>
+                <div class="form_group" >
+                    <div class="form_item" >
+                        <input type="text" id="username" name="username" th:value="${myData.userId}" maxlength="20" disabled readonly>
                     </div>
                     <div class="form_item">
-                        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="16">
+                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
                     </div>
                     <div class="form_item">
-                        <input type="password" id="passwordcheck" name="passwordcheck" placeholder="비밀번호 확인" maxlength="16">
+                        <input type="password" id="passwordcheck" name="userPasswordcheck" placeholder="비밀번호 확인" maxlength="16">
                     </div>
                     <div class="form_item">
-                        <input type="email" id="email" name="email" placeholder="이메일주소 변경불가" readonly>
+                        <input type="email" id="email" name="email" th:value="${myData.userEmail}" disabled readonly>
                     </div>
                 </div>
                 <div class="error_box">
@@ -48,13 +48,13 @@
                 </div>
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="name" name="name" placeholder="이름 변경불가" readonly>
+                        <input type="text" id="name" name="name" th:value="${myData.userName}" disabled readonly>
                     </div>
                     <div class="form_item">
-                        <input type="text" id="birthdate" name="birthdate" placeholder="생년월일 (8자리) 변경불가" pattern="\d{8}" readonly>
+                        <input type="text" id="birthdate" name="birthdate" th:value="${myData.userBirthdate}" pattern="\d{8}" disabled readonly>
                     </div>
                     <div class="form_item">
-                        <input type="tel" id="phone" name="phone" placeholder="휴대전화번호 (-포함)">
+                        <input type="tel" id="phone" name="userPhoneNumber" placeholder="휴대전화번호 (-포함)">
                     </div>
                 </div>
                 <div class="error_box">
@@ -66,7 +66,7 @@
             <div class="button_div">
                 <button class="button_re" type="submit" id='submitButton' onclick="submitButton()">수정</button>
             </div>
-            <div class="remove_div"><a href="../html/mypageDelete.html" class="button_re2_a">회원탈퇴</a></div>
+            <div class="remove_div"><a th:href="@{/game/mypageDeleteForm}" class="button_re2_a">회원탈퇴</a></div>
         </form>
     </main>
     <footer style="color: #707070;">
@@ -80,6 +80,6 @@
             고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
         </em>
     </footer>
-    <script src="../javaScript/mypageInfo.js"></script>
+    <script src="/js/mypageInfo.js"></script>
 </body>
 </html>

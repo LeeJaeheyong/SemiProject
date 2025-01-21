@@ -156,9 +156,9 @@ document.getElementById('submitButton').addEventListener('click', function(event
     });
 
     if (allValid) {
-        alert("인증번호를 발송했습니다. 이메일을 확인해주세요");
+        //alert("인증번호를 발송했습니다. 이메일을 확인해주세요");
         // 폼을 제출하려면 아래 코드를 활성화
-        // document.querySelector('form').submit();
+        document.querySelector('form').submit();
     }
 });
 

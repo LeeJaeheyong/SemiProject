@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원탈퇴</title>
     <link rel="stylesheet" href="../css/mypageDelete.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="header-Div">
@@ -13,9 +14,9 @@
     </header>
     <nav>
         <ul>
-            <li><a href="../html/mypagePro.html">내프로필</a></li>
-            <li><a href="../html/mypageInfo.html">내정보변경</a></li>
-            <li><a href="../html/mypageInquiry.html">내문의사항</a></li>
+            <li><a th:href="@{/game/mypageForm}">내프로필</a></li>
+            <li><a th:href="@{/game/mypageUpdateForm}">내정보변경</a></li>
+            <li><a th:href="@{/game/mypageQuery}">내문의사항</a></li>
         </ul>
         <div class="auth-links">
             <a href="#">로그아웃</a>
@@ -24,20 +25,26 @@
 </div>
     <main>
         <h2>회원탈퇴</h2>
-        <form>
+        <form> 
             <div class="form_list">
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="username" name="username" placeholder="현재아이디 변경불가" maxlength="20" readonly>
+                        <input type="text" id="username" name="username" th:value="${myData.userId}" maxlength="20" disabled readonly>
                     </div>
                     <div class="form_item">
-                        <input type="password" id="password" name="password" placeholder="비밀번호" maxlength="16">
-                </div>
-                <div class="error_box">
-                    <div class="error_text"></div>
-                </div>
-            <div class="button_div">
-                <button class="button_re" type="submit" id='submitButton' onclick="submitButton()">회원탈퇴</button>
+                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
+                	</div>
+                	<div class="error_box">
+                    	<div class="error_text"></div>
+                	</div>
+            		<div class="button_div">
+                		<button class="button_re" type="button" id='submitButton' onclick="deleteUser()">회원탈퇴</button>
+            		</div>
+            		<!--
+            			1. js파일에 function 만들어서 alert 띄우고 -> form submit()
+            			2. ajax로 서버에 탈퇴 요청 -> 매개변수(res)에 탈퇴완료 메시지가 오면 alert 출력 클릭하면 -> 페이지 이동(href~)
+            		-->
+            	</div>
             </div>
         </form>
     </main>
@@ -52,6 +59,6 @@
             고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
         </em>
     </footer>
-    <script src="../javaScript/mypageInfo.js"></script>
+    <script src="/js/mypageDelete.js"></script>
 </body>
 </html>
