@@ -59,33 +59,13 @@ public class registerController {
 		signupDTO loginUser = registerService.loginin(signupDTO);
 		
 		if(loginUser != null) {
-			session.setAttribute(null, loginUser.getUserId());
+			System.out.println(loginUser.getUserId());
+			session.setAttribute("userId", loginUser.getUserId());
 			
-			return "/main/main";
+			return "redirect:/game/main/form";
 		} else {
 			return "redirect:/game/logininForm";
 		}
 	}
-	
-	@GetMapping("/mypageForm") 
-	public String mypageForm() {
-		return "/mypage/mypagePro";
-	}
-	
-	@GetMapping("/mypageUpdate") 
-	public String mypageUpdate() {
-		return "/mypage/mypageInfo";
-	}
-	
-	@GetMapping("/mypageDelete") 
-	public String mypageDelete() {
-		return "/mypage/mypageDelete";
-	}
-	
-	@GetMapping("/mypageQuery") 
-	public String mypageQuery() {
-		return "/mypage/mypageInquiry";
-	}
-	
 	
 }	

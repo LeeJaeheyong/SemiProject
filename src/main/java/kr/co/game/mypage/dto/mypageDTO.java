@@ -1,13 +1,11 @@
-package kr.co.game.register.dto;
+package kr.co.game.mypage.dto;
 
 import lombok.Getter;
-
 import lombok.Setter;
 
 @Getter
 @Setter
-public class signupDTO {
-
+public class mypageDTO {
 	private int userNo;
 	private String userId;
 	private String userPassword;
@@ -16,5 +14,4 @@ public class signupDTO {
 	private String userEmail;
 	private String userRole;
 	private String userBirthdate;
-	
 }
