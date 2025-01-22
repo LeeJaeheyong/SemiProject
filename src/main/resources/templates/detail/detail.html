@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>THE RANK</title>
+        <link rel="stylesheet" th:href="@{/css/header.css}">
+        <link rel="stylesheet" th:href="@{/css/detail.css}">
+        <style>
+        main{
+        text-align : left
+        }
+        </style>
+    </head>
+    <body>
+    <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <div class="container">
+            <div class="game-header">
+                <div>
+                    <h1>블레이드 키메라</h1>
+                    <ul class="game-details">
+                        <li><strong>플랫폼:</strong> PC, 비디오</li>
+                        <li><strong>장르:</strong> 어드벤처</li>
+                        <li><strong>제작사:</strong> 팀 레이디버그</li>
+                        <li><strong>제공회사:</strong> WSS 플레이그라운드</li>
+                        <li><strong>이용등급:</strong> </li>
+                        <li><strong>출시년도:</strong> PC, 닌텐도 스위치 | 2025년 1월 17일</li>
+                    </ul>
+                </div>
+                <div>
+                    <img alt="블레이드 키메라 이미지" class="game-image">
+                </div>
+            </div>
+    
+            <div class="tabs">
+                <ul>
+                    <li class="active">주요정보</li>
+                    <li>스크린샷</li>
+                    <li>동영상</li>
+                </ul>
+                <div class="tab-content">
+                    <h2>게임소개</h2>
+                    <p>
+                        블레이드 키메라는 동방 루나 나이츠 등을 개발한 팀 레이디버그의 오리지널 메트로베니아 게임이다.
+                        플레이어는 기억을 잃은 오마 사냥꾼 "신"이 되어 오마 루나와 함께 기억을 되찾는 여정을 떠난다.
+                        오마를 처리하고 경험치를 쌓으면서 얻는 스킬로 새로운 구역을 탐험할 수 있다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
+</body>
+</html>
