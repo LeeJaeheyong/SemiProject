@@ -1,7 +1,11 @@
 package kr.co.game.mypage.service;
 
+import java.io.IOException;
+
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
@@ -10,10 +14,12 @@ import kr.co.game.mypage.mapper.mypageMapper;
 public class mypageServiceImpl implements mypageService {
 	private final mypageMapper mypageMapper;
 	private PasswordEncoder passwordEncoder;
+	private final FileUpload fu;
 	
-	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder) {
+	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, FileUpload fu) {
 		this.mypageMapper = mypageMapper;
 		this.passwordEncoder = passwordEncoder;
+		this.fu = fu;
 	}
 	
 	@Override
@@ -56,5 +62,22 @@ public class mypageServiceImpl implements mypageService {
 			return 0;
 		}
 		
-	}			
+	}		
+	
+	@Override
+	public int enroll(MultipartFile file) {
+		int result = 0;
+		
+		result = mypageMapper.enroll();
+		
+		if(result == 1 && file != null && !file.isEmpty()) {
+			try {
+				fu.uploadFile(file, "free");
+				boardMapper.enrollFile(boardDTO);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

@@ -14,4 +14,5 @@ public class mypageDTO {
 	private String userEmail;
 	private String userRole;
 	private String userBirthdate;
+	private mypageFileDTO fileDTO = new mypageFileDTO();
 }

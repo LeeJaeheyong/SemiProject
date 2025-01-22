@@ -22,8 +22,8 @@ function deleteUser() {
 		},
 		success: function(res) {
 			if(res == 1) {
-			alert("탈퇴가 완료되었습니다.")
-			console.log("성공~!!");
+				alert("탈퇴가 완료되었습니다.")
+				console.log("성공~!!");
 			} else {
 				alert("비밀번호가 일치하지 않습니다.")
 				console.log("실패!!")
