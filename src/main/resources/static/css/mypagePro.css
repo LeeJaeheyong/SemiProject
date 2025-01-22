@@ -101,7 +101,7 @@ h2 {
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
 }
 .profile-photo p {
     margin-top: 10px;
@@ -142,3 +142,8 @@ h2 {
 .form-footer button:hover {
     background-color: #218838;
 }   
+
+#file {
+	width: 1px;
+    height: 1px;
+}

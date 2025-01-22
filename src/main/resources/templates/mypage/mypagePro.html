@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로필수정</title>
     <link rel="stylesheet" href="../css/mypagePro.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="header-Div">
@@ -23,26 +24,29 @@
     </nav>
 </div>
     <main>
-        <form action="">
+        <form action="/game/mypageForm/enroll" method="POST" id="profileForm">
             <div>
                 <h2>프로필 수정</h2>
 
-                <div class="profile-photo">
+                <div class="profile-photo" id=imagePreviewContainer>
                     <p>프로필 사진</p>
-                    <img src="../img/인간.png" alt="프로필 사진">
+                    <img src="../img/인간.png" alt="프로필 사진" id="imagePreview">
                 </div>
-
                 <div class="button-group">
-                    <button type="button">사진 변경</button>
-                    <button type="button" class="secondary">삭제</button>
-                </div>
-
+    				<span>
+        				<label for="file">
+            				<input type="file" id="file" name="file" style="display:none;" onchange="previewImage(event)"s/>
+            				<button type="button" onclick="document.getElementById('file').click()">사진 변경</button>
+        				</label>
+    				</span>
+    			<button type="button" class="secondary">삭제</button>
+				</div>
             </div>
         </form>
     </main>
     <div class="button-group">
-        <button type="button">적용</button>
-        <button type="button">취소</button>
+        <button type="button" onclick="submitForm()">적용</button>
+        <button type="button" onclick="window.history.back();">취소</button>
     </div>
     <footer style="color: #707070;">
         <em>
@@ -55,5 +59,6 @@
             고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
         </em>
     </footer>
+    <script src="/js/mypagePro.js"></script>
 </body>
 </html>

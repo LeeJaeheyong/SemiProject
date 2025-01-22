@@ -3,13 +3,16 @@ package kr.co.game.mypage.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.mypage.dto.mypageDTO;
+import kr.co.game.mypage.dto.mypageFileDTO;
 import kr.co.game.mypage.service.mypageService;
 
 @Controller
@@ -21,10 +24,23 @@ public class mypageController {
 		this.mypageService = mypageService;
 	}
 	
+	// 내 프로필 
 	@GetMapping("/mypageForm")
-	public String mypageForm() {
+	public String mypageForm(@ModelAttribute("mypageDTO") mypageDTO mypageDTO) {
 		return "/mypage/mypagePro";
 	}
+	
+	// 사진 적용
+	@PostMapping("/mypageForm/enroll")
+	public String mypageFormEnroll(Model model,
+								   @RequestParam("userId") String userId,
+								   @RequestParam("file") MultipartFile file) {
+		
+		
+		int result = mypageService.enroll(file);
+		
+		return "/mypage/mypageInquiry";
+	}	 
 	
 	// 내 정보 변경 화면
 	@GetMapping("/mypageUpdateForm") 
@@ -81,12 +97,11 @@ public class mypageController {
 	
 	}
 	
+	// 내 문의 리스트
 	@GetMapping("/mypageQuery") 
-	public String mypageQuery() {
+	public String mypageQuery(@ModelAttribute mypageDTO mypageDTO, Model model) {
+		
 		return "/mypage/mypageInquiry";
 	}
-	
-	
-	
 	
 }
