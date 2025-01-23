@@ -24,7 +24,13 @@ dependencies {
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
 	implementation 'org.springframework.boot:spring-boot-starter-security:3.4.1'
-
+	implementation 'org.springframework.boot:spring-boot-starter-mail:3.0.5'
+	implementation 'org.springframework:spring-context:6.2.1'
+	implementation 'org.springframework:spring-context-support:6.2.1'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.4.0'
+    
+	
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
