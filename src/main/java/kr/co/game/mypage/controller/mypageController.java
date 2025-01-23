@@ -32,12 +32,10 @@ public class mypageController {
 	
 	// 사진 적용
 	@PostMapping("/mypageForm/enroll")
-	public String mypageFormEnroll(Model model,
-								   @RequestParam("userId") String userId,
+	public String mypageFormEnroll(@RequestParam("userId") String userId,
 								   @RequestParam("file") MultipartFile file) {
 		
-		
-		int result = mypageService.enroll(file);
+//		int result = mypageService.enroll(file);
 		
 		return "/mypage/mypageInquiry";
 	}	 

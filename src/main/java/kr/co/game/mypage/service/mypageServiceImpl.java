@@ -64,20 +64,20 @@ public class mypageServiceImpl implements mypageService {
 		
 	}		
 	
-	@Override
-	public int enroll(MultipartFile file) {
-		int result = 0;
-		
-		result = mypageMapper.enroll();
-		
-		if(result == 1 && file != null && !file.isEmpty()) {
-			try {
-				fu.uploadFile(file, "free");
-				boardMapper.enrollFile(boardDTO);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	@Override
+//	public int enroll(MultipartFile file) {
+//		int result = 0;
+//		
+//		result = mypageMapper.enroll();
+//		
+//		if(result == 1 && file != null && !file.isEmpty()) {
+//			try {
+//				fu.uploadFile(file, "free");
+//				boardMapper.enrollFile(boardDTO);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 	
 }
