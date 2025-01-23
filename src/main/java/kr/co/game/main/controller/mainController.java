@@ -12,8 +12,10 @@ public class mainController {
 	public String mainform() {
 		return "main/main";
 	}
-	@GetMapping("/admin/form")
-	public String adminForm() {
-		return "admin/admin";
+	
+	@GetMapping("/detail/form")
+	public String detailForm() {
+		return "detail/detail";
+
 	}
 }

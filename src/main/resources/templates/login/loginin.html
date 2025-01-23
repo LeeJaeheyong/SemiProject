@@ -7,23 +7,7 @@
     <link rel="stylesheet" href="../css/loginin.css">
 </head>
 <body>
-<div class="header-Div">
-    <header>
-        <h1><a class="header-a" href="../html/home.html">THE RANK</a></h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">게임 DB</a></li>
-            <li><a href="#">1:1 문의사항</a></li>
-            <li><a href="#">자주묻는질문</a></li>
-            <li><a href="#">공지사항</a></li>
-        </ul>
-        <div class="auth-links">
-            <a th:href="@{/game/logininForm}">로그인</a>
-            <a th:href="@{/game/loginupForm}">회원가입</a>
-        </div>
-    </nav>
-</div>
+    <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
         <h2>로그인</h2>
         <form action="/game/loginin" method="POST">

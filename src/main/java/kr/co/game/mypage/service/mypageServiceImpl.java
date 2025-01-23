@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
+
 import kr.co.game.mypage.util.MypageFileUpload;
+
+import kr.co.game.util.FileUpload;
+
 
 @Service
 public class mypageServiceImpl implements mypageService {

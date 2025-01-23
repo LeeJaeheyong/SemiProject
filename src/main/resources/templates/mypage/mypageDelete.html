@@ -8,21 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="header-Div">
-    <header>
-        <h1><a class="header-a" href="../html/home.html">THE RANK</a></h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/game/mypageForm}">내프로필</a></li>
-            <li><a th:href="@{/game/mypageUpdateForm}">내정보변경</a></li>
-            <li><a th:href="@{/game/mypageQuery}">내문의사항</a></li>
-        </ul>
-        <div class="auth-links">
-            <a href="#">로그아웃</a>
-        </div>
-    </nav>
-</div>
+<div th:replace="~{fragments/common/mypageheader :: MypageHeaderFragment}"></div>
     <main>
         <h2>회원탈퇴</h2>
         <form> 
