@@ -1,5 +1,6 @@
 package kr.co.game.mypage.service;
 
+
 import java.io.IOException;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,7 @@ import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.dto.mypageFileDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
 import kr.co.game.mypage.util.MypageFileUpload;
+
 
 @Service
 public class mypageServiceImpl implements mypageService {
@@ -72,17 +74,20 @@ public class mypageServiceImpl implements mypageService {
 		
 		mypageFileDTO mypagefileDTO = new mypageFileDTO();
 		
+		System.out.println(mypagefileDTO.getLOCAL_PATH());
+		System.out.println(mypagefileDTO.getChangeName());
+		
 		// 1. 기존에 사진을 올렸는지 확인
 		//  SELECT count(*) FROM USER_PROFILE WHERE user_id = #{userId}
 		//  기존에 사진을 올렸으면 1, 올린적이 없으면 0
-//		if(mypagefileDTO.getChangeName() != null) {
+		if(mypagefileDTO.getLOCAL_PATH() != null) {
 			mypageMapper.deleteFile(id);
-//			try {
-//				fu.deleteFile(mypagefileDTO.getLOCAL_PATH(), "userPro", mypagefileDTO.getChangeName());
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+			try {
+				fu.deleteFile(mypagefileDTO.getLOCAL_PATH(), "userPro");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		// 2. 1번에서 반환된 값이 1이면 기존꺼 삭제 -> 업로드, 0이면 업로드
 		
 		// 파일 업로드
