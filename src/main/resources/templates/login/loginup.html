@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/css/loginup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="header-Div">
+    <header>
+        <h1><a class="header-a" href="../html/home.html">THE RANK</a></h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">게임 DB</a></li>
+            <li><a href="#">1:1 문의사항</a></li>
+            <li><a href="#">자주묻는질문</a></li>
+            <li><a href="#">공지사항</a></li>
+        </ul>
+        <div class="auth-links">
+            <a th:href="@{/game/logininForm}">로그인</a>
+            <a th:href="@{/game/loginupForm}">회원가입</a>
+        </div>
+    </nav>
+</div>
+    <main>
+        <h2>회원가입</h2>
+        <form action="/game/loginup" method="POST">
+            <div class="form_list">
+                <div class="form_group">
+                    <div class="form_item">
+                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
+                    </div>
+                    <div class="form_item">
+                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
+                    </div>
+                    <div class="form_item">
+                        <input type="password" id="passwordcheck" name="passwordcheck" placeholder="비밀번호 확인" maxlength="16">
+                    </div>
+                    <div class="form_item">
+                        <input type="email" id="email" name="userEmail" placeholder="이메일주소">
+                    </div>
+                </div>
+                <div class="error_box">
+                    <div class="error_text" id="error_text"></div>
+                    <div class="error_text"></div>
+                    <div class="error_text"></div>
+                    <div class="error_text"></div>
+                </div>
+                <div class="form_group">
+                    <div class="form_item">
+                        <input type="text" id="name" name="userName" placeholder="이름">
+                    </div>
+                    <div class="form_item">
+                        <input type="text" id="birthdate" name="userBirthdate" placeholder="생년월일 (8자리)" pattern="\d{8}">
+                    </div>
+                    <div class="form_item">
+                        <input type="tel" id="phone" name="userPhoneNumber" placeholder="휴대전화번호 (-포함)">
+                    </div>
+                </div>
+                <div class="error_box">
+                    <div class="error_text"></div>
+                    <div class="error_text"></div>
+                    <div class="error_text"></div>
+                </div>
+            </div>
+         <div class="button_div">
+                <button type="submit" id='submitButton' onclick="submitButton()">회원가입</button>
+            </div>
+        </form>
+        <!-- <div>
+            <button type="submit" class='emailcheckButton' onclick="emailcheckButton()">인증번호 발송</button>
+            <input type="text" class="emailcheck" name="emailcheck" placeholder="인증번호">
+            <span class="emailcheck_text">인증되었습니다.</span>
+        </div> -->
+    </main>
+    <footer style="color: #707070;">
+        <em>
+            상호 : 그린컴퓨터 &nbsp; | &nbsp; 대표자 : 이재형, 한봉오, 전주영 &nbsp;
+            <br>
+            <br>
+            주소 : 경기도 안양시 만안구 안양로 303
+            <br>
+            <br>
+            고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
+        </em>
+    </footer>
+    <script src="/js/loginup.js"></script>
+</body>
+</html>
