@@ -5,15 +5,19 @@ import org.springframework.stereotype.Service;
 
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
+
+import kr.co.game.mypage.util.MypageFileUpload;
+
 import kr.co.game.util.FileUpload;
+
 
 @Service
 public class mypageServiceImpl implements mypageService {
 	private final mypageMapper mypageMapper;
 	private PasswordEncoder passwordEncoder;
-	private final FileUpload fu;
+	private final MypageFileUpload fu;
 	
-	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, FileUpload fu) {
+	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, MypageFileUpload fu) {
 		this.mypageMapper = mypageMapper;
 		this.passwordEncoder = passwordEncoder;
 		this.fu = fu;

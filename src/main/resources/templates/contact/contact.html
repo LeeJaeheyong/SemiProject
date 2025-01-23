@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의사항 작성</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <div class="search-container">
+        <h2>문의사항 작성</h2>
+        <form>
+            <div class="form-group">
+                <label for="category_no">카테고리 번호</label>
+                <input type="number" id="category_no" name="category_no" 
+                       placeholder="카테고리 번호를 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="user_num">유저 번호</label>
+                <input type="number" id="user_num" name="user_num" 
+                       placeholder="유저 번호를 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_title">제목</label>
+                <input type="text" id="contact_title" name="contact_title" 
+                       placeholder="문의 제목을 입력하세요" maxlength="50" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_info">내용</label>
+                <textarea id="contact_info" name="contact_info" 
+                          placeholder="문의 내용을 입력하세요" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="created_date">작성일</label>
+                <input type="date" id="created_date" name="created_date" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="문의하기">
+            </div>
+        </form>
+    </div>
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+</body>
+</html>

@@ -16,5 +16,6 @@ public class mainController {
 	@GetMapping("/detail/form")
 	public String detailForm() {
 		return "detail/detail";
+
 	}
 }
