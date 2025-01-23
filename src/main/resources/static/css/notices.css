@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.header-Div {
+    box-shadow: 0px 1px 5px -2px #333;
+}
+
+header {
+    background-color: #f0f8ff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-a {
+    text-decoration-line: none;
+    color: #333;
+}
+
+nav {
+    background-color: #f0f8ff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgb(135, 221, 248);
+}
+
+.auth-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    color: rgb(135, 221, 248);
+}
+
+main {
+    padding: 0px;
+    text-align: center;
+}
+
+footer {
+    background-color: #eaf5ff;
+    padding: 15px;
+    padding-left: 300px;
+    padding-bottom: 20px;
+    text-align: left;
+    position: relative;
+    width: 80%;
+    bottom: 0px;
+    font-size: 13px;
+}
+
+.search-container {
+    position: relative;
+    clear: both;
+    width: 900px;
+    min-height: 600px;
+    margin: 0 auto 70px;
+}
+
+.notice-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.notice-h2 {
+    margin-right: 100px;
+}
+
+.search-container input[type="text"] {
+    padding: 7px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-Div {
+    margin-left: 300px;
+    margin-bottom: 0px;
+}
+
+.search-container button {
+    padding: 7px 15px;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #333;
+}
+
+.notice-board {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-top: 2px solid #2c3037;
+}
+
+
+.notice-thead {
+    color: #333;
+    text-align: center;
+}
+
+.tbody tr{
+    border-bottom: 1px solid #a2a5a7;
+}
+
+
+.notice-board td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    border: none;
+}
+
+.notice-board td a {
+    text-decoration: none;
+    color: #333;
+}
+
+.notice-board td a:hover {
+    color: rgb(135, 221, 248);
+}

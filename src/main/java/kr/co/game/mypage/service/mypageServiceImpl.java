@@ -68,39 +68,48 @@ public class mypageServiceImpl implements mypageService {
 	}		
 	
 	@Override
-	public int enroll(MultipartFile file, String userId) {
+	public int enroll(MultipartFile file, String userId, String picture) {
 		
 		int id = mypageMapper.getId(userId);
 		
 		mypageFileDTO mypagefileDTO = new mypageFileDTO();
 		
-		System.out.println(mypagefileDTO.getLOCAL_PATH());
-		System.out.println(mypagefileDTO.getChangeName());
-		
 		// 1. 기존에 사진을 올렸는지 확인
-		//  SELECT count(*) FROM USER_PROFILE WHERE user_id = #{userId}
-		//  기존에 사진을 올렸으면 1, 올린적이 없으면 0
-		if(mypagefileDTO.getLOCAL_PATH() != null) {
-			mypageMapper.deleteFile(id);
+		//  SELECT * FROM USER_PROFILE WHERE user_id = #{userId}
+		//  조회된 결과 resultMap 다 담고
+		mypageFileDTO result = mypageMapper.fileCheck(id);
+		//  객체가 null인지 아닌지 판단
+		
+		// picture가 eidt면
+		if(picture == "edit") {
+			//  기존에 사진을 올렸으면 1, 올린적이 없으면 0
+			if(result != null) {
+				mypageMapper.deleteFile(id);
+				try {
+					fu.deleteFile(result.getLOCAL_PATH(), "userPro", result.getChangeName());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			// 2. 1번에서 반환된 값이 1이면 기존꺼 삭제 -> 업로드, 0이면 업로드
+			
+			// 파일 업로드
+			// mypageFileDTO myapgefileDTO 객체 생성해서 두번째 인자로 넘겨주기
 			try {
-				fu.deleteFile(mypagefileDTO.getLOCAL_PATH(), "userPro");
+				
+				fu.uploadFile(file, mypagefileDTO, "userPro");
+				
+				// DB 저장
+				mypageMapper.enrollFile(mypagefileDTO, userId, id);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		// 2. 1번에서 반환된 값이 1이면 기존꺼 삭제 -> 업로드, 0이면 업로드
-		
-		// 파일 업로드
-		// mypageFileDTO myapgefileDTO 객체 생성해서 두번째 인자로 넘겨주기
-		try {
 			
-		fu.uploadFile(file, mypagefileDTO, "userPro");
-		
-		// DB 저장
-		mypageMapper.enrollFile(mypagefileDTO, userId, id);
-		
-		} catch (IOException e) {
-			e.printStackTrace();
+			return 0;
+			
+		} else {
+			mypageMapper.deleteFile(id);
 		}
 		
 		return 0;

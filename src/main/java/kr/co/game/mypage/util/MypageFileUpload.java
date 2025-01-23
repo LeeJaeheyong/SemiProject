@@ -14,7 +14,7 @@ import kr.co.game.mypage.dto.mypageFileDTO;
 
 @Component
 public class MypageFileUpload {
-public void uploadFile(MultipartFile file, mypageFileDTO myapgefileDTO, String folderName) throws IOException {
+public void uploadFile(MultipartFile file, mypageFileDTO fileDTO, String folderName) throws IOException {
 		
 		
 		// 원본 파일 이름
@@ -23,16 +23,15 @@ public void uploadFile(MultipartFile file, mypageFileDTO myapgefileDTO, String f
 		// 새로운 파일 이름
 		String changeName = UUID.randomUUID().toString() + "." + getFileExtension(originalFileName);
 		// 파일이 서버에 저장될 위치경로
-		// ~~\\static\\uploads\\userPro\\바뀐파일명
-		Path path = Paths.get(myapgefileDTO.getLOCAL_PATH() + "\\" + folderName + "\\" + changeName);
+		Path path = Paths.get(fileDTO.getLOCAL_PATH() + "\\" + folderName + "\\" + changeName);
 		
 		// 파일 저장
 		Files.write(path, file.getBytes());
 		
-		myapgefileDTO.setOriginalName(originalFileName);
-		myapgefileDTO.setChangeName(changeName);
-		myapgefileDTO.setExtension(getFileExtension(originalFileName));
-		myapgefileDTO.setSize(file.getSize());
+		fileDTO.setOriginalName(originalFileName);
+		fileDTO.setChangeName(changeName);
+		fileDTO.setExtension(getFileExtension(originalFileName));
+		fileDTO.setSize(file.getSize());
 	}
 	// 확장자 구하는 메서드
 	private String getFileExtension(String fileName){

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE RANK</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/notices.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+        <div class="search-container">
+        <div class="notice-input">
+            <h2 class="notice-h2">공지사항</h2>
+            <div class="btn-Div">
+                <input type="text" id="search">
+                <button type="button">검색</button>
+            </div>
+        </div>
+        <table class="notice-board">
+            <thead class="notice-thead">
+                <tr>
+                    <th>순번</th>
+                    <th>내용</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr>
+                    <td>1</td>
+                    <td><a href="#">Notice Title 1</a></td>
+                    <td>2023-10-01</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="#">Notice Title 2</a></td>
+                    <td>2023-10-02</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        </div>
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+</body>
+</html>
