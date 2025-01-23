@@ -14,17 +14,17 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.game.dto.FileDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
-import kr.co.game.gameinfo.model.service.gameInfoService;
+import kr.co.game.gameinfo.model.service.gameInfoServiceImpl;
 import kr.co.game.gameinfo.util.gameinfoPagination;
 
 
 @Controller
 @RequestMapping("/game")
 public class gameinfoController {
-	private final gameInfoService gameinfoService;
+	private final gameInfoServiceImpl gameinfoService;
 	private final gameinfoPagination gameinfoPagination;
 	
-	public gameinfoController(gameInfoService gameinfoService, gameinfoPagination gameinfoPagination) {
+	public gameinfoController(gameInfoServiceImpl gameinfoService, gameinfoPagination gameinfoPagination) {
 		this.gameinfoService = gameinfoService;
 		this.gameinfoPagination = gameinfoPagination;
 	}
