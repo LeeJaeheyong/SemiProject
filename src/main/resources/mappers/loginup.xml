@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.game.register.mapper.registerMapper">
+
+	<resultMap id="loginupMap" type="kr.co.game.register.dto.signupDTO">
+		<result property="userNo" column="USER_NO"></result>
+		<result property="userId" column="USER_ID"></result>
+		<result property="userPassword" column="USER_PASSWORD"></result>
+		<result property="userName" column="USER_NAME"></result>
+		<result property="userPhoneNumber" column="USER_PHONENUMBER"></result>
+		<result property="userEmail" column="USER_EMAIL"></result>
+		<result property="userRole" column="USER_ROLE"></result>
+		<result property="userBirthdate" column="USER_BIRTHDATE"></result>
+	</resultMap>
+	
+	<select id="userIdCheck" resultType="int">
+			SELECT count(*) FROM USER_INFO WHERE USER_ID = #{userId}
+	</select>
+	
+	<insert id="signup">
+		INSERT INTO USER_INFO VALUES(user_seq.nextval,
+									 #{userId},
+									 #{userPassword},
+									 #{userName},
+									 #{userPhoneNumber},
+									 #{userEmail},
+									 default,
+									 #{userBirthdate})
+	</insert>
+	
+	<select id="loginin" resultMap="loginupMap">
+		SELECT * FROM USER_INFO WHERE USER_ID = #{userId}
+	</select>
+	
+	
+</mapper>
