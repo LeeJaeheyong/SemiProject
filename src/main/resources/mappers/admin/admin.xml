@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+						"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.game.admin.model.mapper.adminMapper">
+
+<resultMap id="userInfoResultMap" type="kr.co.game.admin.model.dto.adminDTO">
+	<result property="userNo" column="user_no"></result>
+	<result property="userId" column="user_id"></result>
+	<result property="userPassword" column="user_password"></result>
+	<result property="userName" column="user_name"></result>
+	<result property="userPhonenumber" column="user_phonenumber"></result>
+	<result property="userEmail" column="user_email"></result>
+	<result property="userRole" column="user_role"></result>
+	<result property="userBirthday" column="user_birthdate"></result>
+</resultMap>
+
+<select id="getTotalCount">
+SELECT COUNT(*) FROM user_info
+</select>
+
+<select id="getAllPeople" resultMap="userInfoResultMap">
+select * from(
+ SELECT user_no,
+ 		user_id,
+ 		user_password,
+ 		user_name,
+ 		user_phonenumber,
+ 		user_email,
+ 		user_role,
+ 		user_birthdate,
+ 		ROW_NUMBER() OVER (ORDER BY user_no) AS rn
+ FROM user_info)
+ WHERE rn BETWEEN #{offset} AND #{limit}
+</select>
+
+
+
+
+</mapper>

@@ -61,11 +61,17 @@ public class registerController {
 		if(loginUser != null) {
 			System.out.println(loginUser.getUserId());
 			session.setAttribute("userId", loginUser.getUserId());
+			session.setAttribute("role", loginUser.getUserRole());
 			
 			return "redirect:/game/main/form";
 		} else {
 			return "redirect:/game/logininForm";
 		}
+	}
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/game/main/form";
 	}
 	
 }	
