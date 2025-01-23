@@ -1,5 +1,6 @@
 package kr.co.game.gameinfo.model.dto;
 
+import kr.co.game.dto.FileDTO;
 import lombok.Getter;
 import lombok.Setter;
 

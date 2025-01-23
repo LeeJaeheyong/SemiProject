@@ -1,4 +1,4 @@
-package kr.co.game.gameinfo.util;
+package kr.co.game.util;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.game.gameinfo.model.dto.FileDTO;
+import kr.co.game.dto.FileDTO;
 
 @Component
 public class FileUpload {
