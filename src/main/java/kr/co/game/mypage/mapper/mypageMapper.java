@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.game.mypage.dto.mypageDTO;
+import kr.co.game.mypage.dto.mypageFileDTO;
 
 @Mapper
 public interface mypageMapper {
@@ -17,5 +18,16 @@ public interface mypageMapper {
 	public int delete(String myId);
 
 	public String getPassword(String myId);
+
+	public int enrollFile(@Param("mypage") mypageFileDTO mypagefileDTO, 
+			               @Param("userId") String userId, 
+			               @Param("no") int no);
+
+	public int getId(String userId);
+	
+	public void deleteFile(int id);
+
+	public mypageFileDTO updatePro(int userNo);
+	
 
 }

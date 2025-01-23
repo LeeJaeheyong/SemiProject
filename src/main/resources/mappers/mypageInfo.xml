@@ -11,10 +11,24 @@
 		<result property="userEmail" column="USER_EMAIL"></result>
 		<result property="userRole" column="USER_ROLE"></result>
 		<result property="userBirthdate" column="USER_BIRTHDATE"></result>
+	<association property="fileDTO" javaType="kr.co.game.mypage.dto.mypageFileDTO">
+		<result property="changeName" column="change_name"></result>
+		<result property="RESOURCES_PATH" column="RESOURCES_PATH"></result>
+	</association>
 	</resultMap>
+	
+	<resultMap id="mypageFileMap" type="kr.co.game.mypage.dto.mypageFileDTO">
+		<result property="changeName" column="change_name"></result>
+		<result property="RESOURCES_PATH" column="RESOURCES_PATH"></result>
+	</resultMap>
+	
 	
 	<select id="userInfoSelect" resultMap="mypageMap">
 		SELECT * FROM USER_INFO WHERE USER_ID = #{myId}
+	</select>
+	
+	<select id="updatePro" resultMap="mypageFileMap">
+		SELECT CHANGE_NAME, RESOURCES_PATH FROM USER_PROFILE WHERE USER_NO = #{userNo}
 	</select>
 	
 	<update id="update">
@@ -32,4 +46,23 @@
 		WHERE USER_ID = #{myId}
 	</select>
 	
+	<insert id="enrollFile">
+		INSERT INTO USER_PROFILE VALUES (USER_PRO_SEQ.nextval,
+										 #{no},	
+										 #{mypage.changeName},
+										 #{mypage.originalName},
+										 #{mypage.extension},
+										 #{mypage.size},
+										 #{mypage.LOCAL_PATH},
+										 #{mypage.RESOURCES_PATH},
+										 SYSDATE)
+	</insert>
+	
+	<select id="getId">
+		SELECT USER_NO FROM USER_INFO WHERE USER_ID = #{userId}
+	</select>
+	
+	<delete id="deleteFile">
+		DELETE FROM USER_PROFILE WHERE USER_NO = #{userNO}
+	</delete>
 </mapper>

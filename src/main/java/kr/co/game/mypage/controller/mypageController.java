@@ -26,26 +26,32 @@ public class mypageController {
 	
 	// 내 프로필 
 	@GetMapping("/mypageForm")
-	public String mypageForm(@ModelAttribute("mypageDTO") mypageDTO mypageDTO) {
+	public String mypageForm(@SessionAttribute("userId") String userId,
+							 Model model) {
+		
+		// 프로필 사진
+		mypageFileDTO result = mypageService.updatePro(userId);
+		
+		model.addAttribute("post", result);
+		
 		return "/mypage/mypagePro";
 	}
 	
 	// 사진 적용
 	@PostMapping("/mypageForm/enroll")
-	public String mypageFormEnroll(@RequestParam("userId") String userId,
+	public String mypageFormEnroll(@SessionAttribute("userId") String userId,
 								   @RequestParam("file") MultipartFile file) {
+									
+		// userId 넘기고
+		int result = mypageService.enroll(file, userId);
 		
-//		int result = mypageService.enroll(file);
-		
-		return "/mypage/mypageInquiry";
+		return"redirect:/game/mypageForm";
 	}	 
 	
 	// 내 정보 변경 화면
 	@GetMapping("/mypageUpdateForm") 
 	public String mypageUpdateForm(@SessionAttribute(required=false,name="userId") String myId, Model model) {
-		System.out.println(myId);
 		mypageDTO result = mypageService.userInfoSelect(myId);
-		System.out.println(result.getUserId());
 		model.addAttribute("myData", result);
 		return "/mypage/mypageInfo";
 	}
