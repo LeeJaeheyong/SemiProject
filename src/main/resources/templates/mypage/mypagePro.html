@@ -24,18 +24,31 @@
     </nav>
 </div>
     <main>
-        <form action="/game/mypageForm/enroll" method="POST" id="profileForm">
+        <form action="/game/mypageForm/enroll" method="POST" id="profileForm" enctype="multipart/form-data">
             <div>
                 <h2>프로필 수정</h2>
 
                 <div class="profile-photo" id=imagePreviewContainer>
                     <p>프로필 사진</p>
-                    <img src="../img/인간.png" alt="프로필 사진" id="imagePreview">
+                    <!-- <img th:src="@{/img/인간.png}"  alt="프로필 사진" id="imagePreview">
+                    <img th:if="${post != null}"
+                    	 th:src="@{{resourcesPath}/{changeName}
+            				   (resourcesPath=${post.RESOURCES_PATH},
+            					changeName=${post.changeName})}"> -->                    	 
+                    <!-- If post is null, show this image (first image) -->
+					<img th:if="${post == null}" th:src="@{/img/인간.png}" alt="프로필 사진" id="imagePreview">
+
+					<!-- If post is not null, show this image (second image) -->
+					<img th:if="${post != null}" th:src="@{{resourcesPath}/{changeName}
+            				   						    (resourcesPath=${post.RESOURCES_PATH},
+            										    changeName=${post.changeName})}"
+            			 id="imagePreview">
+	  
                 </div>
                 <div class="button-group">
     				<span>
         				<label for="file">
-            				<input type="file" id="file" name="file" style="display:none;" onchange="previewImage(event)"s/>
+            				<input type="file" id="file" name="file" style="display:none;" onchange="previewImage(event)"/>
             				<button type="button" onclick="document.getElementById('file').click()">사진 변경</button>
         				</label>
     				</span>

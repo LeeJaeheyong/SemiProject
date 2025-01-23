@@ -2,21 +2,22 @@ package kr.co.game.mypage.service;
 
 import java.io.IOException;
 
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.mypage.dto.mypageDTO;
+import kr.co.game.mypage.dto.mypageFileDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
+import kr.co.game.mypage.util.MypageFileUpload;
 
 @Service
 public class mypageServiceImpl implements mypageService {
 	private final mypageMapper mypageMapper;
 	private PasswordEncoder passwordEncoder;
-	private final FileUpload fu;
+	private final MypageFileUpload fu;
 	
-	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, FileUpload fu) {
+	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, MypageFileUpload fu) {
 		this.mypageMapper = mypageMapper;
 		this.passwordEncoder = passwordEncoder;
 		this.fu = fu;
@@ -64,20 +65,45 @@ public class mypageServiceImpl implements mypageService {
 		
 	}		
 	
-//	@Override
-//	public int enroll(MultipartFile file) {
-//		int result = 0;
-//		
-//		result = mypageMapper.enroll();
-//		
-//		if(result == 1 && file != null && !file.isEmpty()) {
+	@Override
+	public int enroll(MultipartFile file, String userId) {
+		
+		int id = mypageMapper.getId(userId);
+		
+		mypageFileDTO mypagefileDTO = new mypageFileDTO();
+		
+		// 1. 기존에 사진을 올렸는지 확인
+		//  SELECT count(*) FROM USER_PROFILE WHERE user_id = #{userId}
+		//  기존에 사진을 올렸으면 1, 올린적이 없으면 0
+//		if(mypagefileDTO.getChangeName() != null) {
+			mypageMapper.deleteFile(id);
 //			try {
-//				fu.uploadFile(file, "free");
-//				boardMapper.enrollFile(boardDTO);
+//				fu.deleteFile(mypagefileDTO.getLOCAL_PATH(), "userPro", mypagefileDTO.getChangeName());
 //			} catch (IOException e) {
 //				e.printStackTrace();
 //			}
 //		}
-//	}
+		// 2. 1번에서 반환된 값이 1이면 기존꺼 삭제 -> 업로드, 0이면 업로드
+		
+		// 파일 업로드
+		// mypageFileDTO myapgefileDTO 객체 생성해서 두번째 인자로 넘겨주기
+		try {
+			
+		fu.uploadFile(file, mypagefileDTO, "userPro");
+		
+		// DB 저장
+		mypageMapper.enrollFile(mypagefileDTO, userId, id);
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 	
+	@Override
+	public mypageFileDTO updatePro(String userId) {
+		int userNo = mypageMapper.getId(userId);
+		return mypageMapper.updatePro(userNo);
+	}
 }
