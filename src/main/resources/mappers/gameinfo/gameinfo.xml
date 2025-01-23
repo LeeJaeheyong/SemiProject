@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+						"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.game.gameinfo.model.mapper.gameInfoMapper">
+
+<resultMap id="gameInfoResultMap" type="kr.co.game.gameinfo.model.dto.gameInfoDTO">
+	<result property="gameNo" column="game_no"></result>
+	<result property="gameName" column="game_name"></result>
+	<result property="firstGenre" column="first_genre"></result>
+	<result property="secondGenre" column="second_genre"></result>
+	<result property="releaseDate" column="release_date"></result>
+	<result property="publisher" column="game_publisher"></result>
+	<result property="gameScore" column="game_score"></result>
+	
+	<association property="fileDTO" javaType="kr.co.game.gameinfo.model.dto.FileDTO">
+		<result property="changeName" column="change_name"></result>
+		<result property="folderNamePath" column="folder_name_path"></result>
+	</association>
+</resultMap>
+
+<select id="getTotalCount">
+SELECT COUNT(*) FROM game_info
+</select>
+<select id="getAllGames" resultMap="gameInfoResultMap">
+SELECT * FROM (
+	SELECT  gi.game_no,
+			gi.game_name,
+			gg.first_genre,
+			sgg.second_genre,
+			gi.release_date,
+			gi.game_publisher,
+			gi.game_score,
+			gm.change_name,
+			gm.folder_name_path,
+			ROW_NUMBER() OVER (ORDER BY gi.game_no) AS rn
+	FROM GAME_INFO gi
+	JOIN GAME_GENRE gg ON gi.genre_no=gg.genre_no
+	JOIN SECOND_GAME_GENRE sgg ON gi.GAME_NO =sgg.game_no
+	JOIN GAME_IMEGE gm ON gi.GAME_NO =gm.GAME_NO
+)
+WHERE rn BETWEEN #{offset} AND #{limit}
+</select>
+
+<insert id="uploadFile">
+		INSERT INTO GAME_IMEGE 
+		VALUES(img_seq.nextval,
+			   #{changeName},
+			   #{originalName},
+			   #{extension},
+			   #{size},
+			   #{LOCAL_PATH},
+			   #{RESOURCES_PATH},
+			   sysdate,
+			   #{folderNamePath},
+			   15)
+</insert>
+<select  id="getGenres" resultMap="gameInfoResultMap">
+	SELECT * FROM GAME_GENRE
+	WHERE genre_no between 1 and 7
+</select>
+<select  id="getsecondGenres" resultMap="gameInfoResultMap">
+	SELECT * FROM GAME_GENRE
+	WHERE genre_no between 8 and 14
+</select>
+</mapper>
