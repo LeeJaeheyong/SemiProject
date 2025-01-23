@@ -8,12 +8,12 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.game.gameinfo.model.dto.FileDTO;
+import kr.co.game.dto.FileDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.mapper.gameInfoMapper;
-import kr.co.game.gameinfo.util.FileUpload;
 import kr.co.game.gameinfo.util.gameinfoPagination;
+import kr.co.game.util.FileUpload;
 
 @Service
 public class gameInfoServiceImpl implements gameInfoService{
@@ -34,10 +34,18 @@ public class gameInfoServiceImpl implements gameInfoService{
 										   int currentPage, 
 										   int postCount,
 										   int pageLimit, 
-										   int boardLimit) {
+										   int boardLimit, 
+										   String pub, 
+										   String gen) {
+		int check =0;
+		if(pub.isEmpty()!=true) {
+			check=1;
+		} else if(gen.isEmpty()!=true) {
+			check=2;
+		}
 		
 		pageInfoDTO pi = gameinfoPagination.getPageInfo(postCount, currentPage, pageLimit, boardLimit);
-		List<gameInfoDTO> games = gameInfoMapper.getAllGames(pi);
+		List<gameInfoDTO> games = gameInfoMapper.getAllGames(pi,check,pub,gen);
 		Map<String, Object> result = new HashMap<>();
 		result.put("pi", pi);
 		result.put("games", games);
@@ -63,6 +71,11 @@ public class gameInfoServiceImpl implements gameInfoService{
 	@Override
 	public List<gameInfoDTO> getsecondGenres() {
 		List<gameInfoDTO> result = gameInfoMapper.getsecondGenres();
+		return result;
+	}
+	@Override
+	public List<gameInfoDTO> getpublisher() {
+		List<gameInfoDTO> result = gameInfoMapper.getpublisher();
 		return result;
 	}
 
