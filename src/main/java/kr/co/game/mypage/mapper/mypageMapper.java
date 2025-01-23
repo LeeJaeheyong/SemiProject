@@ -28,6 +28,8 @@ public interface mypageMapper {
 	public void deleteFile(int id);
 
 	public mypageFileDTO updatePro(int userNo);
+
+	public mypageFileDTO fileCheck(int userNo);
 	
 
 }

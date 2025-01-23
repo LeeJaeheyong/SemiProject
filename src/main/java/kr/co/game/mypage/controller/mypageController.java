@@ -40,10 +40,12 @@ public class mypageController {
 	// 사진 적용
 	@PostMapping("/mypageForm/enroll")
 	public String mypageFormEnroll(@SessionAttribute("userId") String userId,
+								   @RequestParam("picture") String picture,
 								   @RequestParam("file") MultipartFile file) {
-									
+		
+		System.out.println(picture);
 		// userId 넘기고
-		int result = mypageService.enroll(file, userId);
+		int result = mypageService.enroll(file, userId, picture);
 		
 		return"redirect:/game/mypageForm";
 	}	 

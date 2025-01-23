@@ -17,19 +17,21 @@ import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.service.gameInfoServiceImpl;
 import kr.co.game.gameinfo.util.gameinfoPagination;
 
+
 @Controller
 @RequestMapping("/game")
 public class gameinfoController {
-	public final gameInfoServiceImpl gameinfoService;
-	public final gameinfoPagination gameinfoPagination;
+	private final gameInfoServiceImpl gameinfoService;
+	private final gameinfoPagination gameinfoPagination;
 	
 	public gameinfoController(gameInfoServiceImpl gameinfoService, gameinfoPagination gameinfoPagination) {
 		this.gameinfoService = gameinfoService;
 		this.gameinfoPagination = gameinfoPagination;
 	}
-	
-	
+
 	@GetMapping("/gameinfo/form")
+	
+		
 		public String gameinfoForm(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 								   @RequestParam(value="publisher", defaultValue="") String pub,
 								   @RequestParam(value="firstGenre", defaultValue="") String gen,
@@ -59,6 +61,8 @@ public class gameinfoController {
 		
 			return "gameinfo/gameinfo";
 		}
+
+
 		@PostMapping("/gameinfo/upload")
 		public String fileUpload(FileDTO fileDTO,
 								 @RequestParam("file") MultipartFile file) {
@@ -66,25 +70,6 @@ public class gameinfoController {
 			return "gameinfo/gameinfo";
 		}
 		
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
 

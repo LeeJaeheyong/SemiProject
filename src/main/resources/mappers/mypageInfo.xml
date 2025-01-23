@@ -20,6 +20,7 @@
 	<resultMap id="mypageFileMap" type="kr.co.game.mypage.dto.mypageFileDTO">
 		<result property="changeName" column="change_name"></result>
 		<result property="RESOURCES_PATH" column="RESOURCES_PATH"></result>
+		<result property="LOCAL_PATH" column="LOCAL_PATH"></result>
 	</resultMap>
 	
 	
@@ -36,6 +37,10 @@
 							 USER_PHONENUMBER = #{mypageDTO.userPhoneNumber} 
 		WHERE USER_ID = #{myId}
 	</update>
+	
+	<select id="fileCheck" resultMap="mypageFileMap">
+		SELECT * FROM USER_PROFILE WHERE USER_NO = #{userNo} 		
+	</select>
 	
 	<delete id="delete">
 		DELETE FROM USER_INFO WHERE USER_ID = #{myId} 

@@ -14,7 +14,7 @@ public interface mypageService {
 
 	public int delete(String userId, String userPassword, String myId);
 
-	public int enroll(MultipartFile file, String userId);
+	public int enroll(MultipartFile file, String userId, String picture);
 	
 	public mypageFileDTO updatePro(String userId);
 	

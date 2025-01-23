@@ -4,7 +4,6 @@ body {
     padding: 0;
     background-color: #f0f8ff;
     color: #333;
-  min-height: 100vh;
 }
 
 .header-Div {
@@ -66,6 +65,7 @@ main {
     padding: 0px;
     text-align: center;
 }
+
 footer {
     background-color: #eaf5ff;
     padding: 15px;
@@ -74,11 +74,58 @@ footer {
     text-align: left;
     position: relative;
     width: 80%;
+    bottom: 0px;
     font-size: 13px;
-<<<<<<< HEAD
-    
-=======
-    position : relative;
-    height: 100px;
->>>>>>> branch 'master' of https://github.com/LeeJaeheyong/SemiProject.git
+}
+
+.search-container {
+    position: relative;
+    clear: both;
+    width: 900px;
+    min-height: 600px;
+    margin: 0 auto 70px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.form-group input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #0056b3;
 }
