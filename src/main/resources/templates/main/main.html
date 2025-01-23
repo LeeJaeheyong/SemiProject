@@ -5,174 +5,141 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>THE RANK</title>
         <link rel="stylesheet" th:href="@{/css/header.css}">
-        <style>
-            body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex: 1;
-        }
-        .border_bottom{
-            border-bottom: 1px solid #ddd;
-        }
-        </style>
+        <link rel="stylesheet" th:href="@{/css/main.css}">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '장르');
+      data.addColumn('number', '점유율');
+      data.addRows([
+        ['RTS', 45.52],
+        ['FPS', 25.7],
+        ['RPG', 16.4],
+        ['스포츠', 5.89],
+        ['액션', 4.58]
+      ]);
+
+      // Set chart options
+      var options = {'title':'게임별 점유율',
+                     'width':1100,
+                     'height':450};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+        
         </head>
     <body>
     <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
-        <div class="categories">
-            <table>
-                <tr class="border_bottom">
-                    <th>플랫폼</th>
-                    <td>온라인</td>
-                    <td>PC</td>
-                    <td>비디오</td>
-                    <td>웹게임</td>
-                    <td>모바일</td>
-                    <td>VR</td>
+        <div class="container">
+        <div class="graph" id="chart_div"></div>
+        <table class="table">
+            <caption>최신 신규게임</caption>
+            <thead>
+                <tr class="title">
+                    <th>등록일</th>
+                    <th>게임명</th>
+                    <th>점유율</th>
                 </tr>
+            </thead>
+            <tbody>
+                <tr><td>2024-12-16</td><td>마블 라이벌즈</td><td>0.1%</td></tr>
+                <tr><td>2024-12-09</td><td>패스 오브 엑자일2</td><td>1.57%</td></tr>
+                <tr><td>2024-11-12</td><td>슈퍼바이브</td><td>0.08%</td></tr>
+                <tr><td>2024-11-06</td><td>아크소드</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>프로즌 피아어</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>진천외천</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>일검지</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>엑실리어</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>레인보라이</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>매드메탈월드</td><td>0.01%</td></tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <caption>최신 신규게임</caption>
+            <thead>
+                <tr class="title">
+                    <th>등록일</th>
+                    <th>게임명</th>
+                    <th>점유율</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>2024-12-16</td><td>마블 라이벌즈</td><td>0.1%</td></tr>
+                <tr><td>2024-12-09</td><td>패스 오브 엑자일2</td><td>1.57%</td></tr>
+                <tr><td>2024-11-12</td><td>슈퍼바이브</td><td>0.08%</td></tr>
+                <tr><td>2024-11-06</td><td>아크소드</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>프로즌 피아어</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>진천외천</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>일검지</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>엑실리어</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>레인보라이</td><td>0.01%</td></tr>
+                <tr><td>2024-11-06</td><td>매드메탈월드</td><td>0.01%</td></tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <caption>스팀게임 순위</caption>
+            <thead>
+                <tr class="title">
+                    <th>순위</th>
+                    <th>게임명</th>
+                    <th>점유율</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Counter-Strike 2</td><td>0.34%</td></tr>
+                <tr><td>2</td><td>Palworld</td><td>0.26%</td></tr>
+                <tr><td>3</td><td>GTA 5</td><td>0.23%</td></tr>
+                <tr><td>4</td><td>DOTA 2</td><td>0.19%</td></tr>
+                <tr><td>5</td><td>Project Zomboid</td><td>0.15%</td></tr>
+                <tr><td>6</td><td>Stardew Valley</td><td>0.13%</td></tr>
+                <tr><td>7</td><td>Helldivers2</td><td>0.10%</td></tr>
+                <tr><td>8</td><td>Left 4 Dead 2</td><td>0.09%</td></tr>
+                <tr><td>9</td><td>Dead by Daylight</td><td>0.04%</td></tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <caption>상승/하락 게임 (전체)</caption>
+            <thead >
+                <tr class="title">
+                    <th>순위</th>
+                    <th>게임명</th>
+                    <th>상승율</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>배틀그라운드</td><td>1.94%</td></tr>
+                <tr><td>2</td><td>리그 오브 레전드</td><td>0.43%</td></tr>
+                <tr><td>3</td><td>카트라이더 드리프트</td><td>0.41%</td></tr>
+                <tr><td>4</td><td>스타크래프트 리마스터</td><td>0.11%</td></tr>
+                <tr><td>5</td><td>월드 오브 워크래프트</td><td>0.09%</td></tr>
+            </tbody>
+            <tfoot>
                 <tr>
-                    <th>장르</th>
-                    <td>MMORPG</td>
-                    <td>MORPG</td>
-                    <td>액션 RPG</td>
-                    <td>SRPG</td>
-                    <td>롤플레잉</td>
-                    <td>전략시뮬</td>
-                    <td>RTS</td>
+                    <th>순위</th>
+                    <th>게임명</th>
+                    <th>하락율</th>
                 </tr>
-                <tr>
-                    <th></th>
-                    <td>시뮬레이션</td>
-                    <td>비행액션</td>
-                    <td>비행시뮬</td>
-                    <td>육성시뮬</td>
-                    <td>연애시뮬</td>
-                    <td>경영시뮬</td>
-                    <td>FPS</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td>액션</td>
-                    <td>대전액션</td>
-                    <td>리듬액션</td>
-                    <td>스포츠</td>
-                    <td>레이싱</td>
-                    <td>TCG</td>
-                    <td>TPS</td>
-                </tr>
-                <tr class="border_bottom">
-                    <th></th>
-                    <td>어드벤처</td>
-                    <td>비주얼노벨</td>
-                    <td>기능성게임</td>
-                    <td>AOS</td>
-                    <td>슈팅</td>
-                    <td>소셜게임</td>
-                    <td>기타</td>
-                </tr>
-                </tr>
-                <tr>
-                    <th>상태</th>
-                    <td>개발중</td>
-                    <td>클로즈베타</td>
-                    <td>오픈베타</td>
-                    <td>부분유료화</td>
-                    <td>정액제</td>
-                    <td>무료</td>
-                    <td>서비스종료</td>
-                </tr>
-            </table>
-        </div>
-        <div class="gallery">
-            <div class="card">
-                <img src="./HTML/노트북.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>애프터러브 EP</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/스마트폰.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>베고픈 밈</h3>
-                    <p>플랫폼: PC, 비디오</p>
-                    <p>장르: 시뮬레이션</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/태블릿.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>아키텍트 라이프</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/노트북.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>애프터러브 EP</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/스마트폰.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>베고픈 밈</h3>
-                    <p>플랫폼: PC, 비디오</p>
-                    <p>장르: 시뮬레이션</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/태블릿.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>아키텍트 라이프</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/노트북.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>애프터러브 EP</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/스마트폰.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>베고픈 밈</h3>
-                    <p>플랫폼: PC, 비디오</p>
-                    <p>장르: 시뮬레이션</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./HTML/태블릿.jpg" alt="Game Image">
-                <div class="card-content">
-                    <h3>아키텍트 라이프</h3>
-                    <p>플랫폼: -</p>
-                    <p>장르: -</p>
-                    <p>서비스 상태: -</p>
-                </div>
-            </div>
-            <!-- Add more cards as needed -->
-        </div>
+                <tr><td>1</td><td>FC 온라인</td><td>-1.07%</td></tr>
+                <tr><td>2</td><td>던전앤파이터</td><td>-0.62%</td></tr>
+                <tr><td>3</td><td>메이플스토리</td><td>-0.62%</td></tr>
+                <tr><td>4</td><td>서든어택</td><td>-0.43%</td></tr>
+                <tr><td>5</td><td>로스트아크</td><td>-0.34%</td></tr>
+            </tfoot>
+        </table>
+    </div>
     </main>
- <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
+ <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>    
+ </body>

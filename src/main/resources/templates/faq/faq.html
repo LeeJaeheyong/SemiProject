@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/faq.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <!-- ...existing code... -->
+    <div class="search-container">
+        <div class="faq-container">
+        <h3>자주 묻는 질문</h3>
+        <p>자주 문의하시는 내용을 모았습니다. <br>
+           원하는 답변이 없다면 1:1 문의를 이용해 주세요.</p>
+        </div>
+        <div class="faq-search">
+            <p>궁금한 내용의 
+                <b>키워드를 입력</b>
+                하세요</p>
+        <div class="faq-input">
+            <input class="input-text" type="text" placeholder="질문 검색">
+            <input class="input-btn" type="image" th:src="@{/img/검색버튼.png}"></input>
+        </div>
+        </div>
+        <div class="list-div">
+        <dl class="faq-list">
+            <dt class="faq-question">
+                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[게임통계]</strong> 
+                <a>더로그 데이터 집계 방식이 궁금합니다.</a>
+                <p class="faq-btn">▽</p>
+            </dt>
+            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
+                <div>
+                    <p>
+                    <span> 게토매니저 #, 게토매니저 G를 사용하는 전국 PC방의 실제 데이터를 수집하고, 이를 기반으로 지역 분포수에 맞추어 시장 전체 표본 데이터를 제공합니다.</span>
+                    </p>
+                </div>
+            </dd>
+            <dt class="faq-question">
+                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[게임통계]</strong> 
+                <a>게임 통계 방식이 궁금합니다.</a>
+            </dt>
+            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
+                - Summary: 그룹별 통계 요약본을 제공합니다.<br>
+                - 전체 게임 순위: 일별 전체 게임 순위를 제공합니다.<br>
+                - 실시간: 당일 실시간 누적 점유율 계산을 제공합니다.<br>
+                - 시간별: 일정 기간의 이용량을 검색해서 확인할 수 있습니다.
+            </dd>
+            <dt class="faq-question">
+                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[사이트 이용]</strong> 
+                <a>사이트가 깨져서 보입니다.</a>
+            </dt>
+            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
+                더로그에서 지원하는 브라우저는 크롬, 익스플로러 9 이상 버전입니다. 이 외의 브라우저에서는 기능이 원활하지 않을 수 있습니다.
+            </dd>
+        </dl>
+    </div>
+    </div>    
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const questions = document.querySelectorAll(".faq-question");
+
+    questions.forEach((question) => {
+        question.addEventListener("click", function () {
+            const answer = this.nextElementSibling; // Get the corresponding <dd>
+            const btn = this.querySelector(".faq-btn"); // Correctly select the button
+            const isVisible = answer.style.display === "block";
+
+            // Toggle display
+            if (isVisible) {
+                answer.style.display = "none"; // Hide the answer
+                btn.textContent = "▽"; // Update button text
+            } else {
+                answer.style.display = "block"; // Show the answer
+                btn.textContent = "△"; // Update button text
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

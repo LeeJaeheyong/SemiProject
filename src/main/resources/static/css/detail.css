@@ -1,0 +1,64 @@
+.container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+        .game-header h1 {
+            font-size: 1.8em;
+            margin: 0;
+        }
+        .game-details {
+            margin-top: 10px;
+        }
+        .game-details li {
+            list-style: none;
+            line-height: 1.6;
+        }
+        .game-image {
+            max-width: 300px;
+            border-radius: 8px;
+        }
+        .tabs {
+            margin-top: 20px;
+        }
+        .tabs ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .tabs ul li {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 5px 5px 0 0;
+        }
+        .tabs ul li:hover {
+            background-color: #f1f1f1;
+        }
+        .tabs ul li.active {
+            background-color: #fff;
+            border-color: #e0e0e0;
+            border-bottom: none;
+            font-weight: bold;
+        }
+        .tab-content {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        h1{
+            padding-left: 40px;
+        }
