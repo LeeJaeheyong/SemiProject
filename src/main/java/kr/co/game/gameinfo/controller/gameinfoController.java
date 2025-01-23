@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.game.gameinfo.model.dto.FileDTO;
+import kr.co.game.dto.FileDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.service.gameInfoServiceImpl;
@@ -31,27 +31,31 @@ public class gameinfoController {
 	
 	@GetMapping("/gameinfo/form")
 		public String gameinfoForm(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
+								   @RequestParam(value="publisher", defaultValue="") String pub,
+								   @RequestParam(value="firstGenre", defaultValue="") String gen,
 								   Model model) {
 		int postCount = gameinfoService.getTotalCount();
 		int pageLimit = 5;
 		int boardLimit = 6;
 		
-		// 1. pageInfoDTO 대신 currentPage, postCount, pageLimit, boardLimit 다 인자로 작성
-		// 2. 배열로 만들어서 넣어주는 방법
 		Map<String, Object> result = gameinfoService.getAllGames(gameinfoPagination, 
 																  currentPage,
 																  postCount,
 																  pageLimit,
-																  boardLimit);
+																  boardLimit,
+																  pub,
+																  gen);
 		pageInfoDTO piResult = (pageInfoDTO)result.get("pi");
 		List<gameInfoDTO> gameList = (List<gameInfoDTO>)result.get("games");
 		List<gameInfoDTO> genreList = gameinfoService.getGenres();
 		List<gameInfoDTO> secondGenreList = gameinfoService.getsecondGenres();
+		List<gameInfoDTO> publisherList = gameinfoService.getpublisher();
 		
 		model.addAttribute("genres",genreList);
 		model.addAttribute("secondgenres",secondGenreList);
 		model.addAttribute("pi",piResult);	
 		model.addAttribute("games",gameList);	
+		model.addAttribute("publisher",publisherList);	
 		
 			return "gameinfo/gameinfo";
 		}
@@ -61,4 +65,26 @@ public class gameinfoController {
 			gameinfoService.uploadFile(fileDTO,file);
 			return "gameinfo/gameinfo";
 		}
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

@@ -1,14 +1,11 @@
 package kr.co.game.mypage.service;
 
-import java.io.IOException;
-
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
+import kr.co.game.util.FileUpload;
 
 @Service
 public class mypageServiceImpl implements mypageService {
