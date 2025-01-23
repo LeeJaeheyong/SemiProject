@@ -28,38 +28,67 @@
         </div>
         <div class="list-div">
         <dl class="faq-list">
-            <dt class="faq-question">
-                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[게임통계]</strong> 
-                <a>더로그 데이터 집계 방식이 궁금합니다.</a>
-                <p class="faq-btn">▽</p>
-            </dt>
-            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
-                <div>
-                    <p>
-                    <span> 게토매니저 #, 게토매니저 G를 사용하는 전국 PC방의 실제 데이터를 수집하고, 이를 기반으로 지역 분포수에 맞추어 시장 전체 표본 데이터를 제공합니다.</span>
-                    </p>
-                </div>
-            </dd>
-            <dt class="faq-question">
-                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[게임통계]</strong> 
-                <a>게임 통계 방식이 궁금합니다.</a>
-            </dt>
-            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
-                - Summary: 그룹별 통계 요약본을 제공합니다.<br>
-                - 전체 게임 순위: 일별 전체 게임 순위를 제공합니다.<br>
-                - 실시간: 당일 실시간 누적 점유율 계산을 제공합니다.<br>
-                - 시간별: 일정 기간의 이용량을 검색해서 확인할 수 있습니다.
-            </dd>
-            <dt class="faq-question">
-                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'">[사이트 이용]</strong> 
-                <a>사이트가 깨져서 보입니다.</a>
-            </dt>
-            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
-                더로그에서 지원하는 브라우저는 크롬, 익스플로러 9 이상 버전입니다. 이 외의 브라우저에서는 기능이 원활하지 않을 수 있습니다.
-            </dd>
+        	<th:block th:each="post:${posts}">
+	            <dt class="faq-question">
+	                <strong class="faq-icon" th:style="'background-image:url('+@{/img/Q.png}+');'"
+	                		th:text="${post.faqCategory}"></strong> 
+	                <a th:text="${post.faqTitle}"></a>
+	                <p class="faq-btn">▽</p>
+	            </dt>
+	            <dd class="faq-answer" th:style="'background-image:url('+@{/img/A.png}+');'">
+	                <div>
+	                    <p>
+	                    <span th:text="${post.faqInfo}"></span>
+	                    </p>
+	                </div>
+	            </dd>
+            </th:block>
         </dl>
     </div>
-    </div>    
+    </div>  
+    <div class="gallery">
+             <nav aria-label="Page navigation example"
+			style="background-color: white;">
+			<ul class="pagination" style="justify-content: center;">
+				<!--
+					왼쪽 버튼
+					1. 1~10 페이지일 때 : 아무런 동작하지 않게
+					2. 11 페이지 이상일 때 : 직전 페이지 마지막(endPage)
+				-->
+				<li class="page-item" style="margin-right: 0px"><a
+					class="page-link" th:if="${fpi.currentPage <= fpi.pageLimit}"
+					th:href="@{/game/faqInfo/form(currentPage=1)}"
+					aria-label="Previous" style="margin-right: 0px"> <span
+						aria-hidden="true">&laquo;</span>
+				</a> <a class="page-link" th:if="${fpi.currentPage > fpi.pageLimit}"
+					th:href="@{/game/faqInfo/form(currentPage=${fpi.endPage - fpi.pageLimit})}"
+					aria-label="Previous" style="margin-right: 0px"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+
+				<!-- 페이지 버튼 -->
+				<li class="page-item" style="margin-right: 0px"
+					th:each="page : ${#numbers.sequence(fpi.startPage, fpi.endPage)}">
+					<a class="page-link"
+					th:href="@{/game/faqInfo/form(currentPage=${page})}"
+					th:text="${page}" style="margin-right: 0px"></a>
+				</li>
+
+				<!-- 
+					오른쪽 버튼 
+					1. 끝 페이지일 때 : 아무런 동작을 하지 않아야 함
+				-->
+				<li class="page-item" style="margin-right: 0px"><a
+					class="page-link" th:if="${fpi.endPage == fpi.maxPage}"
+					th:href="@{/game/faqInfo/form(currentPage=${fpi.endPage})}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a> <a class="page-link" th:if="${fpi.endPage != fpi.maxPage}"
+					th:href="@{/game/faqInfo/form(currentPage=${fpi.endPage+1})}"
+					aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+		</nav>
+        </div>  
     </main>
 <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
 <script>
