@@ -1,4 +1,4 @@
-package kr.co.game.gameinfo.model.dto;
+package kr.co.game.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

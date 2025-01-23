@@ -1,27 +1,63 @@
 
 .auth-buttons {
-            display: flex;
-            gap: 10px;
+	            display: flex;
+	            gap: 10px;
+        	  }
+        
+.tab {
+       display: inline-block;
+       padding: 10px 20px;
+       margin-right: 10px;
+       cursor: pointer;
+       background-color: #f1f1f1;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+     }.tab-content {
+	          display: none;
+	          padding: 20px;
+	          border: 1px solid #ccc;
+	          border-radius: 5px;
+	          margin-top: 10px;
+        	 }.active {
+	    background-color: #ccc;
+        }.active-content {
+            		display: block;
+        		}
+.border_bottom{
+            border-bottom: 2px solid #ddd;
         }
-        .tab {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-right: 10px;
-            cursor: pointer;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .active {
-            background-color: #ccc;
-        }
-        .active-content {
-            display: block;
-        }
+.padding th{
+	padding:10px;
+}
+.tbody td{
+	padding:10px;
+	border-bottom: 1px solid #ddd;
+}
+        
+        
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
