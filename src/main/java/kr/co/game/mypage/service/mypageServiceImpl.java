@@ -1,22 +1,19 @@
 package kr.co.game.mypage.service;
 
-import java.io.IOException;
-
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
+import kr.co.game.mypage.util.MypageFileUpload;
 
 @Service
 public class mypageServiceImpl implements mypageService {
 	private final mypageMapper mypageMapper;
 	private PasswordEncoder passwordEncoder;
-	private final FileUpload fu;
+	private final MypageFileUpload fu;
 	
-	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, FileUpload fu) {
+	public mypageServiceImpl(mypageMapper mypageMapper, PasswordEncoder passwordEncoder, MypageFileUpload fu) {
 		this.mypageMapper = mypageMapper;
 		this.passwordEncoder = passwordEncoder;
 		this.fu = fu;
