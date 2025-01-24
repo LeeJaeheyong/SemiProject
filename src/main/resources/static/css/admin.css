@@ -33,8 +33,25 @@
 	padding:10px;
 	border-bottom: 1px solid #ddd;
 }
-        
-        
+.change_btn{
+	position : absolute;
+	right:155px;
+	top:330px;
+}       
+.confirm_btn{
+	position : absolute;
+	right:100px;
+	top:330px;
+}
+.cancel_btn{
+	position : absolute;
+	right:40px;
+	top:330px;
+}
+.none{
+	display:none;
+}
+ 
             
         
         

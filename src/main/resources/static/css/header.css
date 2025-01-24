@@ -65,6 +65,7 @@ nav ul li a:hover {
 main {
     padding: 0px;
     text-align: center;
+    padding-top: 20px;
 }
 footer {
     background-color: #eaf5ff;
