@@ -23,6 +23,14 @@
 		<result property="LOCAL_PATH" column="LOCAL_PATH"></result>
 	</resultMap>
 	
+	<resultMap id="mypageContactMap" type="kr.co.game.mypage.dto.mypageContactDTO">
+		<result property="contactNo" column="CONTACT_NO"></result>
+		<result property="contactTitle" column="CONTACT_TITLE"></result>
+		<result property="contactInfo" column="CONTACT_INFO"></result>
+		<result property="createDate" column="CREATED_DATE"></result>
+		<result property="answerRe" column="ANSWER_RE"></result>
+	</resultMap>
+	
 	
 	<select id="userInfoSelect" resultMap="mypageMap">
 		SELECT * FROM USER_INFO WHERE USER_ID = #{myId}
@@ -70,4 +78,12 @@
 	<delete id="deleteFile">
 		DELETE FROM USER_PROFILE WHERE USER_NO = #{userNO}
 	</delete>
+	
+	<select id="AllList" resultMap="mypageContactMap">
+		SELECT * FROM CONTACT WHERE USER_NUM = #{userNo}
+	</select>
+	
+	
+	
+	
 </mapper>

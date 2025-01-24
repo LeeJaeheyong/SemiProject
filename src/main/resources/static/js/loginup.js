@@ -1,5 +1,3 @@
-// 
-
 document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, #birthdate, #phone').forEach(function(inputElement) {
     inputElement.addEventListener('input', function() {
         const fieldId = this.id;

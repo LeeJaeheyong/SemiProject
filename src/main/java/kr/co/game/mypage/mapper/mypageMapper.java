@@ -1,8 +1,11 @@
 package kr.co.game.mypage.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import kr.co.game.mypage.dto.mypageContactDTO;
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.dto.mypageFileDTO;
 
@@ -30,6 +33,8 @@ public interface mypageMapper {
 	public mypageFileDTO updatePro(int userNo);
 
 	public mypageFileDTO fileCheck(int userNo);
-	
 
+	public List<mypageContactDTO> AllList(int userNo);
+	
+	
 }
