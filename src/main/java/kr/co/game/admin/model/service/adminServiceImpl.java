@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.game.admin.model.dto.ChangeDTO;
 import kr.co.game.admin.model.dto.adminDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
 import kr.co.game.admin.model.mapper.adminMapper;
@@ -34,6 +35,31 @@ public class adminServiceImpl implements adminService{
 		Map<String, Object> result = new HashMap<>();
 		result.put("pi", pi);
 		result.put("user", user);
+		return result;
+	}
+	@Override
+	public int changeRole(List<String> category, List<Integer> check) {
+		// 1. 변경된 유저만
+		// 2. category를 배열형태로 바까서 
+		for(String item : category) {
+			System.out.println(item);
+		}
+		for(int item : check) {
+			System.out.println(item+"asd");
+		}
+		if(check.isEmpty()) {
+			return 0;
+		}
+		Map<String,Object> siba= new HashMap<>();
+		siba.put("category", category);
+		siba.put("check", check);
+		int result =adminMapper.changeRole(siba);
+		
+		return result;
+	}
+	@Override
+	public List<Integer> getUserNo() {
+		List<Integer> result = adminMapper.getUserNo();
 		return result;
 	}
 }

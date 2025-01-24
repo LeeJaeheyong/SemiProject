@@ -14,34 +14,58 @@
     <div class="tab" onclick="showTab('inquiry')">1:1 문의 확인</div>
     <div class="tab" onclick="showTab('game-db')">게임 DB 확인</div>
     <div class="tab" onclick="showTab('notice')">공지사항 확인</div>
-
+	
+	
     <div id="user-info" class="tab-content">
         <h2>유저 정보 확인</h2>
         <p>유저 정보를 여기에 표시합니다.</p>
+        <button  class="change_btn" id="control_btn" onclick="reveal()">역할 수정</button>
+	<form th:action="@{/game/admin/rolechange}" method="GET">
+        <button class="confirm_btn" id="change_btn" style="display:none" type="submit">변경</button>
+        <button type="button" class="cancel_btn" id="cancel_btn" style="display:none" onclick="cancel()">취소</button>
         <div style="margin: 20px;">
+    </form>
+        
     <table style="width: 100%; border-collapse: collapse; text-align: left;">
         <thead>
             <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+            	<th>체크</th>
                 <th>유저 번호</th>
                 <th>아이디</th>
                 <th>이메일</th>
                 <th>연락처</th>
                 <th>생일</th>
                 <th>역할</th>
+                <th>역할변경</th>
             </tr>
         </thead>
         <tbody>
             <tr class="tbody" th:each="users :${user}">
+            	<td>
+            	<input type="checkbox" name="check" th:value="${users.userNo}" style="display:none;" class="checkbtn">
+            	<input type="hidden" name="_check" value="on">
+            	
+            	</td>
                 <td th:text="${users.userNo}"></td>
                 <td th:text="${users.userId}"></td>
                 <td th:text="${users.userEmail}"></td>
                 <td th:text="${users.userPhonenumber}"></td>
                 <td th:text="${users.userBirthday}"></td>
                 <td th:text="${users.userRole}"></td>
+                <td style="width: 100px;">
+	                <select
+						class="form-select me-2 select" id="inputGroupSelect02" name="category"
+						style="width: 100px; height: 46px; display:none;">
+						<option value="user" th:selected="${users.userRole == 'user'}">user</option>
+						<option value="admin" th:selected="${users.userRole == 'admin'}">admin</option>
+					</select>                
+                </td>
             </tr>
+           
             <!-- 추가 데이터 행 -->
         </tbody>
     </table>
+    
 </div>
     </div>
     <div id="inquiry" class="tab-content">
@@ -81,6 +105,50 @@
             }
             event.target.classList.add('active');
         }
+        function reveal(){
+        	let canbtn=document.getElementById('cancel_btn');
+            let chbtn=document.getElementById('change_btn');
+            let check=document.getElementsByClassName('select');
+            let box=document.getElementsByClassName('checkbtn');
+            if(canbtn.style.display=='none'){
+                canbtn.style.display='block';
+                chbtn.style.display='block';
+                for(let i=0;i<check.length;i++){
+                    check[i].style.display='block';
+                }
+                for(let i=0;i<box.length;i++){
+                    box[i].style.display='block';
+                }
+            }
+        }
+        function cancel(){
+       		let canbtn=document.getElementById('cancel_btn');
+            let chbtn=document.getElementById('change_btn');
+             let check=document.getElementsByClassName('select');
+            let box=document.getElementsByClassName('checkbtn');
+            if(chbtn.style.display=='block'){
+                canbtn.style.display='none';
+                chbtn.style.display='none';
+                 for(let i=0;i<check.length;i++){
+                    check[i].style.display='none';
+                }
+                 for(let i=0;i<box.length;i++){
+                    box[i].style.display='none';
+                }
+            }
+        }
     </script>
 </body>
 </html>
+
+<!--
+ 1. 자바스크립트 함수 만들기
+
+2. 체크박스가 체크될 때 cancel_btn 폼태그에다가
+    input hidden을 자식 요소로 추가
+    name="category_userinfo" value="admin_3"
+    name="userNo" value="3"
+    name="category" value="admin"
+
+3. 체크 해제되면 요소 삭제 
+-->

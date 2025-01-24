@@ -6,9 +6,11 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.game.admin.model.dto.ChangeDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
 import kr.co.game.admin.model.service.adminServiceImpl;
 import kr.co.game.admin.util.adminPagination;
@@ -45,5 +47,18 @@ public class adminController {
 		model.addAttribute("user",userList);
 		return "admin/admin";
 	}
-	
+	@GetMapping("/admin/rolechange")
+	public String rolechange(@RequestParam("category")List<String> category,
+							 @RequestParam("check")List<Integer> check,
+							 Model model) {
+		// 1. 순서대로 받아서 key-value로 맵핑
+		
+		int result = adminService.changeRole(category,check);
+		if(result==1) {
+			System.out.println("goodJob!");
+		}
+		
+		
+		return "admin/admin";
+	}
 }

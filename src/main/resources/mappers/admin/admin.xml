@@ -33,7 +33,17 @@ select * from(
  WHERE rn BETWEEN #{offset} AND #{limit}
 </select>
 
+<update id="changeRole">
+	    <foreach collection="category" item="role"  separator=";">
+        UPDATE user_info
+        SET user_role = #{role}
+        WHERE user_no = #{check}
+    	</foreach>
+</update>
 
+<select id="getUserNo" resultType="int">
+	SELECT user_no FROM user_info
+</select>
 
 
 </mapper>
