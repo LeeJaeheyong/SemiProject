@@ -23,7 +23,7 @@ public class registerController {
 	
 	// 회원가입 페이지 이동
 	@GetMapping("/loginupForm")
-	public String signupForm() {
+	public String loginupForm() {
 		return "/login/loginup";
 	}
 	
@@ -39,7 +39,7 @@ public class registerController {
 	
 	// 회원가입 클릭시
 	@PostMapping("/loginup")
-	public String signup(signupDTO signupDTO) {
+	public String loginup(signupDTO signupDTO) {
 
 		registerService.signup(signupDTO);
 		

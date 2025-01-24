@@ -2,11 +2,13 @@ package kr.co.game.mypage.service;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.game.mypage.dto.mypageContactDTO;
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.dto.mypageFileDTO;
 import kr.co.game.mypage.mapper.mypageMapper;
@@ -81,7 +83,8 @@ public class mypageServiceImpl implements mypageService {
 		//  객체가 null인지 아닌지 판단
 		
 		// picture가 eidt면
-		if(picture == "edit") {
+		if(picture.equals("edit")) {
+			System.out.println("하하하핳");
 			//  기존에 사진을 올렸으면 1, 올린적이 없으면 0
 			if(result != null) {
 				mypageMapper.deleteFile(id);
@@ -120,4 +123,19 @@ public class mypageServiceImpl implements mypageService {
 		int userNo = mypageMapper.getId(userId);
 		return mypageMapper.updatePro(userNo);
 	}
+	
+	@Override
+	public List<mypageContactDTO> AllList(String userId) {
+		
+		int userNo = mypageMapper.getId(userId);
+		
+		System.out.println("mypageService 단" + userNo);
+
+		return mypageMapper.AllList(userNo);
+	}
+	
+	
+	
+	
+	
 }
