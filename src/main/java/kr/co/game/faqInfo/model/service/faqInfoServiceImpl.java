@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.game.faqInfo.model.dto.faqInfoDTO;
 import kr.co.game.faqInfo.model.dto.faqInfoPageInfoDTO;
+import kr.co.game.faqInfo.model.dto.faqSearchDTO;
 import kr.co.game.faqInfo.model.mapper.faqInfoMapper;
 import kr.co.game.faqInfo.util.faqInfoPagination;
 
@@ -26,9 +27,10 @@ public class faqInfoServiceImpl implements faqInfoService{
 			   								int currentPage, 
 			   								int postCount,
 			   								int pageLimit, 
-			   								int boardLimit) {
+			   								int boardLimit, 
+			   								faqSearchDTO faqSearchDTO) {
 
-		faqInfoPageInfoDTO fpi = faqInfoPage.getFaqList(postCount, currentPage, pageLimit, boardLimit);
+		faqInfoPageInfoDTO fpi = faqInfoPage.getFaqList(postCount, currentPage, pageLimit, boardLimit, faqSearchDTO);
 		
 		List<faqInfoDTO> faq = faqInfoMapper.getFaqList(fpi, faqInfoPage);
 		
@@ -44,20 +46,6 @@ public class faqInfoServiceImpl implements faqInfoService{
 	public int faqInfoCount(faqInfoPagination faqInfoPage) {
 		return faqInfoMapper.faqInfoCount(faqInfoPage);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
