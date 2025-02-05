@@ -13,7 +13,32 @@
 	<result property="userRole" column="user_role"></result>
 	<result property="userBirthday" column="user_birthdate"></result>
 </resultMap>
-
+<resultMap id="faqResultMap" type="kr.co.game.admin.model.dto.faqDTO">
+	<result property="faqNo" column="faq_no"></result>
+	<result property="faqCategory" column="faq_category"></result>
+	<result property="faqTitle" column="faq_title"></result>
+	<result property="faqInfo" column="faq_info"></result>
+	<result property="createDate" column="created_date"></result>
+	<result property="categoryNo" column="category_no"></result>
+</resultMap>
+<resultMap id="gameInfoResultMap" type="kr.co.game.gameinfo.model.dto.gameInfoDTO">
+	<result property="gameNo" column="game_no"></result>
+	<result property="gameName" column="game_name"></result>
+	<result property="firstGenre" column="first_genre"></result>
+	<result property="secondGenre" column="second_genre"></result>
+	<result property="releaseDate" column="release_date"></result>
+	<result property="publisher" column="publisher_name"></result>
+	<result property="gameScore" column="game_score"></result>
+	
+	<association property="fileDTO" javaType="kr.co.game.dto.FileDTO">
+		<result property="changeName" column="change_name"></result>
+		<result property="folderNamePath" column="folder_name_path"></result>
+	</association>
+	<association property="gameDetailDTO" javaType="kr.co.game.gameinfo.model.dto.gameDetailDTO">
+		<result property="gameDetail" column="game_detail"></result>
+		<result property="gameTrailer" column="game_trailer"></result>
+	</association>
+</resultMap>
 <select id="getTotalCount">
 SELECT COUNT(*) FROM user_info
 </select>
@@ -32,8 +57,60 @@ select * from(
  FROM user_info)
  WHERE rn BETWEEN #{offset} AND #{limit}
 </select>
+<select id="getAllFaq" resultMap="faqResultMap">
+ SELECT * FROM(
+ SELECT FAQ_NO, 
+	   fc.FAQ_CATEGORY, 
+	   FAQ_TITLE, 
+	   created_date,
+	   ROW_NUMBER() OVER (ORDER BY FAQ_NO) AS rn
+FROM FAQ_INFO fi 
+JOIN FAQ_CATEGORY fc ON fi.CATEGORY_NO = fc.CATEGORY_NO)
+ WHERE rn BETWEEN #{offset} AND #{limit}
+</select>
+
+<update id="changeRole">
+        UPDATE user_info
+        
+        SET user_role =	
+        	CASE
+       		    <foreach collection="list" item="item">
+        		WHEN user_no = #{item.check} THEN #{item.category}
+        		</foreach>
+        	END
+        WHERE user_no IN
+      	<foreach collection="list" item="item" open="(" close=")" separator=",">
+	        #{item.check}
+        </foreach>
+</update>
 
 
-
-
+<select id="getUserNo" resultType="int">
+	SELECT user_no FROM user_info
+</select>
+<select id="getCategory" resultMap="faqResultMap">
+	select * from faq_category
+</select>
+<insert id="enrollFAQ">
+	INSERT INTO faq_info VALUES(faq_seq.nextval,
+								#{categoryNo},
+								#{faqTitle},
+								#{faqInfo},
+								sysdate)
+</insert>
+<delete id="deleteFAQ">
+	DELETE FROM faq_info WHERE faq_no = ${faqNo}
+</delete>
+<select id="getAllGames" resultMap="gameInfoResultMap">
+	SELECT gi.game_no,
+		   gi.game_name,
+		   gi.release_date,
+		   gg.first_genre,
+		   gp.publisher_name,
+		   gi.game_score
+	FROM game_info gi
+	JOIN game_Genre gg ON gi.genre_no = gg.genre_no
+	Join game_publisher gp ON gi.publisher_no = gp.publisher_no
+	order by game_no
+</select>
 </mapper>

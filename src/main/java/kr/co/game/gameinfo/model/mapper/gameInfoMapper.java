@@ -26,6 +26,16 @@ public interface gameInfoMapper {
 
 	List<gameInfoDTO> getpublisher();
 
+	gameInfoDTO getGame(int gameNo);
+
+	int newGenre(gameInfoDTO gameInfoDTO);
+
+	int detailUpdate(gameInfoDTO gameInfoDTO);
+
+	int enrollGame(gameInfoDTO gameInfoDTO);
+
+	int publsherUpdate(gameInfoDTO gameInfoDTO);
+
 	
 
 }

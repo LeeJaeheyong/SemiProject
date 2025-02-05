@@ -64,7 +64,8 @@ nav ul li a:hover {
 
 main {
     padding: 0px;
-    text-align: center;
+     text-align: center;
+    padding-top: 20px;
 }
 footer {
     background-color: #eaf5ff;
@@ -75,10 +76,7 @@ footer {
     position: relative;
     width: 80%;
     font-size: 13px;
-<<<<<<< HEAD
     
-=======
     position : relative;
     height: 100px;
->>>>>>> branch 'master' of https://github.com/LeeJaeheyong/SemiProject.git
 }
