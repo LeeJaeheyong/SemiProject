@@ -10,51 +10,97 @@
     <body>
     <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
-    <div class="tab" onclick="showTab('user-info')">유저 정보 확인</div>
-    <div class="tab" onclick="showTab('inquiry')">1:1 문의 확인</div>
-    <div class="tab" onclick="showTab('game-db')">게임 DB 확인</div>
-    <div class="tab" onclick="showTab('notice')">공지사항 확인</div>
-
+    <div class="tab" onclick="showTab('user-info',event)">유저 정보 확인</div>
+    <div class="tab" onclick="showTab('inquiry',event)">1:1 문의 확인</div>
+    <div class="tab" onclick="showTab('game-db',event)">게임 DB 확인</div>
+    <div class="tab" onclick="showTab('notice',event)">공지사항 확인</div>
+    <div class="tab" onclick="showTab('faq',event)">자주묻는 질문 확인</div>
+	
+	
     <div id="user-info" class="tab-content">
         <h2>유저 정보 확인</h2>
-        <p>유저 정보를 여기에 표시합니다.</p>
+        <button  class="change_btn" id="control_btn" onclick="reveal()">역할 수정</button>
+	<form th:action="@{/game/admin/rolechange}" method="POST">
+		<button type="button" id="select_btn" class="select_btn" onclick="addData()"style="display:none">선택</button>
+        <button class="confirm_btn" id="change_btn" style="display:none" type="submit">변경</button>
+        <button type="button" class="cancel_btn" id="cancel_btn" style="display:none" onclick="cancel()">취소</button>
         <div style="margin: 20px;">
+    </form>
+        
     <table style="width: 100%; border-collapse: collapse; text-align: left;">
         <thead>
             <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+            	<th>체크</th>
                 <th>유저 번호</th>
                 <th>아이디</th>
                 <th>이메일</th>
                 <th>연락처</th>
                 <th>생일</th>
                 <th>역할</th>
+                <th>역할변경</th>
             </tr>
         </thead>
         <tbody>
             <tr class="tbody" th:each="users :${user}">
+            	<td>
+            	<input type="checkbox"  name="check" th:value="${users.userNo}" style="display:none;" class="checkbtn">
+            	<input type="hidden" name="_check" value="on">
+            	</td>
                 <td th:text="${users.userNo}"></td>
                 <td th:text="${users.userId}"></td>
                 <td th:text="${users.userEmail}"></td>
                 <td th:text="${users.userPhonenumber}"></td>
                 <td th:text="${users.userBirthday}"></td>
                 <td th:text="${users.userRole}"></td>
+                <td style="width: 100px;">
+	                <select
+						class="form-select me-2 select" id="inputGroupSelect02" name="category"
+						style="width: 100px; height: 46px; display:none;">
+						<option value="user" th:selected="${users.userRole == 'user'}">user</option>
+						<option value="admin" th:selected="${users.userRole == 'admin'}">admin</option>
+					</select>                
+                </td>
             </tr>
-            <!-- 추가 데이터 행 -->
         </tbody>
     </table>
-</div>
+    </div>
     </div>
     <div id="inquiry" class="tab-content">
         <h2>1:1 문의 확인</h2>
-        <p>1:1 문의 내용을 여기에 표시합니다.</p>
+         
     </div>
     <div id="game-db" class="tab-content">
         <h2>게임 DB 확인</h2>
         <p>게임 DB 내용을 여기에 표시합니다.</p>
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+                <th>게임 번호</th>
+                <th>제목</th>
+                <th>장르</th>
+                <th>출시일</th>
+                <th>퍼블리셔</th>
+                <th>점수</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tbody" th:each="game : ${gameDB}">
+            	<td th:text="${game.gameNo}"></td>
+            	<td th:text="${game.gameName}"></td>
+            	<td th:text="${game.firstGenre}"></td>
+            	<td th:text="${game.releaseDate}"></td>
+            	<td th:text="${game.publisher}"></td>
+            	<td th:text="${game.gameScore}"></td>
+            	<td>
+	            <button onclick="location.href='#'">수정</button>
+	            <button onclick="location.href='#'">삭제</button>            	
+            	</td>
+            </tr>
+        </tbody>
+    </table>
         <div class="button-group">
-            <button onclick="location.href='#'">추가</button>
-            <button onclick="location.href='#'">수정</button>
-            <button onclick="location.href='#'">삭제</button>
+            <button th:onclick="|location.href='@{/game/gameinfo/enroll/form}'|">추가</button>
         </div>
     </div>
     <div id="notice" class="tab-content">
@@ -62,13 +108,40 @@
         <p>공지사항 내용을 여기에 표시합니다.</p>
         <div class="button-group">
             <button onclick="location.href='#'">추가</button>
+            <button onclick="location.href='#'">삭제</button>
+        </div>
+    </div>
+    <div id="faq" class="tab-content">
+        <h2>자주묻는 질문 확인</h2>
+        <p>자주묻는 질문을 여기에 표시합니다.</p>
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+                <th>FAQ 번호</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tbody faq" th:each="faq :${faq}">
+                <td th:text="${faq.faqNo}"></td>
+                <td th:text="${faq.faqCategory}"></td>
+                <td th:text="${faq.faqTitle}"></td>
+                <td th:text="${faq.createDate}"></td>
+   		        <td><button th:onclick="|location.href='@{/game/admin/faq/delete(faqNo=${faq.faqNo})}'|">삭제</button></td>
+            </tr>
+        </tbody>
+    </table> 
+        <div class="button-group ">
+            <button th:onclick="|location.href='@{/game/admin/faq/enroll/form}'|">추가</button>
         </div>
     </div>
     </main>
     <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>    
-    <!-- FOOTEER -->
     <script>
-        function showTab(tabId) {
+        function showTab(tabId,event) {
             var tabs = document.getElementsByClassName('tab-content');
             for (var i = 0; i < tabs.length; i++) {
                 tabs[i].classList.remove('active-content');
@@ -81,6 +154,64 @@
             }
             event.target.classList.add('active');
         }
+        function reveal(){
+        	let canbtn=document.getElementById('cancel_btn');
+            let chbtn=document.getElementById('change_btn');
+            let selbtn=document.getElementById('select_btn');
+            let check=document.getElementsByClassName('select');
+            let box=document.getElementsByClassName('checkbtn');
+            if(canbtn.style.display=='none'){
+                canbtn.style.display='block';
+                chbtn.style.display='block';
+                selbtn.style.display='block';
+                for(let i=0;i<check.length;i++){
+                    check[i].style.display='block';
+                }
+                for(let i=0;i<box.length;i++){
+                    box[i].style.display='block';
+                }
+            }
+        }
+        function cancel(){
+       		let canbtn=document.getElementById('cancel_btn');
+            let chbtn=document.getElementById('change_btn');
+            let selbtn=document.getElementById('select_btn');
+             let check=document.getElementsByClassName('select');
+            let box=document.getElementsByClassName('checkbtn');
+            if(chbtn.style.display=='block'){
+                canbtn.style.display='none';
+                chbtn.style.display='none';
+                selbtn.style.display='none';
+                 for(let i=0;i<check.length;i++){
+                    check[i].style.display='none';
+                }
+                 for(let i=0;i<box.length;i++){
+                    box[i].style.display='none';
+                }
+            }
+        }
+        function addData(){
+            let userNo = document.getElementsByClassName('checkbtn');
+            let userRole = document.getElementsByName('category');
+            let result = document.getElementById('cancel_btn');
+            let inputName;
+            let inputCategory;
+            for(let i=0;i<userNo.length;i++){
+            if(userNo[i].checked){
+                    inputName = document.createElement('input');
+                    inputName.setAttribute('type','hidden');
+                    inputName.setAttribute('value',userNo[i].value);
+                    inputName.setAttribute('name','chk');
+                    inputCategory = document.createElement('input');
+                    inputCategory.setAttribute('type','hidden');
+                    inputCategory.setAttribute('value',userRole[i].value);
+                    inputCategory.setAttribute('name','cate');
+                    result.appendChild(inputName);
+                    result.appendChild(inputCategory);
+                }
+            }
+        }
     </script>
 </body>
 </html>
+

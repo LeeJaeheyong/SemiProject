@@ -1,5 +1,6 @@
 package kr.co.game.gameinfo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,6 @@ public class gameinfoController {
 	}
 
 	@GetMapping("/gameinfo/form")
-	
-		
 		public String gameinfoForm(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 								   @RequestParam(value="publisher", defaultValue="") String pub,
 								   @RequestParam(value="firstGenre", defaultValue="") String gen,
@@ -69,7 +68,32 @@ public class gameinfoController {
 			gameinfoService.uploadFile(fileDTO,file);
 			return "gameinfo/gameinfo";
 		}
+		@GetMapping("gameinfo/detail/form")
+		public String gameDetail(@RequestParam("gameNo")int gameNo,Model model) {
+			gameInfoDTO result = gameinfoService.getGame(gameNo);
+			model.addAttribute("game", result);
+			return "detail/detail";
+		}
 		
+		@GetMapping("/gameinfo/enroll/form")
+		public String gameEnrollform(Model model) {
+			List<gameInfoDTO> first = gameinfoService.getGenres();
+			List<gameInfoDTO> second = gameinfoService.getsecondGenres();
+			List<gameInfoDTO> publisher = gameinfoService.getpublisher();
+			model.addAttribute("first", first);
+			model.addAttribute("second", second);
+			model.addAttribute("publisher", publisher);
+			return "gameinfo/gameEnroll";
+		}
+		@PostMapping("/gameinfo/enroll")
+		public String gameEnroll(gameInfoDTO gameInfodto,
+								 FileDTO fileDTO,
+								 @RequestParam("file") MultipartFile file,
+								 @RequestParam("newGenre")String newGerne) {
+			int result = gameinfoService.enroll(gameInfodto,newGerne);
+			gameinfoService.uploadFile(fileDTO, file);
+			return "admin/admin";
+		}
 	}
 
 
