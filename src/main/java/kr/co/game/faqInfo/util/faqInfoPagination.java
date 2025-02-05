@@ -3,6 +3,7 @@ package kr.co.game.faqInfo.util;
 import org.springframework.stereotype.Component;
 
 import kr.co.game.faqInfo.model.dto.faqInfoPageInfoDTO;
+import kr.co.game.faqInfo.model.dto.faqSearchDTO;
 
 
 @Component

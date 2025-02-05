@@ -44,20 +44,6 @@ public class faqInfoServiceImpl implements faqInfoService{
 	public int faqInfoCount(faqInfoPagination faqInfoPage) {
 		return faqInfoMapper.faqInfoCount(faqInfoPage);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
