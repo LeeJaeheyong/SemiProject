@@ -1,5 +1,6 @@
 // 상세보기 토글
 function toggleDetails(id) {
+	console.log(id);
     let detailedRow = document.getElementById("detailed-row-" + id);
     let btnStatus = document.getElementById("btn-status-" + id);
     // let detailedSection = document.getElementById("detailed-section-" + id);
