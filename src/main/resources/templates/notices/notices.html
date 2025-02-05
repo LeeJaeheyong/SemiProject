@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE RANK</title>
+    <title>공지 사항</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/notices.css}">
 </head>
@@ -14,34 +14,83 @@
         <div class="notice-input">
             <h2 class="notice-h2">공지사항</h2>
             <div class="btn-Div">
-                <input type="text" id="search">
-                <button type="button">검색</button>
+                <form action="/game/notices/form" method="GET" id="noticesForm" >
+					<input type="text" name="query" id="search"
+						   th:value="${noticesSearchDTO.searchText}"placeholder="검색어를 입력해주세요.">
+                        <button type="button" onclick="submitForm()">검색</button>
+                 </form>
             </div>
         </div>
         <table class="notice-board">
             <thead class="notice-thead">
                 <tr>
-                    <th>순번</th>
-                    <th>내용</th>
-                    <th>작성일</th>
+                    <th style="width: 10%; padding-bottom: 3px;">순번</th>
+                    <th style="width: 70%; padding-bottom: 3px;">내용</th>
+                    <th style="width: 20%; padding-bottom: 3px;">작성일</th>
                 </tr>
             </thead>
-            <tbody class="tbody">
-                <tr>
-                    <td>1</td>
-                    <td><a href="#">Notice Title 1</a></td>
-                    <td>2023-10-01</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="#">Notice Title 2</a></td>
-                    <td>2023-10-02</td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
+             <tbody>
+				<tr th:each="post, iterStat : ${nposts}">
+					<td th:text="${npi.row - iterStat.index}"></td>
+					<td class="info-td" th:text="${post.noticeTitle}"></td>
+					<td th:text="${post.createdDate}"></td>
+				</tr>
+                </tbody>
         </table>
-        </div>
+        
+        	<nav aria-label="Page navigation example" style="justify-content: center;">
+    <ul class="pagination" style="justify-content: center;">
+        <!-- 
+            왼쪽 버튼
+            1. 1~10 페이지일 때 : 아무런 동작하지 않게
+            2. 11 페이지 이상일 때 : 직전 페이지 마지막(endPage)
+        -->
+        <li class="page-item" style="margin-right: 0px">
+            <a class="page-link" th:if="${npi.currentPage <= npi.pageLimit}"
+               th:href="@{/game/notices/form(currentPage=1)}"
+               aria-label="Previous" style="margin-right: 0px"> 
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            <a class="page-link" th:if="${npi.currentPage > npi.pageLimit}"
+               th:href="@{/game/notices/form(currentPage=${npi.endPage - npi.pageLimit})}"
+               aria-label="Previous" style="margin-right: 0px"> 
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <!-- 페이지 버튼 -->
+        <li class="page-item" style="margin-right: 0px"
+            th:each="page : ${#numbers.sequence(npi.startPage, npi.endPage)}">
+            <a class="page-link"
+               th:href="@{/game/notices/form(currentPage=${page}, category=${noticesSearchDTO.category}, searchText=${noticesSearchDTO.searchText})}"
+               th:text="${page}" style="margin-right: 0px"></a>
+        </li>
+
+        <!-- 
+            오른쪽 버튼 
+            1. 끝 페이지일 때 : 아무런 동작을 하지 않아야 함
+        -->
+        <li class="page-item" style="margin-right: 0px">
+            <a class="page-link" th:if="${npi.endPage == npi.maxPage}"
+               th:href="@{/game/notices/form(currentPage=${npi.endPage})}"
+               aria-label="Next"> 
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            <a class="page-link" th:if="${npi.endPage != npi.maxPage}"
+               th:href="@{/game/notices/form(currentPage=${npi.endPage + 1})}"
+               aria-label="Next"> 
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+		</div>
     </main>
 <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+<script>
+ function submitForm() {
+        document.getElementById('noticesForm').submit();
+    }
+</script>
 </body>
 </html>

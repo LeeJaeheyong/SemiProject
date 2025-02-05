@@ -65,6 +65,7 @@ public class registerController {
 			System.out.println(loginUser.getUserId());
 			session.setAttribute("userId", loginUser.getUserId());
 			session.setAttribute("role", loginUser.getUserRole());
+			session.setAttribute("userNum", loginUser.getUserNo());
 			
 			return "redirect:/game/main/form";
 		} else {

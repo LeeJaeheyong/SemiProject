@@ -86,14 +86,37 @@ footer {
     margin: 0 auto 70px;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+.search-container h2 {
+	text-align: left;
+	color: #333;
     margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #2c3037;
+}
+
+.contact-form {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* 기본 스타일링 */
+.styled-select {
+    width: 35%; /* 원래 너비 */
+    padding: 10px 15px; /* 원래 패딩 */
+    border: 1px solid #ccc; /* 기본 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 16px; /* 글씨 크기 */
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
 }
 
 .form-group {
     margin-bottom: 20px;
+    text-align: left;
+    width: 90%;
 }
 
 .form-group label {
@@ -105,12 +128,13 @@ h1 {
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
+    width: 75%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
+    position: relative;
+} 
 
 .form-group textarea {
     height: 150px;

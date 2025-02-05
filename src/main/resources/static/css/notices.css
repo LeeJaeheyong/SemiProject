@@ -133,26 +133,41 @@ footer {
 
 .notice-thead {
     color: #333;
+    text-align: left;
+}
+
+.notice-thead tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
     text-align: center;
+    border-bottom: 1px solid #ccc;
 }
 
 .tbody tr{
     border-bottom: 1px solid #a2a5a7;
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
 }
-
 
 .notice-board td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-    border: none;
+    line-height: 16px;
+    text-align: center;
+    border-bottom: 1px solid #c6ced2;
+    padding: 8px 0;
+    font-size: 14px;
+
 }
 
-.notice-board td a {
-    text-decoration: none;
+.info-td {
+	text-decoration: none;
     color: #333;
+    cursor: pointer;
 }
 
-.notice-board td a:hover {
+
+.info-td:hover {
     color: rgb(135, 221, 248);
 }
