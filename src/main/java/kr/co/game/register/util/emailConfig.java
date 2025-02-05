@@ -11,9 +11,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @Configuration
 public class emailConfig {
 	
-	@Value("mail-naver-id")
+	@Value("${mail-naver-id}")
 	private String mailNaverId;
-	@Value("mail-naver-password")
+	@Value("${mail-naver-password}")
 	private String mailNaverPaswword;
 	@Bean
     public JavaMailSender mailSender() {//JAVA MAILSENDER 인터페이스를 구현한 객체를 빈으로 등록하기 위함.
