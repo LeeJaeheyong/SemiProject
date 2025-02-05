@@ -63,7 +63,6 @@ nav ul li a:hover {
 
 main {
     padding: 0px;
-    text-align: center;
 }
 
 footer {
@@ -248,13 +247,14 @@ footer {
 	height : 40px;
 }
 .answer textarea{
-	height : 300px;
+	height : 100px;
 }
 .answer select{
 	margin-bottom : 10px;
+	margin-right : 10px;
 }
 .answer label{
-	width:50px;
+	width:180px;
 	margin: 10px;
 }
 .btn-group{
@@ -262,4 +262,23 @@ footer {
 	height : 30px;
 	width : 50px;
 }
-
+.select-box{
+	display:flex;	
+}
+.label-box{
+	margin: 10px;
+}
+.button-box{
+	text-align: center;
+}
+.newGenre{
+	display: inline;
+	 margin-left: 155px;
+}
+.input-genre{
+	width : 230px;
+}
+.publisher{
+	display: inline;
+	margin-left : 10px;
+}

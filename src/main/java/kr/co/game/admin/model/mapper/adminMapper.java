@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.game.admin.model.dto.adminDTO;
+import kr.co.game.admin.model.dto.faqDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
+import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 
 
 @Mapper
@@ -20,6 +22,17 @@ public interface adminMapper {
 
 	List<Integer> getUserNo();
 
-	int changeRole(Map<String, Object> siba);
+	int changeRole(@Param("list") List<Map<String, Object>> dataSet);
+//	int changeRole(@Param("list") Map<String,Object> dataSet);
+
+	List<faqDTO> getAllFaq(pageInfoDTO inquiryPage);
+
+	List<faqDTO> getCategory();
+
+	int enrollFAQ(faqDTO faqDTO);
+
+	int deleteFAQ(int faqNo);
+
+	List<gameInfoDTO> getAllGames(pageInfoDTO gamedbPage);
 
 }

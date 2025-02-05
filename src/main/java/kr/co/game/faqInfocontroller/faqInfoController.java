@@ -44,7 +44,6 @@ public class faqInfoController {
 		faqInfoPageInfoDTO fpi = (faqInfoPageInfoDTO) result.get("fpi");
 		
 		List<faqInfoDTO> postsResult = (List<faqInfoDTO>) result.get("posts");
-		System.out.println(postsResult.get(0).getFaqInfo());
 		
 		model.addAttribute("posts", postsResult);
 		model.addAttribute("fpi", fpi);
