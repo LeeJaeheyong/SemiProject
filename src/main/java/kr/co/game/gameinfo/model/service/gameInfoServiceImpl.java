@@ -78,5 +78,22 @@ public class gameInfoServiceImpl implements gameInfoService{
 		List<gameInfoDTO> result = gameInfoMapper.getpublisher();
 		return result;
 	}
+	@Override
+	public gameInfoDTO getGame(int gameNo) {
+		gameInfoDTO result = gameInfoMapper.getGame(gameNo);
+		return result;
+	}
+	@Override
+	public int enroll(gameInfoDTO gameInfoDTO, String newGerne) {
+		if(gameInfoDTO.getFirstGenre()=="해당없음") {
+			gameInfoDTO.setFirstGenre(newGerne);
+		int gerneUpdate = gameInfoMapper.newGenre(gameInfoDTO);
+		}
+		int publisher = gameInfoMapper.publsherUpdate(gameInfoDTO);
+		int gameData = gameInfoMapper.enrollGame(gameInfoDTO);
+		int detail = gameInfoMapper.detailUpdate(gameInfoDTO);
+		
+		return 0;
+	}
 
 }

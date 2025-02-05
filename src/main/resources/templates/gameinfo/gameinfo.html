@@ -49,7 +49,7 @@
         </form>        
          -->
         <div class="gallery">
-            <div class="card" th:onclick="|location.href='@{/game/detail/form(no=1)}'|" th:each="game : ${games}">
+            <div class="card" th:onclick="|location.href='@{/game/gameinfo/detail/form(gameNo=${game.gameNo})}'|" th:each="game : ${games}">
                 <img th:src="@{{resourcesPath}/{folderNamePath}/{changeName}
 							   (resourcesPath=${game.fileDTO.RESOURCES_PATH},
 								folderNamePath=${game.fileDTO.folderNamePath},

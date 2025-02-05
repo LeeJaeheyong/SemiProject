@@ -33,8 +33,35 @@
 	padding:10px;
 	border-bottom: 1px solid #ddd;
 }
-        
-        
+.change_btn{
+	position : absolute;
+	right:200px;
+	top:290px;
+}       
+.confirm_btn{
+	position : absolute;
+	right:100px;
+	top:290px;
+}
+.cancel_btn{
+	position : absolute;
+	right:50px;
+	top:290px;
+}
+.select_btn{
+	position : absolute;
+	right:150px;
+	top:290px;
+}
+.none{
+	display:none;
+}
+.faq td{
+	cursor:pointer;
+}
+.button-group{
+	margin-top:15px;
+}
             
         
         

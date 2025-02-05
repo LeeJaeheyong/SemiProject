@@ -54,8 +54,7 @@ public class faqInfoController {
                     currentPage,
                     postCount,
                     pageLimit,
-                    boardLimit,
-                    faqSearchDTO);
+                    boardLimit);
 
             // 데이터 추출 및 조건 처리
             faqInfoPageInfoDTO fpi = (faqInfoPageInfoDTO) result.get("fpi");

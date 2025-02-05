@@ -10,7 +10,7 @@ import kr.co.game.faqInfo.model.dto.faqSearchDTO;
 public class faqInfoPagination {
 	
 	public faqInfoPageInfoDTO getFaqList(int listCount, int currentPage,
-			   							 int pageLimit, int boardLimit, faqSearchDTO faqSearchDTO) {
+			   							 int pageLimit, int boardLimit) {
 
 		int maxPage = (int)(Math.ceil((double)listCount/boardLimit));
 

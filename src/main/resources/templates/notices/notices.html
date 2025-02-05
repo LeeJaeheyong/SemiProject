@@ -17,7 +17,7 @@
                 <form action="/game/notices/form" method="GET" id="noticesForm" >
 					<input type="text" name="query" id="search"
 						   th:value="${noticesSearchDTO.searchText}"placeholder="검색어를 입력해주세요.">
-                        <button type="submit" onclick="submitForm()">검색</button>
+                        <button type="button" onclick="submitForm()">검색</button>
                  </form>
             </div>
         </div>
@@ -89,7 +89,7 @@
 <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
 <script>
  function submitForm() {
-        document.getElementById('"noticesForm"').submit();
+        document.getElementById('noticesForm').submit();
     }
 </script>
 </body>
