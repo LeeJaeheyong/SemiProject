@@ -86,11 +86,11 @@ public class gameinfoController {
 			return "gameinfo/gameEnroll";
 		}
 		@PostMapping("/gameinfo/enroll")
-		public String gameEnroll(gameInfoDTO gameInfoDTO,
+		public String gameEnroll(gameInfoDTO gameInfodto,
 								 FileDTO fileDTO,
 								 @RequestParam("file") MultipartFile file,
 								 @RequestParam("newGenre")String newGerne) {
-			int result = gameinfoService.enroll(gameInfoDTO,newGerne);
+			int result = gameinfoService.enroll(gameInfodto,newGerne);
 			gameinfoService.uploadFile(fileDTO, file);
 			return "admin/admin";
 		}
