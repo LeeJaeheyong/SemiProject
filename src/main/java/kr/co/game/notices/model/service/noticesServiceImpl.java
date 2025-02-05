@@ -46,6 +46,16 @@ public class noticesServiceImpl implements noticesService{
 		
 		return result;
 	}
+	@Override
+	public int enroll(noticesDTO noticeDTO) {
+		int result = noticesMapper.enroll(noticeDTO);
+		return result;
+	}
+	@Override
+	public int delete(int noticeNo) {
+		int result = noticesMapper.delete(noticeNo);
+		return 0;
+	}
 	
 	
 	

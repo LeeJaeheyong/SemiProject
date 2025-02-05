@@ -14,7 +14,7 @@
         <div class="faq-container">
         <h3>게임등록</h3>
         </div>
-        <form th:action="@{/game/gameinfo/enroll}" method="POST">
+        <form th:action="@{/game/gameinfo/enroll}" method="POST" enctype="multipart/form-data">
         <div class="answer">
       <label for="title">게임 이름</label>
       <input type="text" name="gameName" id="title">
@@ -41,10 +41,10 @@
       </select>
       <input type="text" id="newGenre" name="newGenre" class="input-genre"> 
       <select
-      	class="form-select me-2 select" id="inputGroupSelect01" name="publisher"
+      	class="form-select me-2 select" id="inputGroupSelect03" name="publisher"
 						style="width: 100px; height: 46px;">
-				<option th:each="pubisher:${pub}" th:value="${pub.publisherNo}" 
-						th:text="${second.secondGenre}"></option>
+				<option th:each="publisher:${publisher}" th:value="${publisher.publisherNo}" 
+						th:text="${publisher.publisher}"></option>
 						
       </select>
       </div>

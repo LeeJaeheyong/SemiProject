@@ -75,19 +75,27 @@ WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
 
 </select>
 
+<select id="getGameNoo" resultType="int">
+	SELECT game_no from game_info
+	where game_name = #{name}
+</select>
 <insert id="uploadFile">
 		INSERT INTO GAME_IMEGE 
 		VALUES(img_seq.nextval,
-			   #{fileDTO.changeName},
-			   #{fileDTO.originalName},
-			   #{fileDTO.extension},
-			   #{fileDTO.size},
-			   #{fileDTO.LOCAL_PATH},
-			   #{fileDTO.RESOURCES_PATH},
+			   #{changeName},
+			   #{originalName},
+			   #{extension},
+			   #{size},
+			   #{LOCAL_PATH},
+			   #{RESOURCES_PATH},
 			   sysdate,
-			   #{fileDTO.folderNamePath},
+			   #{folderNamePath},
 			   #{gameNo})
 </insert>
+<select id="getGerneNo" resultType="int">
+	SELECT genre_no FROM GAME_GENRE
+	WHERE first_genre = #{firstGenre}
+</select>
 <select  id="getGenres" resultMap="gameInfoResultMap">
 	SELECT * FROM GAME_GENRE
 	WHERE genre_no between 1 and 7
@@ -107,19 +115,22 @@ WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
 <selectKey keyProperty="gameNo" resultType="int" order="BEFORE">
 			SELECT game_seq.nextval FROM dual
 		</selectKey>
-	INSERT INTO game_detail values(#{gameNo},#{gameDetail},#{gameTrailer})
+	INSERT INTO game_detail values(#{gameInfoDTO.gameNo},#{gameDetailDTO.gameDetail},#{gameDetailDTO.gameTrailer})
 </insert>
-
+<select id="getGameNo">
+	SELECT game_no FROM game_info
+	where game_name = #{gameName}
+</select>
 <insert id="enrollGame">
-		<selectKey keyProperty="genreNo" resultType="int" order="BEFORE">
-			SELECT gerne_seq.nextval FROM dual
-		</selectKey>
-		
+				
 	INSERT INTO game_info VALUES(game_seq.nextval,
 								 #{gameName},
 								 #{genreNo},
 								 #{releaseDate},
-								 2,
+								 #{publisher},
 								 80)
+</insert>
+<insert id="secondGenreUpdate">
+	INSERT INTO second_game_genre values(second_genre_seq.nextval,#{gameNo},#{genreNo},'')
 </insert>
 </mapper>

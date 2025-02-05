@@ -14,6 +14,7 @@ public class gameInfoDTO {
 	private String secondGenre;
 	private String releaseDate;
 	private String publisher;
+	private int genreNo;
 	private int publisherNo;
 	private int gameScore;
 	FileDTO fileDTO = new FileDTO();
