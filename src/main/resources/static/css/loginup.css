@@ -161,10 +161,10 @@ button:hover {
 }
 
 .emailcheck_text{
-    top: 440px;
+    top: 435px;
     position: fixed;
     height: 62px;
-    width: 232px;
+    width: 180px;
     left: 500px;
     display: none;
     font-size: 12px;
