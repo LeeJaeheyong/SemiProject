@@ -35,8 +35,8 @@ public class noticesController {
 							  Model model) {
 
 			int postCount = noticesService.getTotalCount(noticesSearchDTO);
-			int pageLimit = 5;
-			int boardLimit = 5;
+			int pageLimit = 10;
+			int boardLimit = 10;
 
 			Map<String, Object> result = noticesService.getAllPosts(noticesPage, 
 												  					currentPage,

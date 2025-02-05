@@ -101,4 +101,5 @@ public class adminController {
 		return "redirect:/game/admin/form";
 	}
 	
+	
 }
