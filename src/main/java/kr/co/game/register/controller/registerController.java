@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.game.register.dto.signupDTO;
+import kr.co.game.register.service.mailSendService;
 import kr.co.game.register.service.registerService;
 
 
@@ -16,9 +17,11 @@ import kr.co.game.register.service.registerService;
 @RequestMapping("/game")
 public class registerController {
 	private final registerService registerService;
+	private final mailSendService mailSendService;
 	
-	public registerController(registerService registerService) {
+	public registerController(registerService registerService, mailSendService mailSendService) {
 		this.registerService = registerService;
+		this.mailSendService = mailSendService;
 	}
 	
 	// 회원가입 페이지 이동
@@ -68,10 +71,46 @@ public class registerController {
 			return "redirect:/game/logininForm";
 		}
 	}
+	
+	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/game/main/form";
+	}
+	
+	// 아이디 찾기
+	@GetMapping("/findIdForm")
+	public String findIdForm() {
+		return "/login/findId";
+	}
+	
+	// 이메일 인증
+	@PostMapping("/emailConfirm")
+	@ResponseBody
+	public String emailConfirm(@RequestParam("email") String email) {
+		System.out.println("Controller 단 : 이메일 인증 요청이 들어옴");
+		System.out.println("Controller 단 : 이메일 인증 이메일 : " + email);
+		
+		String result = mailSendService.joinEmail(email);
+		
+		System.out.println("Controller 단 result : " + result);
+		
+		return "ok";
+	}
+	
+	@PostMapping("/mailAuthCheck")
+	public @ResponseBody String AuthCheck(@RequestParam("email") String email, @RequestParam("authNum") String authNum) {
+		System.out.println("Controller 단 : mailAuthCheck");
+		System.out.println("Controller 단 : " + email);
+		System.out.println("Controller 단 : " + authNum);
+		
+		Boolean checked = mailSendService.CheckAuthNum(email, authNum);
+		if(checked) {
+			return "ok";
+		} else {
+			throw new NullPointerException("xxxxxxxxxxxxxxxxxx");
+		}
 	}
 	
 }	

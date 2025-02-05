@@ -111,7 +111,7 @@ public class mypageServiceImpl implements mypageService {
 			
 			return 0;
 			
-		} else {
+		} else if(picture.equals("remove")) {
 			mypageMapper.deleteFile(id);
 		}
 		
@@ -133,8 +133,6 @@ public class mypageServiceImpl implements mypageService {
 
 		return mypageMapper.AllList(userNo);
 	}
-	
-	
 	
 	
 	

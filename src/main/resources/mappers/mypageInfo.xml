@@ -29,6 +29,8 @@
 		<result property="contactInfo" column="CONTACT_INFO"></result>
 		<result property="createDate" column="CREATED_DATE"></result>
 		<result property="answerRe" column="ANSWER_RE"></result>
+		<result property="answer" column="ANSWER"></result>
+		<result property="answerDate" column="ANSWER_DATE"></result>
 	</resultMap>
 	
 	
@@ -80,7 +82,9 @@
 	</delete>
 	
 	<select id="AllList" resultMap="mypageContactMap">
-		SELECT * FROM CONTACT WHERE USER_NUM = #{userNo}
+		SELECT * FROM CONTACT c
+		LEFT JOIN ANSWER a ON c.CONTACT_NO = a. CONTACT_ID
+		WHERE c.USER_NUM = #{userNo}
 	</select>
 	
 	
