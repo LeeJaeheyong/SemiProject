@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/gameEnroll.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <!-- ...existing code... -->
+    <div class="search-container">
+        <div class="faq-container">
+        <h3>게임등록</h3>
+        </div>
+        <form th:action="@{/game/gameinfo/enroll}" method="POST">
+        <div class="answer">
+      <label for="title">게임 이름</label>
+      <input type="text" name="gameName" id="title">
+      <div class="label-box">
+      <label for="inputGroupSelect02">장르</label>
+      <p class="newGenre">원하는 장르가 없다면 입력하세요</p>
+      <p class="publisher">퍼블리셔</p>      
+      </div>
+      <div class="select-box">
+      <select
+      	class="form-select me-2 select" id="inputGroupSelect02" name="firstGenre"
+						style="width: 100px; height: 46px;">
+				<option value="none" selected >해당없음</option>
+				<option th:each="first:${first}" th:value="${first.firstGenre}" 
+						th:text="${first.firstGenre}"></option>
+						
+      </select>
+      <select
+      	class="form-select me-2 select" id="inputGroupSelect01" name="secondGenre"
+						style="width: 100px; height: 46px;">
+				<option th:each="second:${second}" th:value="${second.secondGenre}" 
+						th:text="${second.secondGenre}"></option>
+						
+      </select>
+      <input type="text" id="newGenre" name="newGenre" class="input-genre"> 
+      <select
+      	class="form-select me-2 select" id="inputGroupSelect01" name="publisher"
+						style="width: 100px; height: 46px;">
+				<option th:each="pubisher:${pub}" th:value="${pub.publisherNo}" 
+						th:text="${second.secondGenre}"></option>
+						
+      </select>
+      </div>
+      <label for="releaseDate">출시일(0000-00-00)</label>
+      <input type="text" id="releaseDate" name="releaseDate">
+      <label for="gameinfo">게임 설명</label>
+      <textarea name="gameDetail"></textarea>
+     		 <label for="file">이미지 업로드:</label>
+               <input type="file" id="file" name="file">
+      <p>동영상 경로(유튜브 영상 : 우클릭-> 소스코드-> 붙여넣기 후 src 안에 주소 작성)</p>
+      <input type="text" id="gameTrailer" name="gameTrailer" placeholder="Http://로 시작해야합니다">
+        </div>
+        <div class="button-box">
+        <button type="submit" class="btn-group">등록</button>
+        <button type="button" onclick="window.history.back()" class="btn-group">취소</button>
+        </div>
+        </form>
+
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+
+</body>
+</html>

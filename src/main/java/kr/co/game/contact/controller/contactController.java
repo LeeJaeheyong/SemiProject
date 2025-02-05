@@ -43,7 +43,7 @@ public class contactController {
 
         if (userNum == null) {
             redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
-            return "main/main";
+            return "redirect:/game/loginupForm";
         }
 
         contactDTO.setUserNum(userNum); // 🔥 userNum을 DTO에 설정

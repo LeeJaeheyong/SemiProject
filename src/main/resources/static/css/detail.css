@@ -54,10 +54,17 @@
             font-weight: bold;
         }
         .tab-content {
+       		display: none;
             padding: 20px;
             border: 1px solid #e0e0e0;
             border-top: none;
             border-radius: 0 0 8px 8px;
+        }
+        .active-content {
+            		display: block;
+        		}
+   		.active {
+	    background-color: #ccc;
         }
         h1{
             padding-left: 40px;

@@ -10,11 +10,16 @@
 	<result property="secondGenre" column="second_genre"></result>
 	<result property="releaseDate" column="release_date"></result>
 	<result property="publisher" column="publisher_name"></result>
+	<result property="publisherNo" column="publisher_no"></result>
 	<result property="gameScore" column="game_score"></result>
 	
 	<association property="fileDTO" javaType="kr.co.game.dto.FileDTO">
 		<result property="changeName" column="change_name"></result>
 		<result property="folderNamePath" column="folder_name_path"></result>
+	</association>
+	<association property="gameDetailDTO" javaType="kr.co.game.gameinfo.model.dto.gameDetailDTO">
+		<result property="gameDetail" column="game_detail"></result>
+		<result property="gameTrailer" column="game_trailer"></result>
 	</association>
 </resultMap>
 
@@ -49,19 +54,39 @@ SELECT * FROM (
 )
 WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
 </select>
+<select id="getGame" resultMap="gameInfoResultMap">
+	SELECT  gi.game_no,
+			gi.game_name,
+			gg.first_genre,
+			sgg.second_genre,
+			gi.release_date,
+			gp.publisher_name,
+			gd.game_detail,
+			gd.game_trailer,
+			gm.change_name,
+			gm.folder_name_path
+	FROM GAME_INFO gi
+	JOIN GAME_GENRE gg ON gi.genre_no=gg.genre_no
+	JOIN SECOND_GAME_GENRE sgg ON gi.GAME_NO =sgg.game_no
+	JOIN GAME_IMEGE gm ON gi.GAME_NO =gm.GAME_NO
+	JOIN game_publisher gp on gi.publisher_no = gp.publisher_no
+	JOIN game_detail gd ON gi.game_no = gd.game_no
+	where gi.game_no = #{gameNo}
+
+</select>
 
 <insert id="uploadFile">
 		INSERT INTO GAME_IMEGE 
 		VALUES(img_seq.nextval,
-			   #{changeName},
-			   #{originalName},
-			   #{extension},
-			   #{size},
-			   #{LOCAL_PATH},
-			   #{RESOURCES_PATH},
+			   #{fileDTO.changeName},
+			   #{fileDTO.originalName},
+			   #{fileDTO.extension},
+			   #{fileDTO.size},
+			   #{fileDTO.LOCAL_PATH},
+			   #{fileDTO.RESOURCES_PATH},
 			   sysdate,
-			   #{folderNamePath},
-			   15)
+			   #{fileDTO.folderNamePath},
+			   #{gameNo})
 </insert>
 <select  id="getGenres" resultMap="gameInfoResultMap">
 	SELECT * FROM GAME_GENRE
@@ -74,4 +99,27 @@ WHERE rn BETWEEN #{pi.offset} AND #{pi.limit}
 <select  id="getpublisher" resultMap="gameInfoResultMap">
 	SELECT * FROM game_publisher
 </select>
+
+<insert id="newGenre">
+	INSERT INTO game_genre values(genre_seq.nextval,#{firstGenre})
+</insert>
+<insert id="detailUpdate">
+<selectKey keyProperty="gameNo" resultType="int" order="BEFORE">
+			SELECT game_seq.nextval FROM dual
+		</selectKey>
+	INSERT INTO game_detail values(#{gameNo},#{gameDetail},#{gameTrailer})
+</insert>
+
+<insert id="enrollGame">
+		<selectKey keyProperty="genreNo" resultType="int" order="BEFORE">
+			SELECT gerne_seq.nextval FROM dual
+		</selectKey>
+		
+	INSERT INTO game_info VALUES(game_seq.nextval,
+								 #{gameName},
+								 #{genreNo},
+								 #{releaseDate},
+								 2,
+								 80)
+</insert>
 </mapper>

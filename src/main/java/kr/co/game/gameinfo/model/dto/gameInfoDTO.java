@@ -12,8 +12,10 @@ public class gameInfoDTO {
 	private String gameName;
 	private String firstGenre;
 	private String secondGenre;
-	private String ReleaseDate;
+	private String releaseDate;
 	private String publisher;
+	private int publisherNo;
 	private int gameScore;
 	FileDTO fileDTO = new FileDTO();
+	gameDetailDTO gameDetailDTO = new gameDetailDTO();
 }
