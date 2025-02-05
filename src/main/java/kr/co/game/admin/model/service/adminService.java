@@ -32,4 +32,14 @@ public interface adminService {
 	Map<String, Object> getAllGames(adminPagination adminPagination, int currentPage, int postCount, int pageLimit,
 			int boardLimit);
 
+	int deleteGameInfo(int gameNo);
+
+	Map<String, Object> getAllNotices(adminPagination adminPagination, int currentPage, int postCount, int pageLimit,
+			int boardLimit);
+
+	int getTotalNotice();
+
+	Map<String, Object> getAllinquiries(adminPagination adminPagination, int currentPage, int postCount, int pageLimit,
+			int boardLimit);
+
 }

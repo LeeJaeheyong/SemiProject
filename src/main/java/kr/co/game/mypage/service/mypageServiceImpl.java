@@ -45,7 +45,6 @@ public class mypageServiceImpl implements mypageService {
 		
 		mypageDTO.setUserPassword(encryptedPassword);
 		
-		System.out.println(encryptedPassword + "하하하");
 		
 		mypageMapper.update(myId, mypageDTO);
 
@@ -56,9 +55,6 @@ public class mypageServiceImpl implements mypageService {
 		
 		String inputPassword = userPassword;
 		String password = mypageMapper.getPassword(myId);
-		
-		System.out.println(inputPassword);
-		System.out.println(password);
 		
 		if(passwordEncoder.matches(inputPassword, password) && userId.equals(myId)) {
 			int result = mypageMapper.delete(myId);

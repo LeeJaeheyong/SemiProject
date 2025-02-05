@@ -1,6 +1,5 @@
 package kr.co.game.gameinfo.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.dto.FileDTO;
+import kr.co.game.gameinfo.model.dto.gameDetailDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.service.gameInfoServiceImpl;
@@ -61,15 +61,9 @@ public class gameinfoController {
 			return "gameinfo/gameinfo";
 		}
 
-
-		@PostMapping("/gameinfo/upload")
-		public String fileUpload(FileDTO fileDTO,
-								 @RequestParam("file") MultipartFile file) {
-			gameinfoService.uploadFile(fileDTO,file);
-			return "gameinfo/gameinfo";
-		}
 		@GetMapping("gameinfo/detail/form")
 		public String gameDetail(@RequestParam("gameNo")int gameNo,Model model) {
+			System.out.println(gameNo);
 			gameInfoDTO result = gameinfoService.getGame(gameNo);
 			model.addAttribute("game", result);
 			return "detail/detail";
@@ -86,14 +80,17 @@ public class gameinfoController {
 			return "gameinfo/gameEnroll";
 		}
 		@PostMapping("/gameinfo/enroll")
-		public String gameEnroll(gameInfoDTO gameInfodto,
+		public String gameEnroll(gameInfoDTO gameInfoDTO,
+								 gameDetailDTO gameDetailDTO,
 								 FileDTO fileDTO,
 								 @RequestParam("file") MultipartFile file,
 								 @RequestParam("newGenre")String newGerne) {
-			int result = gameinfoService.enroll(gameInfodto,newGerne);
-			gameinfoService.uploadFile(fileDTO, file);
+			int result = gameinfoService.enroll(gameInfoDTO,gameDetailDTO,newGerne);
+			gameinfoService.uploadFile(fileDTO, file,gameInfoDTO.getGameName());
+			System.out.println(fileDTO.getFolderNamePath());
 			return "admin/admin";
 		}
+		
 	}
 
 

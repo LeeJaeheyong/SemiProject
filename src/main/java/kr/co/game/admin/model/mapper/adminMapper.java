@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.game.admin.model.dto.adminDTO;
+import kr.co.game.admin.model.dto.contactDTO;
 import kr.co.game.admin.model.dto.faqDTO;
+import kr.co.game.admin.model.dto.noticeDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 
@@ -34,5 +36,19 @@ public interface adminMapper {
 	int deleteFAQ(int faqNo);
 
 	List<gameInfoDTO> getAllGames(pageInfoDTO gamedbPage);
+
+	int deleteGameInfo(int gameNo);
+
+	int deleteDetail(int gameNo);
+
+	int deleteImage(int gameNo);
+
+	int deleteSecondGenre(int gameNo);
+
+	List<noticeDTO> getAllNotices(pageInfoDTO noticePage);
+
+	int getTotalNotice();
+
+	List<contactDTO> getAllinquiries(pageInfoDTO inquiryPage);
 
 }
