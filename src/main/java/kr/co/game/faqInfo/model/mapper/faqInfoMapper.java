@@ -16,5 +16,6 @@ public interface faqInfoMapper {
 			   					@Param("faqInfoPage") faqInfoPagination faqInfoPage);
 	
 	int faqInfoCount(faqInfoPagination faqInfoPage);
+
 	
 }
