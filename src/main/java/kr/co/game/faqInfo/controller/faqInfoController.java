@@ -1,4 +1,4 @@
-package kr.co.game.faqInfocontroller;
+package kr.co.game.faqInfo.controller;
 
 import java.util.List;
 import java.util.Map;
