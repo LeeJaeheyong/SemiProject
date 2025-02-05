@@ -35,23 +35,33 @@
 }
 .change_btn{
 	position : absolute;
-	right:155px;
-	top:330px;
+	right:200px;
+	top:290px;
 }       
 .confirm_btn{
 	position : absolute;
 	right:100px;
-	top:330px;
+	top:290px;
 }
 .cancel_btn{
 	position : absolute;
-	right:40px;
-	top:330px;
+	right:50px;
+	top:290px;
+}
+.select_btn{
+	position : absolute;
+	right:150px;
+	top:290px;
 }
 .none{
 	display:none;
 }
- 
+.faq td{
+	cursor:pointer;
+}
+.button-group{
+	margin-top:15px;
+}
             
         
         

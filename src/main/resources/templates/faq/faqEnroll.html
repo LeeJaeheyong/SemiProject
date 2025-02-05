@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/faq.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <!-- ...existing code... -->
+    <div class="search-container">
+        <div class="faq-container">
+        <h3>자주 묻는 질문</h3>
+        <p>자주 문의하시는 내용을 모았습니다. <br>
+           원하는 답변이 없다면 1:1 문의를 이용해 주세요.</p>
+        </div>
+        <form th:action="@{/game/admin/faq/enroll}" method="POST">
+        <div class="answer">
+      <label for="title">제목</label>
+      <input type="text" name="faqTitle" id="title">
+      <select
+      	class="form-select me-2 select" id="inputGroupSelect02" name="categoryNo"
+						style="width: 100px; height: 46px;">
+				<option th:each="category:${category}" th:value="${category.categoryNo}" 
+						th:text="${category.faqCategory}"></option>
+						
+      </select>
+      <textarea name="faqInfo"></textarea>
+        </div>
+        <button type="submit" class="btn-group">등록</button>
+        <button type="button" onclick="window.history.back()" class="btn-group">취소</button>
+        </form>
+
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+
+</body>
+</html>

@@ -79,9 +79,6 @@ public class mypageController {
 		// myId : 세션이 있는(로그인 한) 사용자의 id
 		// userId : ajax로 요청한 사용자의 id
 		// userPassword : ajax로 요청한 사용자의 비밀번호
-		System.out.println("111111111111111111" + userId);
-		System.out.println("222222222222222222" + userPassword);
-		System.out.println("333333333333333333" + myId);
 		
 		int result = mypageService.delete(userId, userPassword, myId);
 		

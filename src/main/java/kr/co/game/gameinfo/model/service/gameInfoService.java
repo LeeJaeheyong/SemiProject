@@ -24,4 +24,8 @@ public interface gameInfoService {
 
 	List<gameInfoDTO> getpublisher();
 
+	gameInfoDTO getGame(int gameNo);
+
+	int enroll(gameInfoDTO gameInfoDTO, String newGerne);
+
 }
