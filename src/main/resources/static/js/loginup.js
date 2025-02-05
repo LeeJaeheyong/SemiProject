@@ -1,7 +1,6 @@
-// 
-
+// 회원가입 버튼 누르지 않고 입력만 했을 경우
 document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, #birthdate, #phone').forEach(function(inputElement) {
-    inputElement.addEventListener('input', function() {
+    inputElement.addEventListener('input', function() {  
         const fieldId = this.id;
         const value = this.value;
         let pattern;
@@ -153,9 +152,12 @@ document.querySelectorAll('#username, #password, #passwordcheck, #email, #name, 
                 inputElement.style.border = ''
             }
         }
-    });
-});
+	
+	});
+}); //회원가입 버튼 누르지 않고 입력만 했을 경우
 
+
+// 회원가입 버튼을 눌렀을 때
 document.getElementById('submitButton').addEventListener('click', function(event) {
     event.preventDefault();  // 버튼 클릭 시 폼 제출을 막습니다.
 
@@ -316,13 +318,14 @@ document.getElementById('submitButton').addEventListener('click', function(event
             }
         }
     });
-
-    if (allValid) {
-        //alert("인증번호를 발송했습니다. 이메일을 확인해주세요.");
+	
+	const allValid2 = emailCheckFunc('e',true);
+    if (allValid && allValid2) {
         // 폼을 제출하려면 아래 코드를 활성화
 		console.log("회원가입성공!!")
         document.querySelector('form').submit();
     }
+	
 });
 
 // 에러 메시지를 보여주는 함수
@@ -347,39 +350,149 @@ function getErrorBox(fieldId) {
     if (fieldId === 'phone') return document.querySelectorAll('.error_box')[1].querySelector('.error_text:nth-child(3)');
 }
 
-/*const userIdCheck = () => {
-	const userId = document.getElementById("username").value;
-	const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(1)'); 
-	console.log(userId)
-	console.log(errorBox)
+// 이메일 인증 버튼 
+function emailcheckButton() {
+	console.log("클릭");
 	
-	$.ajax({
-		type: "POST",
-		url: "/game/userIdCheck",
-		data: {
-			"username": userId
-		},
-		success: function(res) {
-			console.log("요청성공", res);
-			console.log(res);
-			if(res == "ok") {
-				console.log(errorBox);
-				errorBox.textContent = '사용가능한 아이디입니다.';
-				errorBox.style.display = 'block';
-				errorBox.style.color = 'green';
-			} else {
-				console.log("이미 사용중인 아이디");
-				errorBox.textContent = '중복된 아이디입니다.';
-				errorBox.style.display = 'block';
-				errorBox.style.color = 'red';
-				
+	const email = document.getElementById("email").value;
+	const errorBox = document.querySelectorAll('.error_box')[0].querySelector('.error_text:nth-child(4)');
+	const emailcheck = document.getElementById("emailcheck");
+	
+	if(!email.trim()) {
+		showError(errorBox, '이메일: 필수 정보입니다.');
+		return;
+	}	
+		
+	const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	    if (!emailPattern.test(email)) {
+	        showError(errorBox, '이메일: 이메일 주소가 정확한지 확인해 주세요.');
+	        return; // 이메일 형식이 잘못되면 진행하지 않음
+	    }
+		
+		alert("인증번호를 발송했습니다. 이메일을 확인해주세요.");
+		emailcheck.removeAttribute('readonly');
+		
+		$.ajax({
+			type: "POST",
+			url: "/game/emailConfirm",
+			data: {
+				"email" : email
+			},
+			success: function(res) {
+				if(res == "ok") {
+					console.log('인증번호 발송 성공 성공 성공 성공 성공 성공');
+				} else {
+					console.log('인증번호 발송 실패 실패 실패 실패 실패 실패');
+				}
+			},
+			error: function(err) {
+				console.log('서버 연결 실패');
 			}
-		},
-		error: function(err) {
-			console.log("에러발생");
+		})
+}
+
+
+// 이메일 인증번호 입력
+	const emailCheckBox = document.getElementById('emailcheck');
+	const inputEmail = document.getElementById('email');
+	const ecErrorBox = document.getElementById('emailcheck_text');
+	let ajaxStart = false; 
+	
+	emailCheckBox.addEventListener('input',  emailCheckFunc)
+	
+	console.log(emailCheckFunc()); // undefined
+	console.log("--------");
+	console.log(emailCheckFunc);
+	
+	function emailCheckFunc(e, isRegisterBtn) {
+		// 회원가입 버튼 누르면 isRegisterBtn : true
+		// 안누르고 그냥 입력하면 isRegisterBtn : undefined
+		//                isRegisterBtn의 타입이 undefined냐? 맞으면 false, 틀리면 true
+		isRegisterBtn = typeof isRegisterBtn === 'undefined' ? false : true;
+		let all = true;
+		if(emailCheckBox.value.length > 6) {
+			emailCheckBox.value = emailCheckBox.value.slice(0, 6);
 		}
-	});
+		const number = emailCheckBox.value;
+		const email = inputEmail.value;
+		
+		if(emailCheckBox.value.length === 6) {
+			ajaxStart = true;
 
-}*/
+			$.ajax({
+				type: "POST",
+				url: "/game/mailAuthCheck",
+				async: false,
+				data: {
+					"email" : email,
+					"authNum" : number
+				},
+				success: function(res) {
+					if(res == "ok") {
+						//if(number.length == 6) {
+							console.log('인증번호 oooooooo');
+							ecErrorBox.style.display = 'block';
+							ecErrorBox.textContent = '인증번호가 일치합니다.';
+							ecErrorBox.style.color = 'green';
+							emailCheckBox.style.border = '';
+							console.log('하하하' + ajaxStart)
+						//}
+					} 
+					all = true;
+					console.log('인증번호 xxxxxxxx');
+				},
+				error: function(err) {
+					if(ajaxStart) {
+						console.log('서버 연결 실패패패패패패패');
+						ecErrorBox.style.display = 'block';
+						ecErrorBox.textContent = '인증번호가 틀립니다.';
+						ecErrorBox.style.color = 'red';
+						emailCheckBox.style.border = '1px solid red';
+						if(number == '') {
+							ecErrorBox.textContent = '인증번호를 입력해주세요.';
+							emailCheckBox.style.border = '1px solid red';
+						}
+						all =  false;
+					}	
+				} 
+			})
+		} else if(ajaxStart || isRegisterBtn) {
+			console.log('서버 연결 실패패패패패패패');
+			ecErrorBox.style.display = 'block';
+			ecErrorBox.textContent = '인증번호가 틀립니다.';
+			ecErrorBox.style.color = 'red';
+			emailCheckBox.style.border = '1px solid red';
+			if(number == '') {
+				ecErrorBox.textContent = '인증번호를 입력해주세요.';
+				emailCheckBox.style.border = '1px solid red';
+			} 
+			
+			all =  false;
+		 }
+		 
+		 return all;
+	}
+		
+	/*- 비동기
+	1. emailCheckFunc() 함수 호출 - 스택1 생성
+	2. let all = true; - 스택1에 저장
+	3. ajax를 만남 (비동기통신이기 때문에 web apis라는 곳으로 빠짐, 서버로 요청) - web apis로 빠짐
+	4. 밑으로 쭉 내려와서 return all; - 스택1에서 반환, 함수 종료되면서 스택 반환
+	 - ajax가 아직 완료되지 않은 상태이기 떄문에 true
+	5. ajax가 요청이 끝남 - 스택2라는 공간으로 다시 올려짐
+	6. all = false - 스택2
 
-
+	- 동기
+	1. emailCheckFunc() 함수 호출 - 스택1 생성
+	2. let all = true; - 스택 1생성
+	3. ajax를 만남 (동기 방식)
+	4. 응답을 기다리다가 error로 빠지면
+	  - all = false; - 스택1 저장
+	5. ajax가 완료되면 그제서야 아래에 있는 코드 실행
+	6. return all을 만남 - 스택1	
+	  - return false; 	*/	
+		
+			
+	
+	
+	

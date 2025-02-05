@@ -1,10 +1,12 @@
 package kr.co.game.mypage.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class mypageDTO {
 	private int userNo;
 	private String userId;
