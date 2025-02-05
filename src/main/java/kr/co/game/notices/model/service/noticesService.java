@@ -2,6 +2,7 @@ package kr.co.game.notices.model.service;
 
 import java.util.Map;
 
+import kr.co.game.notices.model.dto.noticesDTO;
 import kr.co.game.notices.model.dto.noticesSearchDTO;
 import kr.co.game.notices.util.noticesPagination;
 
@@ -15,5 +16,9 @@ public interface noticesService {
 											noticesSearchDTO noticesSearchDTO);
 
 	int getTotalCount(noticesSearchDTO noticesSearchDTO);
+
+	int enroll(noticesDTO noticeDTO);
+
+	int delete(int noticeNo);
 	
 }

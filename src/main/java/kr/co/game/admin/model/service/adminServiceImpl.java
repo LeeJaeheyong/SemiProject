@@ -8,7 +8,9 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import kr.co.game.admin.model.dto.adminDTO;
+import kr.co.game.admin.model.dto.contactDTO;
 import kr.co.game.admin.model.dto.faqDTO;
+import kr.co.game.admin.model.dto.noticeDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
 import kr.co.game.admin.model.mapper.adminMapper;
 import kr.co.game.admin.util.adminPagination;
@@ -100,6 +102,40 @@ public class adminServiceImpl implements adminService{
 		Map<String, Object> result = new HashMap<>();
 		result.put("pi", gamedbPage);
 		result.put("game",games);
+		return result;
+	}
+	@Override
+	public int deleteGameInfo(int gameNo) {
+		
+		int secondGenre = adminMapper.deleteSecondGenre(gameNo);
+		int image = adminMapper.deleteImage(gameNo);
+		int detail = adminMapper.deleteDetail(gameNo);
+		int result = adminMapper.deleteGameInfo(gameNo);
+		return 0;
+	}
+	@Override
+	public Map<String, Object> getAllNotices(adminPagination adminPagination, int currentPage, int postCount,
+			int pageLimit, int boardLimit) {
+		pageInfoDTO noticePage = adminPagination.getPageInfo(postCount, currentPage, pageLimit, boardLimit);
+		List<noticeDTO> notices = adminMapper.getAllNotices(noticePage);
+		Map<String, Object> result = new HashMap<>();
+		result.put("pi", noticePage);
+		result.put("notice",notices);
+		return result;
+	}
+	@Override
+	public int getTotalNotice() {
+		int result = adminMapper.getTotalNotice();
+		return 0;
+	}
+	@Override
+	public Map<String, Object> getAllinquiries(adminPagination adminPagination, int currentPage, int postCount,
+			int pageLimit, int boardLimit) {
+		pageInfoDTO inquiryPage = adminPagination.getPageInfo(postCount, currentPage, pageLimit, boardLimit);
+		List<contactDTO> inquiries = adminMapper.getAllinquiries(inquiryPage);
+		Map<String, Object> result = new HashMap<>();
+		result.put("pi", inquiryPage);
+		result.put("inquiry",inquiries);
 		return result;
 	}
 }

@@ -18,5 +18,11 @@ public interface noticesMapper {
 
 	int getTotalCount(noticesSearchDTO noticesSearchDTO);
 
+
+	int enroll(noticesDTO noticeDTO);
+
+
+	int delete(int noticeNo);
+
 	
 }
