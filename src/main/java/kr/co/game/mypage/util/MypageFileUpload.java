@@ -1,6 +1,7 @@
 package kr.co.game.mypage.util;
 
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,11 +10,11 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.game.dto.FileDTO;
+import kr.co.game.mypage.dto.mypageFileDTO;
 
 @Component
 public class MypageFileUpload {
-public void uploadFile(MultipartFile file, FileDTO fileDTO, String folderName) throws IOException {
+public void uploadFile(MultipartFile file, mypageFileDTO fileDTO, String folderName) throws IOException {
 		
 		
 		// 원본 파일 이름
@@ -31,7 +32,6 @@ public void uploadFile(MultipartFile file, FileDTO fileDTO, String folderName) t
 		fileDTO.setChangeName(changeName);
 		fileDTO.setExtension(getFileExtension(originalFileName));
 		fileDTO.setSize(file.getSize());
-		fileDTO.setFolderNamePath(folderName);
 	}
 	// 확장자 구하는 메서드
 	private String getFileExtension(String fileName){

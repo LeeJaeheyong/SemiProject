@@ -9,7 +9,7 @@
 <body>
     <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
-        <h2>로그인</h2>
+        <h2>아이디 찾기</h2>
         <form action="/game/loginin" method="POST">
             <div class="form_list">
                 <div class="form_group">
@@ -17,16 +17,14 @@
                         <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
                     </div>
                     <div class="form_item">
-                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
+                        <input type="email" id="email" name="userEmail" placeholder="이메일주소">
                     </div>
                 </div>
                 <div class="button_div">
-                    <button type="submit" id='submitButton'>로그인</button>
+                    <button type="submit" id='submitButton'>아이디 찾기</button>
                 </div>
                 <div class="form_footer">
-                    <a href="#" class="form_a">비밀번호 찾기</a>
-                    <span>|</span>
-                    <a th:href="@{/game/findIdForm}">아이디 찾기</a>
+                    <a href="#" class="form_a">로그인</a>
                     <span>|</span>
                     <a th:href="@{/game/loginupForm}">회원가입</a>
                 </div>

@@ -9,12 +9,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class mypageFileDTO {
 	private final String LOCAL_PATH = "C:\\Dev\\spring_work_sapce\\SpringProject-3\\src\\main\\resources\\static\\uploads";
-	private final String RESOURCES_PATH = "/uploads";
+	private final String RESOURCES_PATH = "/uploads/userPro";
 	
 	private int no;
 	private String changeName;
 	private String originalName;
 	private String uploadDate;
-	private String extention;
+	private String extension;
 	private long size;
 }
