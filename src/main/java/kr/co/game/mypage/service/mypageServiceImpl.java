@@ -134,6 +134,14 @@ public class mypageServiceImpl implements mypageService {
 		return mypageMapper.AllList(userNo);
 	}
 	
-	
+	@Override
+	public int getTotalCount(String userId) {
+		
+		int userNo = mypageMapper.getId(userId);
+		
+		int result = mypageMapper.getTotalCount(userNo);
+		
+		return result;
+	}
 	
 }

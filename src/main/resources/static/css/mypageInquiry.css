@@ -122,11 +122,6 @@ td:nth-child(3) {
     justify-content: flex-end;
 }
 
-.auth-links a {
-    color: white;
-    text-decoration: none;
-}
-
 .show-table-btn {
     width: 30px;
     height: 30px;

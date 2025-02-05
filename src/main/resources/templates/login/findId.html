@@ -10,11 +10,11 @@
     <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
         <h2>아이디 찾기</h2>
-        <form action="/game/loginin" method="POST">
+        <form action="/game/findId" method="POST">
             <div class="form_list">
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
+                        <input type="text" id="name" name="userName" placeholder="이름">
                     </div>
                     <div class="form_item">
                         <input type="email" id="email" name="userEmail" placeholder="이메일주소">
@@ -24,7 +24,7 @@
                     <button type="submit" id='submitButton'>아이디 찾기</button>
                 </div>
                 <div class="form_footer">
-                    <a href="#" class="form_a">로그인</a>
+                    <a th:href="@{/game/logininForm}">로그인</a>
                     <span>|</span>
                     <a th:href="@{/game/loginupForm}">회원가입</a>
                 </div>

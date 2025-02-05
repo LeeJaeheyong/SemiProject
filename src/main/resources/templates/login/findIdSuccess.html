@@ -9,24 +9,23 @@
 <body>
     <div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
     <main>
-        <h2>로그인</h2>
+        <h2>회원님의 아이디를 확인해주세요</h2>
         <form action="/game/loginin" method="POST">
             <div class="form_list">
                 <div class="form_group">
                     <div class="form_item">
-                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
-                    </div>
-                    <div class="form_item">
-                        <input type="password" id="password" name="userPassword" placeholder="비밀번호" maxlength="16">
+                    	<h4>
+                    		회원님의 아이디는 없습니다. 꺼지셈
+							ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ	
+                    	</h4>
+                        <!-- <input type="text" id="name" name="userName" placeholder="이름"> -->
                     </div>
                 </div>
                 <div class="button_div">
-                    <button type="submit" id='submitButton'>로그인</button>
+                    <button type="submit" id='submitButton'>비밀번호 찾기</button>
                 </div>
                 <div class="form_footer">
-                    <a href="#" class="form_a">비밀번호 찾기</a>
-                    <span>|</span>
-                    <a th:href="@{/game/findIdForm}">아이디 찾기</a>
+                    <a th:href="@{/game/logininForm}">로그인</a>
                     <span>|</span>
                     <a th:href="@{/game/loginupForm}">회원가입</a>
                 </div>
@@ -34,13 +33,5 @@
         </form>
     </main>
     <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
-    <script th:inline="javascript">
-	    /*<![CDATA[*/
-			const test = [[${status}]];
-			if (test == 'failed') {
-				alert('아이디 또는 비밀번호를 확인해주세요');
-			}
-		/*]]>*/
-    </script>
 </body>
 </html>
