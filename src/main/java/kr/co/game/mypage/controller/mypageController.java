@@ -110,12 +110,21 @@ public class mypageController {
 	@GetMapping("/mypageQuery") 
 	public String mypageQuery(@SessionAttribute(required=false,name="userId") String userId,
 							  Model model) {
-		System.out.println("응답완료!");
+		System.out.println("Controller 단 : 응답완료!");
 
 		List<mypageContactDTO> list = mypageService.AllList(userId);
 		
-		System.out.println(list.get(0).getContactTitle());
-		
+		for(int i=0; i<list.size(); i++) {
+			mypageContactDTO contact = list.get(i);
+	        System.out.println("Controller 단 : " + contact.getAnswer());
+	        System.out.println("Controller 단 : " + contact.getAnswerDate());
+	        System.out.println("Controller 단 : " + contact.getAnswerRe());
+	        System.out.print("Controller 단 : " + contact.getContactInfo());
+	        System.out.println("Controller 단 : " + contact.getContactNo());
+	        System.out.println("Controller 단 : " + contact.getContactTitle());
+	        System.out.println("Controller 단 : " + contact.getCreateDate());
+		}
+
 		model.addAttribute("list", list);
 		
 		return "/mypage/mypageInquiry";

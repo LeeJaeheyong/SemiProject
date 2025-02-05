@@ -17,4 +17,7 @@ public class signupDTO {
 	private String userRole;
 	private String userBirthdate;
 	
+	// 이메일 인증번호
+	private String authNum;
+	
 }

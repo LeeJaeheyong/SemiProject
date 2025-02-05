@@ -84,3 +84,15 @@ footer {
     bottom: 0px;
     font-size: 13px;
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    color: rgb(135, 221, 248);
+}
+
+
+

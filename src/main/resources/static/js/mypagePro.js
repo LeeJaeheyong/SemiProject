@@ -43,3 +43,5 @@ function submitForm() {
     // 폼을 직접 제출하는 JavaScript 함수
     document.getElementById('profileForm').submit();
 }
+
+

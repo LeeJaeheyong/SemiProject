@@ -24,15 +24,15 @@
                 -->
                 <th:block th:each="lists, iterStat :${list}">
 					<tr>
-	                    <td th:text="${lists.contactNo}"></td>
+	                    <td th:text="${iterStat.count}"></td>
 	                    <td th:text="${lists.contactTitle}"></td>
 	                    <td th:text="${lists.createDate}"></td>
-	                    <td><button class="show-table-btn" th:id="'btn-status-'+ ${iterStat.index}" onclick="toggleDetails([[${iterStat.index}]])">▼</button></td>
+	                    <td><button class="show-table-btn" th:id="'btn-status-' + ${iterStat.index}" th:onclick="toggleDetails([[${iterStat.index}]])">▼</button></td>
 	                </tr>
 	                <tr th:id="'detailed-row-' + ${iterStat.index}" style="display:none;">
 	                    <td colspan="4">
 	                        <div id="detailed-section-1" class="detailed-section">
-	                            <h3>상세 내용 (문의사항 1)</h3>
+	                            <h3>상세 내용</h3>
 	                            <table>
 	                                <tr>
 	                                    <th>제목</th>
@@ -42,9 +42,9 @@
 	                                    <th>내용</th>
 	                                    <td th:text="${lists.contactInfo}"></td>
 	                                </tr>
-	                                <tr>
-	                                    <th>답변</th>
-	                                    <td>답변 내용이 여기 표시됩니다.</td>
+	                                <tr th:if="${lists.answer != null}">
+	                                	<th>답변</th>
+	                                    <td th:text="${lists.answer}"></td> 
 	                                </tr>
 	                            </table>
 	                        </div>
