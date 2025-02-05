@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+                        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.game.notices.model.mapper.noticesMapper">
+
+    <!-- Result Map 정의 -->
+    <resultMap id="noticesResultMap" type="kr.co.game.notices.model.dto.noticesDTO">
+        <result property="noticeNo" column="notice_no" />
+        <result property="noticeTitle" column="notice_title" />
+        <result property="noticeInfo" column="notice_info" />
+        <result property="createdDate" column="created_date" />
+        <result property="noticeUp" column="notice_up" />
+        <result property="userNo" column="user_num" />
+    </resultMap>
+
+    <!-- 공지사항 총 개수 가져오기 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) FROM NOTICE
+    </select>
+
+    <!-- 공지사항 목록 가져오기 (페이징 적용) -->
+	<select id="getAllPosts" resultMap="noticesResultMap">
+    	SELECT * FROM (
+        	SELECT 
+            	n.notice_no,
+            	n.notice_title,
+            	n.notice_info,
+            	TO_CHAR(n.created_date, 'YYYY-MM-DD') AS created_date,
+            	n.notice_up,
+            	ui.user_no,
+            	ROW_NUMBER() OVER(ORDER BY n.created_date DESC) AS rn
+        	FROM NOTICE n
+        	JOIN USER_INFO ui ON n.user_num = ui.user_no
+    	) subquery
+    	WHERE rn BETWEEN #{offset} + 1 AND #{offset} + #{boardLimit}
+</select>
+
+</mapper>

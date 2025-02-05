@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+                        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="kr.co.game.contact.model.mapper.contactMapper">
+
+	<resultMap id="contactResultMap" type="kr.co.game.contact.model.dto.faqDTO">
+		<result property="faqcategory" column="faq_category"></result>
+		<result property="categoryNo" column="category_no"></result>
+	</resultMap>
+
+    <!-- 문의 저장 -->
+    <insert id="contactEnroll" parameterType="kr.co.game.contact.model.dto.contactDTO">
+        INSERT INTO CONTACT (contact_no, category_no, user_num, contact_title, contact_info, created_date, answer_re)
+        VALUES (contact_seq.nextval, #{categoryNo}, #{userNum}, #{contactTitle}, #{contactInfo}, SYSDATE, 'N')
+    </insert>
+
+	<select id="categoryNo" resultMap="contactResultMap">
+		SELECT * FROM faq_category fc
+	</select>
+</mapper>
+
+
