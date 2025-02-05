@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.game.admin.model.dto.adminDTO;
+import kr.co.game.admin.model.dto.contactDTO;
 import kr.co.game.admin.model.dto.faqDTO;
+import kr.co.game.admin.model.dto.noticeDTO;
 import kr.co.game.admin.model.dto.pageInfoDTO;
 import kr.co.game.admin.model.service.adminServiceImpl;
 import kr.co.game.admin.util.adminPagination;
@@ -69,6 +71,28 @@ public class adminController {
 		
 		model.addAttribute("gamePage",gamedbPage);	
 		model.addAttribute("gameDB",gamedbList);
+		int noticeCount = adminService.getTotalNotice();
+		Map<String, Object> noticeResult = adminService.getAllNotices(adminPagination, 
+																	  currentPage,
+																	  noticeCount,
+																	  pageLimit,
+																	  boardLimit);
+		System.out.println(noticeResult.get("notice"));
+		pageInfoDTO noticePage = (pageInfoDTO)noticeResult.get("pi");
+		List<noticeDTO> noticeList = (List<noticeDTO>)noticeResult.get("notice");
+	
+		model.addAttribute("noticePage",noticePage);	
+		model.addAttribute("notice",noticeList);
+		Map<String, Object> inquiryResult = adminService.getAllinquiries(adminPagination, 
+				  currentPage,
+				  noticeCount,
+				  pageLimit,
+				  boardLimit);
+		pageInfoDTO inquiryPage = (pageInfoDTO)inquiryResult.get("pi");
+		List<contactDTO> inquiryList = (List<contactDTO>)inquiryResult.get("inquiry");
+		
+		model.addAttribute("inquiryPage",inquiryPage);	
+		model.addAttribute("inquiry",inquiryList);
 		return "admin/admin";
 	}
 	@PostMapping("/admin/rolechange")
@@ -98,6 +122,11 @@ public class adminController {
 	@GetMapping("/admin/faq/delete")
 	public String faqDelete(@RequestParam("faqNo")int faqNo) {
 		int result = adminService.deleteFAQ(faqNo);
+		return "redirect:/game/admin/form";
+	}
+	@GetMapping("admin/gameinfo/delete")
+	public String gameinfoDelete(@RequestParam("gameNo")int gameNo) {
+		int result = adminService.deleteGameInfo(gameNo);
 		return "redirect:/game/admin/form";
 	}
 	
