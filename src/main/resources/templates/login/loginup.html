@@ -53,24 +53,14 @@
          <div class="button_div">
                 <button type="submit" id='submitButton' onclick="submitButton()">회원가입</button>
             </div>
+        <div>
+            <button type="button" class='emailcheckButton' onclick="emailcheckButton()">인증번호 발송</button>
+            <input type="text" class="emailcheck" id="emailcheck" name="emailcheck" placeholder="인증번호" maxlength="6" readonly>
+            <span class="emailcheck_text" id="emailcheck_text"></span>
+        </div>
         </form>
-        <!-- <div>
-            <button type="submit" class='emailcheckButton' onclick="emailcheckButton()">인증번호 발송</button>
-            <input type="text" class="emailcheck" name="emailcheck" placeholder="인증번호">
-            <span class="emailcheck_text">인증되었습니다.</span>
-        </div> -->
     </main>
-    <footer style="color: #707070;">
-        <em>
-            상호 : 그린컴퓨터 &nbsp; | &nbsp; 대표자 : 이재형, 한봉오, 전주영 &nbsp;
-            <br>
-            <br>
-            주소 : 경기도 안양시 만안구 안양로 303
-            <br>
-            <br>
-            고객센터 : 1234-5678 &nbsp;  | &nbsp;  사업자 등록번호 : 123-45-6789  &nbsp; | &nbsp;  통신판매등록번호 : 제2025-경기안양-802호 &nbsp; | &nbsp; ⓒ THE RANK Corp.
-        </em>
-    </footer>
+    <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
     <script src="/js/loginup.js"></script>
 </body>
 </html>

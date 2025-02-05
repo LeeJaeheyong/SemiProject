@@ -114,7 +114,7 @@ td:nth-child(1), td:nth-child(2) {
 }
 
 td:nth-child(3) {
-    text-align: left;
+    text-align: center;
 }
 
 .auth-links {

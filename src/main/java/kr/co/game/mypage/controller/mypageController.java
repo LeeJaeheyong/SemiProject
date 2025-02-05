@@ -1,5 +1,7 @@
 package kr.co.game.mypage.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.game.mypage.dto.mypageContactDTO;
 import kr.co.game.mypage.dto.mypageDTO;
 import kr.co.game.mypage.dto.mypageFileDTO;
 import kr.co.game.mypage.service.mypageService;
@@ -26,26 +29,34 @@ public class mypageController {
 	
 	// 내 프로필 
 	@GetMapping("/mypageForm")
-	public String mypageForm(@ModelAttribute("mypageDTO") mypageDTO mypageDTO) {
+	public String mypageForm(@SessionAttribute("userId") String userId,
+							 Model model) {
+		
+		// 프로필 사진
+		mypageFileDTO result = mypageService.updatePro(userId);
+		
+		model.addAttribute("post", result);
+		
 		return "/mypage/mypagePro";
 	}
 	
 	// 사진 적용
 	@PostMapping("/mypageForm/enroll")
-	public String mypageFormEnroll(@RequestParam("userId") String userId,
+	public String mypageFormEnroll(@SessionAttribute("userId") String userId,
+								   @RequestParam("picture") String picture,
 								   @RequestParam("file") MultipartFile file) {
 		
-//		int result = mypageService.enroll(file);
+		System.out.println(picture);
+		// userId 넘기고
+		int result = mypageService.enroll(file, userId, picture);
 		
-		return "/mypage/mypageInquiry";
+		return"redirect:/game/mypageForm";
 	}	 
 	
 	// 내 정보 변경 화면
 	@GetMapping("/mypageUpdateForm") 
 	public String mypageUpdateForm(@SessionAttribute(required=false,name="userId") String myId, Model model) {
-		System.out.println(myId);
 		mypageDTO result = mypageService.userInfoSelect(myId);
-		System.out.println(result.getUserId());
 		model.addAttribute("myData", result);
 		return "/mypage/mypageInfo";
 	}
@@ -97,7 +108,24 @@ public class mypageController {
 	
 	// 내 문의 리스트
 	@GetMapping("/mypageQuery") 
-	public String mypageQuery(@ModelAttribute mypageDTO mypageDTO, Model model) {
+	public String mypageQuery(@SessionAttribute(required=false,name="userId") String userId,
+							  Model model) {
+		System.out.println("Controller 단 : 응답완료!");
+
+		List<mypageContactDTO> list = mypageService.AllList(userId);
+		
+		for(int i=0; i<list.size(); i++) {
+			mypageContactDTO contact = list.get(i);
+	        System.out.println("Controller 단 : " + contact.getAnswer());
+	        System.out.println("Controller 단 : " + contact.getAnswerDate());
+	        System.out.println("Controller 단 : " + contact.getAnswerRe());
+	        System.out.print("Controller 단 : " + contact.getContactInfo());
+	        System.out.println("Controller 단 : " + contact.getContactNo());
+	        System.out.println("Controller 단 : " + contact.getContactTitle());
+	        System.out.println("Controller 단 : " + contact.getCreateDate());
+		}
+
+		model.addAttribute("list", list);
 		
 		return "/mypage/mypageInquiry";
 	}
