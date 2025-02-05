@@ -24,8 +24,8 @@
 		<button type="button" id="select_btn" class="select_btn" onclick="addData()"style="display:none">선택</button>
         <button class="confirm_btn" id="change_btn" style="display:none" type="submit">변경</button>
         <button type="button" class="cancel_btn" id="cancel_btn" style="display:none" onclick="cancel()">취소</button>
-        <div style="margin: 20px;">
     </form>
+        <div style="margin: 20px;">
         
     <table style="width: 100%; border-collapse: collapse; text-align: left;">
         <thead>
@@ -67,8 +67,34 @@
     </div>
     <div id="inquiry" class="tab-content">
         <h2>1:1 문의 확인</h2>
-         
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+                <th>번호</th>
+                <th>카테고리</th>
+                <th>아이디</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>답변여부</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tbody" th:each="inquiry:${inquiry}">
+            	<td th:text="${inquiry.contactNo}"></td>
+            	<td th:text="${inquiry.userId}"></td>
+            	<td th:text="${inquiry.faqCategory}"></td>
+            	<td th:text="${inquiry.contactTitle}"></td>
+            	<td th:text="${inquiry.createDate}"></td>
+            	<td th:text="${inquiry.answer}"></td>
+            	<td>
+	            <button>답변하기</button>            	
+            	</td>
+            </tr>
+        </tbody>
+    </table>
     </div>
+    
     <div id="game-db" class="tab-content">
         <h2>게임 DB 확인</h2>
         <p>게임 DB 내용을 여기에 표시합니다.</p>
@@ -93,8 +119,7 @@
             	<td th:text="${game.publisher}"></td>
             	<td th:text="${game.gameScore}"></td>
             	<td>
-	            <button onclick="location.href='#'">수정</button>
-	            <button onclick="location.href='#'">삭제</button>            	
+	            <button th:onclick="|location.href='@{/game/admin/gameinfo/delete(gameNo=${game.gameNo})}'|">삭제</button>            	
             	</td>
             </tr>
         </tbody>
@@ -106,9 +131,32 @@
     <div id="notice" class="tab-content">
         <h2>공지사항 확인</h2>
         <p>공지사항 내용을 여기에 표시합니다.</p>
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr class="border_bottom padding" style="background-color: #ddf3c4;">
+                <th>번호</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>공지여부</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tbody" th:each="notice : ${notice}">
+            	<td th:text="${notice.noticeNo}"></td>
+            	<td th:text="${notice.userId}"></td>
+            	<td th:text="${notice.noticeTitle}"></td>
+            	<td th:text="${notice.createDate}"></td>
+            	<td th:text="${notice.noticeUp}"></td>
+            	<td>
+	            <button th:onclick="|location.href='@{/game/notices/delete(noticeNo=${notice.noticeNo})}'|">삭제</button>            	
+            	</td>
+            </tr>
+        </tbody>
+    </table>
         <div class="button-group">
-            <button onclick="location.href='#'">추가</button>
-            <button onclick="location.href='#'">삭제</button>
+            <button th:onclick="|location.href='@{/game/notices/enroll/form}'|">추가</button>
         </div>
     </div>
     <div id="faq" class="tab-content">

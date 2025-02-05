@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.game.dto.FileDTO;
+import kr.co.game.gameinfo.model.dto.gameDetailDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 import kr.co.game.gameinfo.model.mapper.gameInfoMapper;
@@ -52,8 +53,10 @@ public class gameInfoServiceImpl implements gameInfoService{
 		return result;
 	}
 	@Override
-	public void uploadFile(FileDTO fileDTO, MultipartFile file) {
+	public void uploadFile(FileDTO fileDTO, MultipartFile file, String name) {
 		try {
+			int getGameNo = gameInfoMapper.getGameNoo(name);
+			fileDTO.setGameNo(getGameNo);
 			fu.uploadFile(file,fileDTO,"gameinfo");
 			int result = gameInfoMapper.uploadFile(fileDTO);
 			if(result==1) {
@@ -84,14 +87,19 @@ public class gameInfoServiceImpl implements gameInfoService{
 		return result;
 	}
 	@Override
-	public int enroll(gameInfoDTO gameInfoDTO, String newGerne) {
+	public int enroll(gameInfoDTO gameInfoDTO, gameDetailDTO gameDetailDTO, String newGerne) {
 		if(gameInfoDTO.getFirstGenre()=="해당없음") {
 			gameInfoDTO.setFirstGenre(newGerne);
 		int gerneUpdate = gameInfoMapper.newGenre(gameInfoDTO);
 		}
-		int publisher = gameInfoMapper.publsherUpdate(gameInfoDTO);
+		int getGenreNo = gameInfoMapper.getGerneNo(gameInfoDTO);
+		gameInfoDTO.setGenreNo(getGenreNo);
 		int gameData = gameInfoMapper.enrollGame(gameInfoDTO);
-		int detail = gameInfoMapper.detailUpdate(gameInfoDTO);
+		int getGameNo = gameInfoMapper.getGameNo(gameInfoDTO);
+		gameInfoDTO.setGameNo(getGameNo);
+		int detail = gameInfoMapper.detailUpdate(gameInfoDTO,gameDetailDTO);
+		int secondGenre = gameInfoMapper.secondGenreUpdate(gameInfoDTO);
+	
 		
 		return 0;
 	}

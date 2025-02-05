@@ -113,4 +113,42 @@ JOIN FAQ_CATEGORY fc ON fi.CATEGORY_NO = fc.CATEGORY_NO)
 	Join game_publisher gp ON gi.publisher_no = gp.publisher_no
 	order by game_no
 </select>
+<select id="getAllNotices">
+	SELECT notice_no AS noticeNo,
+		   user_id AS userId,
+		   notice_title AS noticeTitle,
+		   notice_info AS noticeInfo,
+		   created_date AS createDate,
+		   notice_up AS noticeUp
+	 FROM NOTICE n
+	 Join user_info ui on n.user_num = ui.user_no
+</select>
+<select id="getTotalNotice">
+	SELECT COUNT(*) FROM notice
+</select>
+<delete id="deleteGameInfo">
+DELETE FROM game_Info where game_no = #{gameNo}
+</delete>
+<delete id="deleteDetail">
+DELETE FROM game_Detail where game_no = #{gameNo}
+</delete>
+<delete id="deleteImage">
+DELETE FROM game_Imege where game_no = #{gameNo}
+</delete>
+<delete id="deleteSecondGenre">
+DELETE FROM second_game_genre where game_no = #{gameNo}
+</delete>
+<select id="getAllinquiries">
+	SELECT c.CONTACT_NO AS contactNo,
+	   ui.USER_ID AS userId,
+	   fc.FAQ_CATEGORY AS faqCategory,
+	   c.CONTACT_TITLE AS contactTitle,
+	   c.CONTACT_INFO AS contactInfo,
+	   c.CREATED_DATE as createDate,
+	   c.ANSWER_RE as answer
+	FROM CONTACT c 
+	JOIN USER_INFO ui ON c.USER_NUM =ui.USER_NO
+	JOIN FAQ_CATEGORY fc ON c.CATEGORY_NO =fc.CATEGORY_NO
+</select>
+
 </mapper>

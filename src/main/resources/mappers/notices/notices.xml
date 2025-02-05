@@ -35,4 +35,11 @@
     	WHERE rn BETWEEN #{offset} + 1 AND #{offset} + #{boardLimit}
 </select>
 
+	<insert id="enroll">
+		INSERT INTO notice VALUES(notice_seq.nextval,#{userNum},#{noticeTitle},#{noticeInfo},sysdate,'N')
+	</insert>
+<delete id="delete">
+	DELETE FROM notice WHERE notice_no = #{noticeNo}
+</delete>
+
 </mapper>

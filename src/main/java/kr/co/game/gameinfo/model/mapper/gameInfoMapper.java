@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.game.dto.FileDTO;
+import kr.co.game.gameinfo.model.dto.gameDetailDTO;
 import kr.co.game.gameinfo.model.dto.gameInfoDTO;
 import kr.co.game.gameinfo.model.dto.pageInfoDTO;
 
@@ -30,11 +31,19 @@ public interface gameInfoMapper {
 
 	int newGenre(gameInfoDTO gameInfoDTO);
 
-	int detailUpdate(gameInfoDTO gameInfoDTO);
+	int detailUpdate(@Param("gameInfoDTO") gameInfoDTO gameInfoDTO,
+					 @Param("gameDetailDTO") gameDetailDTO gameDetailDTO);
 
 	int enrollGame(gameInfoDTO gameInfoDTO);
 
-	int publsherUpdate(gameInfoDTO gameInfoDTO);
+	int getGerneNo(gameInfoDTO gameInfoDTO);
+
+	int getGameNo(gameInfoDTO gameInfoDTO);
+
+	int getGameNoo(String name);
+
+	int secondGenreUpdate(gameInfoDTO gameInfoDTO);
+
 
 	
 
