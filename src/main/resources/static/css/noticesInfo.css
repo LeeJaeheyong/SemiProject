@@ -94,7 +94,6 @@ footer {
     table-layout: fixed;
     border-top: 2px solid #2c3037;
 }
-
 .content {
 	padding-top: 30px;
 	padding-bottom: 10px;
@@ -103,7 +102,7 @@ footer {
 .title {
     font-size: 18px;
     font-weight: bold;
-    padding: 10px;
+    padding: 9px;
 }
 .date {
     text-align: right;
