@@ -25,6 +25,7 @@ public interface mypageService {
 
 	public int getTotalCount(String userId);
 
+
 	
 	
 }

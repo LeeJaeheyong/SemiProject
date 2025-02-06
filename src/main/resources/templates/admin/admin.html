@@ -82,8 +82,8 @@
         <tbody>
             <tr class="tbody" th:each="inquiry:${inquiry}">
             	<td th:text="${inquiry.contactNo}"></td>
-            	<td th:text="${inquiry.userId}"></td>
             	<td th:text="${inquiry.faqCategory}"></td>
+            	<td th:text="${inquiry.userId}"></td>
             	<td th:text="${inquiry.contactTitle}"></td>
             	<td th:text="${inquiry.createDate}"></td>
             	<td th:text="${inquiry.answer}"></td>
@@ -187,7 +187,10 @@
         </div>
     </div>
     </main>
-    <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>    
+    <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer> 
+    <script th:if="${answer}">
+    	alert("답변이 작성되었습니다.");
+    </script>   
     <script>
         function showTab(tabId,event) {
             var tabs = document.getElementsByClassName('tab-content');

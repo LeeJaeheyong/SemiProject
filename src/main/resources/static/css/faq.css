@@ -254,14 +254,14 @@ footer {
 	
 	height : 40px;
 }
-.answer-text{
-	height : 300px;
-}
 .answer select{
 	margin-bottom : 10px;
 }
+.answer textarea{
+	width : 900px;
+}
 .answer label{
-	width:50px;
+	width:150px;
 	margin: 10px;
 }
 .btn-group{
@@ -271,6 +271,9 @@ footer {
 }
 .ans{
 	text-align:left;
+}
+.answer-text{
+	height : 300px;
 }
 .contact-info{
 	height : 100px;

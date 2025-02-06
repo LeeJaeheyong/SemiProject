@@ -45,4 +45,6 @@ public interface adminService {
 
 	contactDTO getInquiry(int contactNo);
 
+	int answer(String answerText, int contactNo, String userId);
+
 }

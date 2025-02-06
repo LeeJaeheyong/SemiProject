@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.game.admin.model.dto.adminDTO;
 import kr.co.game.admin.model.dto.contactDTO;
@@ -134,5 +135,15 @@ public class adminController {
 		model.addAttribute("inquiry", inquiry);
 		return "/contact/answer";
 	}
+	@PostMapping("/admin/inquiry/answer")
+	public String answer(@RequestParam("answerText")String answerText,
+						 @RequestParam("contactNo")int contactNo,
+						 @RequestParam("userId")String userId,
+						 Model model) {
+		int answer = adminService.answer(answerText,contactNo,userId);
+		model.addAttribute("answer", true);
+		return "redirect:/game/admin/form";
+	}
+	
 
 }

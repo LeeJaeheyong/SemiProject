@@ -14,6 +14,9 @@ public interface contactMapper {
 	    int contactEnroll(contactDTO contact);
 
 		List<faqDTO> categoryNo();
+
+
+
 	}
 
 

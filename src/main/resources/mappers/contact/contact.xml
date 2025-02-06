@@ -13,7 +13,6 @@
         INSERT INTO CONTACT (contact_no, category_no, user_num, contact_title, contact_info, created_date, answer_re)
         VALUES (contact_seq.nextval, #{categoryNo}, #{userNum}, #{contactTitle}, #{contactInfo}, SYSDATE, 'N')
     </insert>
-
 	<select id="categoryNo" resultMap="contactResultMap">
 		SELECT * FROM faq_category fc
 	</select>

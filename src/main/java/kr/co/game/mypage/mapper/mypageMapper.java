@@ -38,6 +38,7 @@ public interface mypageMapper {
 
 	public int getTotalCount(int userNo);
 
+
 	
 	
 }

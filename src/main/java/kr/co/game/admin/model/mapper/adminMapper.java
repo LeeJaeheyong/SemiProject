@@ -53,4 +53,14 @@ public interface adminMapper {
 
 	contactDTO getInquiry(int contactNo);
 
+	int answerRE(int contactNo);
+
+	int answer(@Param("answerText")String answerText,
+			   @Param("userNum")int userNum,
+			   @Param("contactNo")int contactNo);
+
+	int getUserNum(String userId);
+
+	int react(int contactNo);
+
 }

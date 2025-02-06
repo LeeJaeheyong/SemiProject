@@ -139,5 +139,4 @@ public class mypageServiceImpl implements mypageService {
 		
 		return result;
 	}
-
 }
