@@ -85,9 +85,17 @@
 		SELECT * FROM CONTACT c
 		LEFT JOIN ANSWER a ON c.CONTACT_NO = a. CONTACT_ID
 		WHERE c.USER_NUM = #{userNo}
+		ORDER BY CONTACT_NO DESC
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM CONTACT WHERE USER_NUM = #{userNo}
+	</select>
+
 	</select>
 	
 	
 	
 	
+
 </mapper>
