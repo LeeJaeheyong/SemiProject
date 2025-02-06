@@ -24,7 +24,7 @@
                     <button type="submit" id='submitButton'>로그인</button>
                 </div>
                 <div class="form_footer">
-                    <a href="#" class="form_a">비밀번호 찾기</a>
+                    <a th:href="@{/game/findPasswordForm}">비밀번호 찾기</a>
                     <span>|</span>
                     <a th:href="@{/game/findIdForm}">아이디 찾기</a>
                     <span>|</span>
@@ -39,9 +39,12 @@
 			const test = [[${status}]];
 			if (test == 'failed') {
 				alert('아이디 또는 비밀번호를 확인해주세요');
-			}
+			} else if (test == 'passX') {
+				alert('비밀번호를 입력해주세요');
+			} else if (test == 'idX') {
+				alert('아이디를 입력해주세요');
+			} 
 		/*]]>*/
     </script>
-    <script src="../javaScript/loginup.js"></script>
 </body>
 </html>
