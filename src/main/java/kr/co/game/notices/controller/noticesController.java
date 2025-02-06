@@ -2,14 +2,15 @@ package kr.co.game.notices.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.game.notices.model.dto.noticesDTO;
 import kr.co.game.notices.model.dto.noticesPageInfoDTO;
@@ -54,6 +55,23 @@ public class noticesController {
 	            model.addAttribute("noticesSearchDTO", noticesSearchDTO); 
 		
 		return "notices/notices";
+		
+	}
+	@GetMapping("/notices/enroll/form")
+	public String noticeEnrollForm() {	
+		return "notices/noticeEnroll";
+	}
+	@PostMapping("/notices/enroll")
+	public String noticeEnroll(@SessionAttribute("userNum")int userNum, noticesDTO noticeDTO) {
+				noticeDTO.setUserNum(userNum);
+				int result = noticesService.enroll(noticeDTO);
+		return "redirect:/game/admin/form";
+	}
+	@GetMapping("/notices/delete")
+	public String noticeDelete(@RequestParam("noticeNo")int noticeNo) {
+		int result = noticesService.delete(noticeNo);
+			
+		return "redirect:/game/admin/form";
 	}
 	
 	

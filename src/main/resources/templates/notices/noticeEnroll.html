@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/faq.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <!-- ...existing code... -->
+    <div class="search-container">
+        <div class="faq-container">
+        <h3>공지사항</h3>
+        </div>
+        <form th:action="@{/game/notices/enroll}" method="POST">
+        <div class="answer">
+      <label for="noticeTitle">제목</label>
+      <input type="text" name="noticeTitle" id="title">
+      <label for="userId">작성자</label>
+      <input type="text" name="userId" th:value="${session.userId}" readonly>
+      <label for="noticeInfo">내용</label>
+      <textarea name="noticeInfo"></textarea>
+        </div>
+        <button type="submit" class="btn-group">등록</button>
+        <button type="button" onclick="window.history.back()" class="btn-group">취소</button>
+        </form>
+
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+
+</body>
+</html>
