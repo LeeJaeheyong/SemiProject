@@ -143,4 +143,12 @@ public class adminServiceImpl implements adminService{
 		
 		return adminMapper.getInquiry(contactNo);
 	}
+	@Override
+	public int answer(String answerText, int contactNo, String userId) {
+		int userNum = adminMapper.getUserNum(userId);
+		int answerRE = adminMapper.answerRE(contactNo);
+		int answer = adminMapper.answer(answerText,userNum,contactNo);
+		int react = adminMapper.react(contactNo);
+		return answer;
+	}
 }

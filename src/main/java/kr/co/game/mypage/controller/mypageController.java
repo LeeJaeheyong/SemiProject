@@ -58,6 +58,7 @@ public class mypageController {
 	public String mypageUpdateForm(@SessionAttribute(required=false,name="userId") String myId, Model model) {
 		mypageDTO result = mypageService.userInfoSelect(myId);
 		model.addAttribute("myData", result);
+		
 		return "/mypage/mypageInfo";
 	}
 	

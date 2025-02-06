@@ -13,6 +13,7 @@ public class mypageContactDTO {
 	private String contactInfo;
 	private String createDate;
 	private String answerRe;
+	private String userCheck;
 	
 	private String answer;
 	private String answerDate;

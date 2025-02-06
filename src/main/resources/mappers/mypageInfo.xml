@@ -11,6 +11,7 @@
 		<result property="userEmail" column="USER_EMAIL"></result>
 		<result property="userRole" column="USER_ROLE"></result>
 		<result property="userBirthdate" column="USER_BIRTHDATE"></result>
+		
 	<association property="fileDTO" javaType="kr.co.game.mypage.dto.mypageFileDTO">
 		<result property="changeName" column="change_name"></result>
 		<result property="RESOURCES_PATH" column="RESOURCES_PATH"></result>
@@ -31,6 +32,7 @@
 		<result property="answerRe" column="ANSWER_RE"></result>
 		<result property="answer" column="ANSWER"></result>
 		<result property="answerDate" column="ANSWER_DATE"></result>
+		<result property="userCheck" column="user_check"></result>
 	</resultMap>
 	
 	
@@ -82,8 +84,19 @@
 	</delete>
 	
 	<select id="AllList" resultMap="mypageContactMap">
-		SELECT * FROM CONTACT c
+		SELECT c.CONTACT_NO,
+			   c.CATEGORY_NO,
+			   c.USER_NUM,
+			   c.CONTACT_TITLE,
+			   c.CONTACT_INFO,
+			   c.CREATED_DATE,
+			   c.ANSWER_RE,
+			   a.ANSWER,
+			   a.ANSWER_DATE,
+			   al.USER_CHECK 
+		FROM CONTACT c
 		LEFT JOIN ANSWER a ON c.CONTACT_NO = a. CONTACT_ID
+		JOIN alert al on c.contact_no = al.contact_no
 		WHERE c.USER_NUM = #{userNo}
 		ORDER BY CONTACT_NO DESC
 	</select>
@@ -91,7 +104,6 @@
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM CONTACT WHERE USER_NUM = #{userNo}
 	</select>
-
 
 	
 	

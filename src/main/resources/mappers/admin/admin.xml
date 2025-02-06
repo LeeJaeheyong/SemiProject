@@ -152,6 +152,8 @@ DELETE FROM second_game_genre where game_no = #{gameNo}
 </select>
 <select id="getInquiry">
 	SELECT fc.FAQ_CATEGORY AS faqCategory,
+		c.CONTACT_NO AS contactNo,
+		ui.USER_ID AS userId,
 	   c.CONTACT_TITLE AS contactTitle,
 	   c.CONTACT_INFO AS contactInfo,
 	   c.CREATED_DATE as createDate,
@@ -161,4 +163,18 @@ DELETE FROM second_game_genre where game_no = #{gameNo}
 	JOIN FAQ_CATEGORY fc ON c.CATEGORY_NO =fc.CATEGORY_NO
 	WHERE contact_no = #{contactNo}
 </select>
+<update id="answerRE">
+	UPDATE contact SET answer_re = 'Y'
+	WHERE contact_no = #{contactNo}
+</update>
+<insert id="answer">
+	INSERT INTO answer VALUES(#{contactNo},#{userNum},#{answerText},sysdate)
+</insert>
+<select id="getUserNum" resultType="int">
+	SELECT user_no FROM user_info
+	WHERE user_id=#{userId}
+</select>
+<insert id="react">
+	INSERT INTO alert VALUES(default,#{contactNo})
+</insert>
 </mapper>

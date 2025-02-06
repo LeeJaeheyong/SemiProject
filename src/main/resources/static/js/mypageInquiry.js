@@ -13,6 +13,7 @@ function toggleDetails(id) {
     } else {
         detailedRow.style.display = "none";
         btnStatus.textContent = "▼";
+
         // detailedSection.style.display = "none";
     }
 }

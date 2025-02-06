@@ -15,7 +15,9 @@
         <div class="faq-container">
         <h3>답변하기</h3>
         </div>
-        <form th:action="@{/game/admin/inquiry/enroll}" method="POST">
+        <form th:action="@{/game/admin/inquiry/answer}" method="POST">
+        <input type="hidden" th:value="${inquiry.userId}" name="userId">
+        <input type="hidden" th:value="${inquiry.contactNo}" name="contactNo">
         <div class="answer" >
         <h3  class="ans">제목 : <span th:text="${inquiry.contactTitle}"></span></h3>
         <p  class="ans"> 작성일 : <span th:text="${inquiry.createDate}"></span></p>
@@ -30,7 +32,10 @@
         </form>
 
     </main>
-<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
+<script th:if="${answer}">
+    	alert("답변이 작성되었습니다.");
+    </script>  
 
 </body>
 </html>
