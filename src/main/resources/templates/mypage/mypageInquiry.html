@@ -16,7 +16,7 @@
                     <th>글번호</th>
                     <th>제목</th>
                     <th>작성일</th>
-                    <th>답변</th>
+                    <th></th>
                 </tr>
                 <!--
                 	게시글 번호구할때 pi.row - stat~.index
@@ -25,7 +25,6 @@
                 <th:block th:each="lists, iterStat :${list}">
 					<tr>
 	                    <td th:text="${count-iterStat.index}"></td>
-	                    <td th:text="${iterStat.count}"></td>
 	                    <td th:text="${lists.contactTitle}"></td>
 	                    <td th:text="${lists.createDate}"></td>
 	                    <td><button class="show-table-btn" th:id="'btn-status-' + ${iterStat.index}" th:onclick="toggleDetails([[${iterStat.index}]])">▼</button></td>
@@ -46,6 +45,10 @@
 	                                <tr th:if="${lists.answer != null}">
 	                                	<th>답변</th>
 	                                    <td th:text="${lists.answer}"></td> 
+	                                </tr>
+	                                <tr th:if="${lists.answer != null}">
+	                                	<th>답변일</th>
+	                                    <td th:text="${lists.answerDate}"></td> 
 	                                </tr>
 	                            </table>
 	                        </div>

@@ -32,5 +32,19 @@
 		SELECT * FROM USER_INFO WHERE USER_ID = #{userId}
 	</select>
 	
+	<select id="findId" resultMap="loginupMap">
+		SELECT USER_ID FROM USER_INFO 
+		WHERE USER_NAME = #{userName} AND USER_EMAIL = #{userEmail} 
+	</select>
+	
+	<select id="findPassword" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO 
+		WHERE USER_NAME = #{userName} AND USER_EMAIL = #{userEmail} AND USER_ID = #{userId}
+	</select>
+	
+	<update id="changePassword">
+		UPDATE USER_INFO SET USER_PASSWORD = #{randomPassword}
+		WHERE USER_NAME = #{signupDTO.userName} AND USER_EMAIL = #{signupDTO.userEmail} AND USER_ID = #{signupDTO.userId}
+	</update>
 	
 </mapper>
