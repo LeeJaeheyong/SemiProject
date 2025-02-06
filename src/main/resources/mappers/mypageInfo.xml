@@ -92,7 +92,7 @@
 		SELECT COUNT(*) FROM CONTACT WHERE USER_NUM = #{userNo}
 	</select>
 
-	</select>
+
 	
 	
 	
