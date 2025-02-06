@@ -16,6 +16,8 @@ public class registerServiceImpl implements registerService {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
+
+	// 회원가입 아이디 중복검사
 	// 아이디 중복검사 
 	@Override
 	public String userIdCheck(String userId) {
@@ -29,6 +31,8 @@ public class registerServiceImpl implements registerService {
 		}
 	}
 	
+
+	// 회원가입 패스워드 암호화
 	@Override
 	public int signup(signupDTO signupDTO) {
 		
@@ -45,6 +49,16 @@ public class registerServiceImpl implements registerService {
 		}
 	}
 	
+	// 로그인
+	@Override
+	public signupDTO loginin(signupDTO signupDTO) {
+		signupDTO loginUser = registerMapper.loginin(signupDTO);
+
+		if(loginUser == null) {
+			System.out.println("아이디를 입력해주세요요요요요요요요요요ㅛㅛㅛㅛ");
+			return null;
+		}
+
 	@Override
 	public signupDTO loginin(signupDTO signupDTO) {
 		signupDTO loginUser = registerMapper.loginin(signupDTO);

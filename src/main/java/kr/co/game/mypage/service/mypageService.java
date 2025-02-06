@@ -22,6 +22,9 @@ public interface mypageService {
 	public mypageFileDTO updatePro(String userId);
 
 	public List<mypageContactDTO> AllList(String userId);
+
+	public int getTotalCount(String userId);
+
 	
 	
 }
