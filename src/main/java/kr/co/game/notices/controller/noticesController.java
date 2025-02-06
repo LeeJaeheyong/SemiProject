@@ -74,6 +74,12 @@ public class noticesController {
 		return "redirect:/game/admin/form";
 	}
 	
+	@GetMapping("/notices/noticesInfo")
+	public String noticesInfo() {
+		
+		return "notices/noticesInfo";
+	}
+	
 	
 	
 	

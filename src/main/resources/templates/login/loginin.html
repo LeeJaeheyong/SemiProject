@@ -34,6 +34,14 @@
         </form>
     </main>
     <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>
+    <script th:inline="javascript">
+	    /*<![CDATA[*/
+			const test = [[${status}]];
+			if (test == 'failed') {
+				alert('아이디 또는 비밀번호를 확인해주세요');
+			}
+		/*]]>*/
+    </script>
     <script src="../javaScript/loginup.js"></script>
 </body>
 </html>

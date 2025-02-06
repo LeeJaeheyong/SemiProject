@@ -391,7 +391,6 @@ function emailcheckButton() {
 		})
 }
 
-
 // 이메일 인증번호 입력
 	const emailCheckBox = document.getElementById('emailcheck');
 	const inputEmail = document.getElementById('email');
