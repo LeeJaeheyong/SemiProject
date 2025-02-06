@@ -24,7 +24,7 @@ public class mailSendService {
 	public mailSendService(redisUtil redisUtil) {
 		this.redisUtil = redisUtil;
 	}
-  
+
 	// 인증번호 체크
 	public boolean CheckAuthNum(String email, String authNum) {
 		if(redisUtil.getData(email) == null) {
@@ -56,14 +56,6 @@ public class mailSendService {
 		System.out.println("---------" + mailNaverId.getClass().getName() + "----------");
 		makeRandomNumber(); // 인증번호 생성
 		String setFrom = mailNaverId + "@naver.com"; // email-config에 설정한 자신의 이메일 주소를 입력
-    
-	@Value("mail-naver-id")
-	private String mailNaverId;
-	// mail을 어디서 보내는지, 어디로 보내는지, 인증 번호를 html 형식으로 어떻게 보내는지 작성
-	public String joinEmail(String email) {
-		makeRandomNumber(); // 인증번호 생성
-		String setFrom = mailNaverId; // email-config에 설정한 자신의 이메일 주소를 입력
-
 		String toMail = email;
 		String title = "The Rank 회원가입 인증 이메일 입니다."; // 이메일 제목
 		String content = 

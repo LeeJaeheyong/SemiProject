@@ -51,4 +51,6 @@ public interface adminMapper {
 
 	List<contactDTO> getAllinquiries(pageInfoDTO inquiryPage);
 
+	contactDTO getInquiry(int contactNo);
+
 }

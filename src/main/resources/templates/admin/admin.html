@@ -88,7 +88,7 @@
             	<td th:text="${inquiry.createDate}"></td>
             	<td th:text="${inquiry.answer}"></td>
             	<td>
-	            <button>답변하기</button>            	
+	            <button th:onclick="|location.href='@{/game/admin/inquiry/form(contactNo=${inquiry.contactNo})}'|">답변하기</button>            	
             	</td>
             </tr>
         </tbody>

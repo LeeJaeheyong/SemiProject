@@ -1,20 +1,14 @@
 package kr.co.game.register.controller;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.game.register.dto.signupDTO;
@@ -60,24 +54,19 @@ public class registerController {
 	
 	// 로그인 페이지 이동
 	@GetMapping("/logininForm")
-
 //	public String signinForm(@RequestParam(value="status", required=false) String status, Model model) {
 		public String signinForm(@ModelAttribute(value="status") String status, Model model) {
 		if(status != null) {
 			model.addAttribute("status", status);
 		} 
-      
-	public String signinForm() {
-
+		
 		return "/login/loginin";
 	}
 	
 	// 로그인 클릭시
 	@PostMapping("/loginin")
 	public String loginin(signupDTO signupDTO, HttpSession session, RedirectAttributes redirectAttributes) {
-
-	public String loginin(signupDTO signupDTO, HttpSession session) {
-
+		
 		signupDTO loginUser = registerService.loginin(signupDTO);
 		
 		if(loginUser != null) {
@@ -85,16 +74,12 @@ public class registerController {
 			session.setAttribute("userId", loginUser.getUserId());
 			session.setAttribute("role", loginUser.getUserRole());
 			session.setAttribute("userNum", loginUser.getUserNo());
-      
+
 			return "redirect:/game/main/form";
 		
 		} else {
-      
 			redirectAttributes.addFlashAttribute("status", "failed");
 			
-			return "redirect:/game/main/form";
-		} else {
-      
 			return "redirect:/game/logininForm";
 		}
 	}
@@ -112,12 +97,12 @@ public class registerController {
 		return "/login/findId";
 	}
 	
-
 	// 아이디 찾기 버튼 클리시 
 	@PostMapping("/findId")
 	public String findId() {
 		return "/login/findIdSuccess";
 	}
+	
 	
 	// 이메일 인증
 	@PostMapping("/emailConfirm")

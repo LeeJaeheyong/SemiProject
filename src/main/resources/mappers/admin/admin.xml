@@ -150,5 +150,15 @@ DELETE FROM second_game_genre where game_no = #{gameNo}
 	JOIN USER_INFO ui ON c.USER_NUM =ui.USER_NO
 	JOIN FAQ_CATEGORY fc ON c.CATEGORY_NO =fc.CATEGORY_NO
 </select>
-
+<select id="getInquiry">
+	SELECT fc.FAQ_CATEGORY AS faqCategory,
+	   c.CONTACT_TITLE AS contactTitle,
+	   c.CONTACT_INFO AS contactInfo,
+	   c.CREATED_DATE as createDate,
+	   c.ANSWER_RE as answer
+	FROM CONTACT c 
+	JOIN USER_INFO ui ON c.USER_NUM =ui.USER_NO
+	JOIN FAQ_CATEGORY fc ON c.CATEGORY_NO =fc.CATEGORY_NO
+	WHERE contact_no = #{contactNo}
+</select>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.game.admin.model.dto.ChangeDTO;
+import kr.co.game.admin.model.dto.contactDTO;
 import kr.co.game.admin.model.dto.faqDTO;
 import kr.co.game.admin.util.adminPagination;
 
@@ -41,5 +42,7 @@ public interface adminService {
 
 	Map<String, Object> getAllinquiries(adminPagination adminPagination, int currentPage, int postCount, int pageLimit,
 			int boardLimit);
+
+	contactDTO getInquiry(int contactNo);
 
 }
