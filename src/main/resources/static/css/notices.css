@@ -154,10 +154,12 @@ footer {
 
 .notice-board td {
     line-height: 16px;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid #c6ced2;
-    padding: 8px 0;
     font-size: 14px;
+    padding-left: 45px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
 }
 

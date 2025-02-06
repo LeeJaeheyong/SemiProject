@@ -14,6 +14,9 @@ public class noticesDTO {
 	private String createdDate; // 작성일 sysdate
 	private String noticeUp = "N"; // ?
 	
+	private String userId;
+	
+	
 	
 }
 

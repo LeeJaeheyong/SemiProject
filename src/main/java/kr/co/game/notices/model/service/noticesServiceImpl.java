@@ -57,7 +57,19 @@ public class noticesServiceImpl implements noticesService{
 		return 0;
 	}
 	
+	@Override
+	public noticesDTO noticesInfo(String noticeTitle) {
+		
+	    return noticesMapper.getNoticeById(noticeTitle);
+	}
 	
-	
-	
+	@Override
+	public noticesDTO getPreviousNotice(String noticeTitle) {
+		int noticeNo = noticesMapper.noticeNo(noticeTitle);
+		return noticesMapper.getPreviousNotice(noticeNo);
+	}
 }
+	
+	
+	
+

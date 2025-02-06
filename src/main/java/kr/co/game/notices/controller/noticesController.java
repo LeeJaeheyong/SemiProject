@@ -33,7 +33,16 @@ public class noticesController {
 	@GetMapping("/notices/form")
 	public String noticesForm(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							  @ModelAttribute noticesSearchDTO noticesSearchDTO,
+							  @RequestParam(value="query", required = false) String query,
 							  Model model) {
+		
+		
+		if (query != null && !query.trim().isEmpty()) {
+	        noticesSearchDTO.setSearchText(query.trim());
+	    } else {
+	        noticesSearchDTO.setSearchText(null);
+	    }
+
 
 			int postCount = noticesService.getTotalCount(noticesSearchDTO);
 			int pageLimit = 10;
@@ -75,10 +84,21 @@ public class noticesController {
 	}
 	
 	@GetMapping("/notices/noticesInfo")
-	public String noticesInfo() {
+	public String noticesInfo(@RequestParam(value = "noticeTitle", defaultValue = "0") String noticesTitle,
+																						Model model) {
+		noticesDTO notice = noticesService.noticesInfo(noticesTitle);		
 		
-		return "notices/noticesInfo";
+		model.addAttribute("notice", notice);
+		
+	    noticesDTO prevNotice = noticesService.getPreviousNotice(noticesTitle); // 이전 공지 조회
+	    
+	    model.addAttribute("prevNotice", prevNotice);
+	    
+	    return "notices/noticesInfo";
 	}
+
+
+
 	
 	
 	

@@ -77,7 +77,6 @@ public class adminController {
 																	  noticeCount,
 																	  pageLimit,
 																	  boardLimit);
-		System.out.println(noticeResult.get("notice"));
 		pageInfoDTO noticePage = (pageInfoDTO)noticeResult.get("pi");
 		List<noticeDTO> noticeList = (List<noticeDTO>)noticeResult.get("notice");
 	
@@ -109,7 +108,6 @@ public class adminController {
 	}
 	@PostMapping("/admin/faq/enroll")
 	public String faqEnroll(faqDTO faqDTO,Model model) {
-		System.out.println(faqDTO.getCategoryNo());
 		int result = adminService.enrollFAQ(faqDTO);
 		return "redirect:/game/admin/form";
 	}
@@ -129,6 +127,12 @@ public class adminController {
 		int result = adminService.deleteGameInfo(gameNo);
 		return "redirect:/game/admin/form";
 	}
-	
-	
+
+	@GetMapping("/admin/inquiry/form")
+	public String inquiryForm(@RequestParam("contactNo")int contactNo,Model model) {
+		contactDTO inquiry = adminService.getInquiry(contactNo);
+		model.addAttribute("inquiry", inquiry);
+		return "/contact/answer";
+	}
+
 }
