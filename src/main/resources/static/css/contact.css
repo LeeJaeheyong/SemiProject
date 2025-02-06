@@ -142,7 +142,7 @@ footer {
 }
 
 .form-group input[type="submit"] {
-    background-color: #007bff;
+    background-color: rgb(135, 221, 248);
     color: white;
     border: none;
     cursor: pointer;

@@ -11,6 +11,7 @@
         <result property="createdDate" column="created_date" />
         <result property="noticeUp" column="notice_up" />
         <result property="userNo" column="user_num" />
+        <result property="userId" column="user_id" />
     </resultMap>
 
     <!-- 공지사항 총 개수 가져오기 -->
@@ -18,7 +19,7 @@
         SELECT COUNT(*) FROM NOTICE
     </select>
 
-    <!-- 공지사항 목록 가져오기 (페이징 적용) -->
+    <!-- 공지사항 목록 가져오기 (페이징 및 검색 적용) -->
 	<select id="getAllPosts" resultMap="noticesResultMap">
     	SELECT * FROM (
         	SELECT 
@@ -31,15 +32,43 @@
             	ROW_NUMBER() OVER(ORDER BY n.created_date DESC) AS rn
         	FROM NOTICE n
         	JOIN USER_INFO ui ON n.user_num = ui.user_no
+        	<where>
+				<if test="noticesSearchDTO.searchText != null and noticesSearchDTO.searchText != ''">
+					AND n.notice_title LIKE '%' || #{noticesSearchDTO.searchText} || '%'
+				</if>
+			</where>
     	) subquery
     	WHERE rn BETWEEN #{offset} + 1 AND #{offset} + #{boardLimit}
-</select>
+	</select>
+
 
 	<insert id="enroll">
 		INSERT INTO notice VALUES(notice_seq.nextval,#{userNum},#{noticeTitle},#{noticeInfo},sysdate,'N')
 	</insert>
-<delete id="delete">
-	DELETE FROM notice WHERE notice_no = #{noticeNo}
-</delete>
+	
+	<delete id="delete">
+		DELETE FROM notice WHERE notice_no = #{noticeNo}
+	</delete>
+	
+	<select id="getNoticeById"  resultMap="noticesResultMap">
+		SELECT n.notice_title, n.notice_info, TO_CHAR(n.created_date, 'YYYY-MM-DD') AS created_date, ui.USER_ID 
+		FROM NOTICE n
+		JOIN USER_INFO ui ON n.user_num = ui.user_no
+		WHERE notice_title = #{noticeTitle}
+	</select>
+	
+	<select id="getPreviousNotice" resultMap="noticesResultMap">
+		SELECT notice_title FROM NOTICE n 
+	  	WHERE NOTICE_NO &lt; #{noticeNo}
+	 	ORDER BY NOTICE_NO DESC 
+	  	FETCH FIRST 1 ROW ONLY 	
+	</select>
+	
+	<select id="noticeNo">
+		SELECT notice_no FROM notice n
+		WHERE notice_title = #{noticeTitle}
+	</select>
+
+
 
 </mapper>

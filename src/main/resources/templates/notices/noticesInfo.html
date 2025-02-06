@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/noticesInfo.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+
+<main>
+    <h2 style="width: 1000px">공지사항</h2>
+    <div class="container">
+        <!-- 공지사항 제목 -->
+        <div class="title" th:text="${notice.noticeTitle}"></div>
+
+        <!-- 작성 날짜 -->
+        <!-- <div class="date" th:text="${notice.createdDate}"></div> -->
+
+        <!-- 공지사항 내용 -->
+        <div class="content" th:text="${notice.noticeInfo}"></div>
+
+        <!-- 추가 정보 박스 -->
+        <div class="info-box">
+            <strong>■ 작성일</strong><br>
+            <span th:text="${notice.createdDate}"></span><br><br>
+             <strong>■ 작성자</strong><br>
+            <span th:text="${notice.userId}"></span> 
+        </div>
+
+        <!-- 이전/다음 공지사항 -->
+        <div class="navigation" style="height:30px;">
+    		<div th:if="${prevNotice != null}">
+        		<div th:onclick="|location.href='@{/game/notices/noticesInfo(noticeTitle=${prevNotice.noticeTitle})}'|" >
+        			이전 :  <span style="cursor:pointer;" class="div-span" th:text="${prevNotice.noticeTitle}"></span>
+           		</div>
+    		</div>
+    		<div th:if="${prevNotice == null}">
+        		<div th:onclick="|location.href='@{/game/notices/noticesInfo(noticeTitle=${notice.noticeTitle})}'|" >
+        			이전 :  <span style="cursor:pointer;" class="div-span" th:text="${notice.noticeTitle}"></span>
+           		</div>
+    		</div>
+    		<a href="/game/notices/form" class="btn">목록으로</a>
+		</div>
+      </div>
+</main>
+
+</body>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>

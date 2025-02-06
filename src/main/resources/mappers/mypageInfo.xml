@@ -104,10 +104,5 @@
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM CONTACT WHERE USER_NUM = #{userNo}
 	</select>
-
 	
-	
-	
-	
-
 </mapper>

@@ -20,5 +20,9 @@ public interface noticesService {
 	int enroll(noticesDTO noticeDTO);
 
 	int delete(int noticeNo);
+
+	noticesDTO noticesInfo(String noticeTitle);
+
+	noticesDTO getPreviousNotice(String noticeTitle);
 	
 }
