@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/faq.css}">
+</head>
+<body>
+<div th:replace="~{fragments/common/header :: HeaderFragment}"></div>
+    <main>
+    <!-- ...existing code... -->
+    <div class="search-container">
+        <div class="faq-container">
+        <h3>답변하기</h3>
+        </div>
+        <form th:action="@{/game/admin/inquiry/enroll}" method="POST">
+        <div class="answer" >
+        <h3  class="ans">제목 : <span th:text="${inquiry.contactTitle}"></span></h3>
+        <p  class="ans"> 작성일 : <span th:text="${inquiry.createDate}"></span></p>
+        <p class="ans"> 카테고리 : <span th:text="${inquiry.faqCategory}" ></span></p>
+        <label for="contactInfo">내용</p>
+        <textarea class="contact-info" name="contactInfo" th:text="${inquiry.contactInfo}" readonly></textarea>
+        <label for="answerText">답변 내용 : </p>
+      <textarea class="answer-text" name="answerText"></textarea>
+        </div>
+        <button type="submit" class="btn-group">등록</button>
+        <button type="button" onclick="window.history.back()" class="btn-group">취소</button>
+        </form>
+
+    </main>
+<footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+
+</body>
+</html>

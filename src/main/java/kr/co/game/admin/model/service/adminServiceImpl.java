@@ -138,4 +138,9 @@ public class adminServiceImpl implements adminService{
 		result.put("inquiry",inquiries);
 		return result;
 	}
+	@Override
+	public contactDTO getInquiry(int contactNo) {
+		
+		return adminMapper.getInquiry(contactNo);
+	}
 }
