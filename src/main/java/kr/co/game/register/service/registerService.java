@@ -8,5 +8,9 @@ public interface registerService {
 	
 	public int signup(signupDTO signupDTO);
 	
-	public signupDTO loginin(signupDTO signupDTO); 
+	public signupDTO loginin(signupDTO signupDTO);
+
+	public signupDTO findId(signupDTO signupDTO);
+
+	public String findPassword(signupDTO signupDTO); 
 }

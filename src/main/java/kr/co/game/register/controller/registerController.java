@@ -67,18 +67,49 @@ public class registerController {
 	@PostMapping("/loginin")
 	public String loginin(signupDTO signupDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		
-		signupDTO loginUser = registerService.loginin(signupDTO);
-		
-		if(loginUser != null) {
-			System.out.println(loginUser.getUserId());
-			session.setAttribute("userId", loginUser.getUserId());
-			session.setAttribute("role", loginUser.getUserRole());
-			session.setAttribute("userNum", loginUser.getUserNo());
+		String userId = signupDTO.getUserId();
+		String userPassword = signupDTO.getUserPassword();
 
-			return "redirect:/game/main/form";
+//		System.out.println("-----------------------");
+//		System.out.println(userId);
+//		System.out.println(userPassword);
+//		System.out.println("-----------------------");
 		
+		// ID, PASSWORD 둘다 있을 경우
+		if(userId != "" && userPassword !="") {
+			signupDTO loginUser = registerService.loginin(signupDTO);
+			
+			// 정상 로그인
+			if(loginUser != null) {
+				System.out.println(loginUser.getUserId());
+				session.setAttribute("userId", loginUser.getUserId());
+				session.setAttribute("role", loginUser.getUserRole());
+				session.setAttribute("userNum", loginUser.getUserNo());
+				
+				return "redirect:/game/main/form";
+			
+			// 비정상 로그인
+			} else {
+				redirectAttributes.addFlashAttribute("status", "failed");
+				
+				return "redirect:/game/logininForm";
+			}
+		
+		// PASSWORD가 없을 때
+		} else if(userId != "" && userPassword == ""){
+			redirectAttributes.addFlashAttribute("status", "passX");
+			
+			return "redirect:/game/logininForm";
+		
+		// ID가 없을 때	
+		} else if(userId == "" && userPassword != ""){
+			redirectAttributes.addFlashAttribute("status", "idX");
+			
+			return "redirect:/game/logininForm";
+		
+		// ID, PASSWORD 둘다 없을 경우	
 		} else {
-			redirectAttributes.addFlashAttribute("status", "failed");
+			redirectAttributes.addFlashAttribute("status", "idX");
 			
 			return "redirect:/game/logininForm";
 		}
@@ -97,12 +128,44 @@ public class registerController {
 		return "/login/findId";
 	}
 	
-	// 아이디 찾기 버튼 클리시 
+	// 아이디 찾기 버튼 클릭시 
 	@PostMapping("/findId")
-	public String findId() {
+	public String findId(signupDTO signupDTO, Model model) {
+		
+		signupDTO findUser = registerService.findId(signupDTO);
+		
+		if(findUser != null) {
+			model.addAttribute(findUser);
+//			model.addAttribute("findUser", findUser);
+		}
+		
 		return "/login/findIdSuccess";
 	}
 	
+	// 비밀번호 찾기
+	@GetMapping("/findPasswordForm")
+	public String findPasswordForm() {
+		return "login/findPassword";
+	}
+	
+	// 비밀번호 찾기 버튼 클릭시
+	@PostMapping("/findPassword")
+	public String findPassword(signupDTO signupDTO, Model model) {
+
+		String changePassword = registerService.findPassword(signupDTO);
+		
+		if(changePassword=="아이디, 이름, 이메일을 확인해주세요") {
+			model.addAttribute("boolean", false);
+		
+		} else {
+			model.addAttribute("boolean", true);
+		
+		}
+		
+		model.addAttribute("changePassword", changePassword);
+		
+		return "login/findPasswordSuccess";
+	}
 	
 	// 이메일 인증
 	@PostMapping("/emailConfirm")
