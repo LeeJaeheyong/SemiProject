@@ -127,10 +127,12 @@ public class adminController {
 		int result = adminService.deleteGameInfo(gameNo);
 		return "redirect:/game/admin/form";
 	}
+
 	@GetMapping("/admin/inquiry/form")
 	public String inquiryForm(@RequestParam("contactNo")int contactNo,Model model) {
 		contactDTO inquiry = adminService.getInquiry(contactNo);
 		model.addAttribute("inquiry", inquiry);
 		return "/contact/answer";
 	}
+
 }

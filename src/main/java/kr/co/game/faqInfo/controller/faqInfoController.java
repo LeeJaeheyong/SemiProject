@@ -49,12 +49,11 @@ public class faqInfoController {
             int boardLimit = 10;
 
             // FAQ 목록 조회
-            Map<String, Object> result = faqInfoService.getFaqList(
-                    faqInfoPage,
-                    currentPage,
-                    postCount,
-                    pageLimit,
-                    boardLimit);
+            Map<String, Object> result = faqInfoService.getFaqList(faqInfoPage,
+                    											   currentPage,
+                    											   postCount,
+                    											   pageLimit,
+                    											   boardLimit);
 
             // 데이터 추출 및 조건 처리
             faqInfoPageInfoDTO fpi = (faqInfoPageInfoDTO) result.get("fpi");

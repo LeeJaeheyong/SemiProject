@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지 사항</title>
+    <title>공지사항</title>
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/notices.css}">
 </head>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <table class="notice-board">
-            <thead class="notice-thead">
+            <thead class="notice-thead" style="height:40px;">
                 <tr>
                     <th style="width: 10%; padding-bottom: 3px;">순번</th>
                     <th style="width: 70%; padding-bottom: 3px;">내용</th>
@@ -30,14 +30,13 @@
                 </tr>
             </thead>
              <tbody>
-				<tr th:each="post, iterStat : ${nposts}">
+				<tr th:each="post, iterStat : ${nposts}" th:onclick="|location.href='@{/game/notices/noticesInfo(noticeTitle=${post.noticeTitle})}'|">
 					<td th:text="${npi.row - iterStat.index}"></td>
 					<td class="info-td" th:text="${post.noticeTitle}"></td>
 					<td th:text="${post.createdDate}"></td>
 				</tr>
                 </tbody>
-        </table>
-        
+        </table>     
         	<nav aria-label="Page navigation example" style="justify-content: center;">
     <ul class="pagination" style="justify-content: center;">
         <!-- 
@@ -88,9 +87,25 @@
     </main>
 <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
 <script>
- function submitForm() {
-        document.getElementById('noticesForm').submit();
+    function submitForm() {
+        const searchInput = document.getElementById("search").value.trim(); // 입력값 가져오기
+
+        if (searchInput === "") {
+            alert("검색어를 입력해주세요."); // 검색어가 비어있으면 경고창
+            return document.getElementById("noticesForm").submit();
+        }else {
+        	document.getElementById("noticesForm").submit();
+        }
     }
+
+    // Enter 키 입력 시 폼 제출 가능하도록 이벤트 추가
+    document.getElementById("search").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // 기본 엔터 제출 방지
+            submitForm(); // 검색 실행
+        }
+    });
 </script>
+
 </body>
 </html>

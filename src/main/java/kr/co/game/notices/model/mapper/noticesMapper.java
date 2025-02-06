@@ -18,11 +18,17 @@ public interface noticesMapper {
 
 	int getTotalCount(noticesSearchDTO noticesSearchDTO);
 
-
 	int enroll(noticesDTO noticeDTO);
 
-
 	int delete(int noticeNo);
+
+	noticesDTO getNoticeById(String noticeTitle);
+	
+	noticesDTO noticesInfo(String noticeTitle);
+
+	noticesDTO getPreviousNotice(int noticeNo);
+
+	int noticeNo(String noticeTitle);
 
 	
 }

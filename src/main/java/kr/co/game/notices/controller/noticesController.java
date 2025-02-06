@@ -33,11 +33,20 @@ public class noticesController {
 	@GetMapping("/notices/form")
 	public String noticesForm(@RequestParam(value="currentPage", defaultValue="1") int currentPage,
 							  @ModelAttribute noticesSearchDTO noticesSearchDTO,
+							  @RequestParam(value="query", required = false) String query,
 							  Model model) {
+		
+		
+		if (query != null && !query.trim().isEmpty()) {
+	        noticesSearchDTO.setSearchText(query.trim());
+	    } else {
+	        noticesSearchDTO.setSearchText(null);
+	    }
+
 
 			int postCount = noticesService.getTotalCount(noticesSearchDTO);
-			int pageLimit = 5;
-			int boardLimit = 5;
+			int pageLimit = 10;
+			int boardLimit = 10;
 
 			Map<String, Object> result = noticesService.getAllPosts(noticesPage, 
 												  					currentPage,
@@ -73,6 +82,23 @@ public class noticesController {
 			
 		return "redirect:/game/admin/form";
 	}
+	
+	@GetMapping("/notices/noticesInfo")
+	public String noticesInfo(@RequestParam(value = "noticeTitle", defaultValue = "0") String noticesTitle,
+																						Model model) {
+		noticesDTO notice = noticesService.noticesInfo(noticesTitle);		
+		
+		model.addAttribute("notice", notice);
+		
+	    noticesDTO prevNotice = noticesService.getPreviousNotice(noticesTitle); // 이전 공지 조회
+	    
+	    model.addAttribute("prevNotice", prevNotice);
+	    
+	    return "notices/noticesInfo";
+	}
+
+
+
 	
 	
 	

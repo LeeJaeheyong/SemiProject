@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.header-Div {
+    box-shadow: 0px 1px 5px -2px #333;
+}
+
+header {
+    background-color: #f0f8ff;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-a {
+    text-decoration-line: none;
+    color: #333;
+}
+
+nav {
+    background-color: #f0f8ff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgb(135, 221, 248);
+}
+
+.auth-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    color: rgb(135, 221, 248);
+}
+
+main {
+    padding: 0px;
+    text-align: center;
+}
+
+footer {
+    background-color: #eaf5ff;
+    padding: 15px;
+    padding-left: 300px;
+    padding-bottom: 20px;
+    text-align: left;
+    position: relative;
+    width: 80%;
+    bottom: 0px;
+    font-size: 13px;
+}
+.h2 {
+	text-align: left;
+	margin-top: 20px;
+	display: block;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-top: 2px solid #2c3037;
+}
+.content {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	border-top: 1px solid #ccc;
+}
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 9px;
+}
+.date {
+    text-align: right;
+    color: gray;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.info-box {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    
+}
+.btn {
+    display: inline-block;
+    padding: 10px 10px;
+    background: #666;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+.btn:hover {
+    background: rgb(135, 221, 248);
+}
+
+.div-span:hover {
+	color: rgb(135, 221, 248);
+}

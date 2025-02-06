@@ -32,12 +32,31 @@
                   placeholder="문의 내용을 입력하세요" required></textarea>
     </div>
     <div class="form-group">
-        <input type="submit" value="문의하기">
+        <input onclick="contactbtn()" type="submit" value="문의하기" id="contactsub" style="width: 120px;">
     </div>
 </form>
 
     </div>
     </main>
 <footer th:replace="~{fragments/common/footer :: FooterFragment}"></footer>  
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".contact-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // 기본 폼 제출 방지
+
+            const category_no = document.getElementById("category_no").value;
+            const contact_title = document.getElementById("contact_title").value.trim();
+            const contact_info = document.getElementById("contact_info").value.trim();
+
+            if (category_no === "" || contact_title === "" || contact_info === "") {
+                alert("모든 항목을 입력해주세요.");
+                return;
+            }
+
+            alert("문의가 완료되었습니다."); // 성공 메시지
+            this.submit(); // 폼 제출 실행
+        });
+    });
+</script>
 </body>
 </html>
