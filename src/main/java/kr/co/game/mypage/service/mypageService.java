@@ -24,6 +24,7 @@ public interface mypageService {
 	public List<mypageContactDTO> AllList(String userId);
 
 	public int getTotalCount(String userId);
+
 	
 	
 }

@@ -25,6 +25,7 @@
                 <th:block th:each="lists, iterStat :${list}">
 					<tr>
 	                    <td th:text="${count-iterStat.index}"></td>
+	                    <td th:text="${iterStat.count}"></td>
 	                    <td th:text="${lists.contactTitle}"></td>
 	                    <td th:text="${lists.createDate}"></td>
 	                    <td><button class="show-table-btn" th:id="'btn-status-' + ${iterStat.index}" th:onclick="toggleDetails([[${iterStat.index}]])">▼</button></td>

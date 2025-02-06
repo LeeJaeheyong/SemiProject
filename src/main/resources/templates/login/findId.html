@@ -15,6 +15,11 @@
                 <div class="form_group">
                     <div class="form_item">
                         <input type="text" id="name" name="userName" placeholder="이름">
+        <form action="/game/loginin" method="POST">
+            <div class="form_list">
+                <div class="form_group">
+                    <div class="form_item">
+                        <input type="text" id="username" name="userId" placeholder="아이디" maxlength="20">
                     </div>
                     <div class="form_item">
                         <input type="email" id="email" name="userEmail" placeholder="이메일주소">
@@ -25,6 +30,7 @@
                 </div>
                 <div class="form_footer">
                     <a th:href="@{/game/logininForm}">로그인</a>
+                    <a href="#" class="form_a">로그인</a>
                     <span>|</span>
                     <a th:href="@{/game/loginupForm}">회원가입</a>
                 </div>

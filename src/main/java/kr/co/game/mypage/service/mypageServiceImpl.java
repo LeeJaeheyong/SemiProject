@@ -129,7 +129,7 @@ public class mypageServiceImpl implements mypageService {
 
 		return mypageMapper.AllList(userNo);
 	}
-	
+
 	@Override
 	public int getTotalCount(String userId) {
 		
@@ -139,5 +139,5 @@ public class mypageServiceImpl implements mypageService {
 		
 		return result;
 	}
-	
+
 }

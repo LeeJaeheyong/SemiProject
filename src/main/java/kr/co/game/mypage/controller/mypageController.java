@@ -111,7 +111,7 @@ public class mypageController {
 
 		List<mypageContactDTO> list = mypageService.AllList(userId);
 		int totalCount = mypageService.getTotalCount(userId);
-		
+    
 		for(int i=0; i<list.size(); i++) {
 			mypageContactDTO contact = list.get(i);
 	        System.out.println("Controller 단 : " + contact.getAnswer());
@@ -125,7 +125,7 @@ public class mypageController {
 
 		model.addAttribute("list", list);
 		model.addAttribute("count", totalCount);
-		
+	
 		return "/mypage/mypageInquiry";
 	}
 	

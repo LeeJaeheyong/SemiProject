@@ -37,6 +37,7 @@ public interface mypageMapper {
 	public List<mypageContactDTO> AllList(int userNo);
 
 	public int getTotalCount(int userNo);
+
 	
 	
 }
